@@ -20,7 +20,7 @@
           </h1>
 
           <p class="text-lg md:text-5xl mb-12 max-w-2xl mx-auto leading-relaxed   ">
-            Более 450 лифтов и 22 экрана <br />по всему городу.
+            Более 600 лифтов и 28 экрана <br />по всему городу.
           </p>
           <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed ">
             От 20 000 ₸ в месяц. Без шума. <br />С максимальным вниманием.
