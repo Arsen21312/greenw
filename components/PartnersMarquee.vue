@@ -4,8 +4,12 @@
     <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none" />
 
     <div class="flex animate-marquee space-x-8 whitespace-nowrap">
-      <div v-for="(logo, idx) in duplicatedLogos" :key="idx" class="flex-shrink-0">
-        <img :src="logo" alt="Логотип партнёра" class="h-24 object-contain" />
+      <div
+        v-for="(logo, idx) in duplicatedLogos"
+        :key="idx"
+        class="flex h-24 w-36 flex-shrink-0 items-center justify-center"
+      >
+        <img :src="logo" alt="Логотип партнёра" class="max-h-full max-w-full object-contain" />
       </div>
     </div>
   </div>
