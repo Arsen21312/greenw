@@ -6,6 +6,8 @@
       <img :src="block.image" loading="lazy" :alt="`Изображение ${block.name}`" class="w-full h-56 object-cover" />
       <div class="p-6">
         <h3 class="text-2xl font-semibold text-center text-gray-800 mb-4">{{ block.name }}</h3>
+        <p v-if="block.summary" class="text-gray-700 text-center mb-2">{{ block.summary }}</p>
+        <p v-if="block.details" class="text-gray-600 text-sm text-center mb-4">{{ block.details }}</p>
         <!-- Сетка с двумя колонками для статистики -->
         <div class="grid grid-cols-2 gap-4 text-gray-700 mb-4">
           <!-- Домов -->
@@ -153,24 +155,23 @@
             </svg>
           </div>
         </div>
-       <!-- две кнопки по 50% -->
+        <!-- две кнопки по 50% -->
         <div class="mt-4 flex space-x-2">
-          <!-- Подробнее -->
-          <button
-            class="w-1/2 bg-custom-green text-white py-3 rounded-lg hover:bg-green-600 transition duration-300"
-            @click="$emit('open-modal', block)"
+          <!-- Заказать -->
+          <a
+            href="#contact"
+            class="w-1/2 bg-custom-green text-white py-3 rounded-lg text-center hover:bg-green-600 transition duration-300"
           >
-            Подробнее
-          </button>
+            Заказать
+          </a>
 
-          <!-- Скачать адрес -->
-          <!-- href можно сделать динамическим: block.addressUrl -->
+          <!-- Скачать адреса -->
           <a
             :href="block.addressUrl || `/addresses/${block.id}-address.pdf`"
             download
             class="w-1/2 bg-white border-2 border-custom-green text-custom-green py-3 rounded-lg text-center hover:bg-custom-green hover:text-white transition duration-300"
           >
-            Скачать адрес
+            Скачать адреса
           </a>
         </div>
       </div>
