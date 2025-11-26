@@ -30,7 +30,7 @@
           <ul
             class="text-lg md:text-xl mb-10 space-y-3 max-w-3xl mx-auto text-left list-inside list-disc text-white/90"
           >
-            <li>22 экрана по всему городу — ТЦ, улицы, вокзалы</li>
+            <li>28 экрана по всему городу — ТЦ, улицы, вокзалы</li>
             <li>200–400 показов в день</li>
             <li>Хронометраж до 30 секунд</li>
             <li>Узнаваемость </li>

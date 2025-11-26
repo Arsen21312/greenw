@@ -43,7 +43,7 @@ import image4  from '@/assets/4b.webp'
 const blocks = ref([
   {
     id: 1,
-    name: 'Блок 1',
+    name: 'Блок 1 Юго-Восток (вторичное жильё)',
     image: image1,
     houses: '40',
     lifts: '102',

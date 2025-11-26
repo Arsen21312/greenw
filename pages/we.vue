@@ -196,15 +196,15 @@
           class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 max-w-5xl mx-auto"
         >
           <StatCard
-            value="450+"
+            value="605+"
             label="лифтов с&nbsp;размещённой&nbsp;рекламой"
           />
-          <StatCard value="22" label="экрана по&nbsp;всей&nbsp;Караганде" />
+          <StatCard value="28" label="экрана по&nbsp;всей&nbsp;Караганде" />
           <StatCard
-            value="50&nbsp;000+"
+            value="55&nbsp;200+"
             label="человек видят рекламу&nbsp;каждый&nbsp;день"
           />
-          <StatCard value="100+" label="довольных&nbsp;клиентов" />
+          <StatCard value="150+" label="довольных&nbsp;клиентов" />
         </div>
       </div>
     </section>

@@ -64,8 +64,8 @@
               </h3>
               <ul class="mt-4 space-y-2 text-white text-left">
                 <li><span class="font-semibold">Формат:</span> бумажный модуль внутри лифта</li>
-                <li><span class="font-semibold">450+ лифтов</span> по всему городу</li>
-                <li><span class="font-semibold">Ежедневный охват:</span> до 48 000 человек</li>
+                <li><span class="font-semibold">600+ лифтов</span> по всему городу</li>
+                <li><span class="font-semibold">Ежедневный охват:</span> до 55 000 человек</li>
                 <li><span class="font-semibold">От 20 000 ₸</span> / месяц</li>
                 <li>Работает на доверие, локальность и регулярный контакт</li>
               </ul>
@@ -84,7 +84,7 @@
               </h3>
               <ul class="mt-4 space-y-2 text-white text-left">
                 <li><span class="font-semibold">Формат:</span> динамичный ролик на экране</li>
-                <li><span class="font-semibold">22 монитора</span> в ТД, на вокзале и улицах</li>
+                <li><span class="font-semibold">28 монитора</span> в ТД, на вокзале и улицах</li>
                 <li><span class="font-semibold">200–400 показов</span> в сутки</li>
                 <li>Идеально для акций, имиджа, узнаваемости</li>
                 <li><span class="font-semibold">От 20 000 ₸</span> / месяц</li>
