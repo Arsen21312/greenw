@@ -160,7 +160,7 @@
           <!-- Заказать -->
           <a
             href="#contact"
-            class="w-1/2 bg-custom-green text-white py-3 rounded-lg text-center hover:bg-green-600 transition duration-300"
+            class="w-1/2 bg-custom-green text-white py-3 rounded-lg text-center hover:bg-green-600 transition duration-300 flex items-center justify-center"
           >
             Заказать
           </a>
@@ -169,7 +169,7 @@
           <a
             :href="block.addressUrl || `/addresses/${block.id}-address.pdf`"
             download
-            class="w-1/2 bg-white border-2 border-custom-green text-custom-green py-3 rounded-lg text-center hover:bg-custom-green hover:text-white transition duration-300"
+            class="w-1/2 bg-white border-2 border-custom-green text-custom-green py-3 rounded-lg text-center hover:bg-custom-green hover:text-white transition duration-300 flex items-center justify-center"
           >
             Скачать адреса
           </a>

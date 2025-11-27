@@ -30,14 +30,15 @@
       </template>
     </Suspense>
     -->
-    <Suspense>
+    <!-- слайдер с фотками крулгый -->
+    <!--<Suspense>
       <template #default>
         <AsyncSlider/>
       </template>
       <template #fallback>
         <div>Загрузка слайдера...</div>
       </template>
-    </Suspense>
+    </Suspense>-->
      <Info id="services"/>
  <Suspense>
       <template #default>
