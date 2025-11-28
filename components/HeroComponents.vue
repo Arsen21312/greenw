@@ -38,13 +38,27 @@
     </div>
 
     <!-- Статистика -->
-    <div ref="statsSection" class="bg-custom-green py-12 mt-12">
-      <div class="container mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
-        <div v-for="item in stats" :key="item.label" class="stat-item">
-          <h3 class="text-3xl font-bold border-b-4 border-white w-[150px] mx-auto pb-2">
-            {{ Math.round(formattedStats[item.label]) }}
-          </h3>
-          <p class="mt-2">{{ item.label }}</p>
+    <div class="mt-12 px-4">
+      <div class="container mx-auto">
+        <div class="bg-custom-green py-12 rounded-3xl w-full">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
+            <div
+              v-for="item in stats"
+              :key="item.label"
+              class="stat-item flex flex-col items-center"
+            >
+              <h3 class="text-3xl font-bold">
+                <CountUp
+                  :to="item.value"
+                  :duration="1.2"
+                  separator=" "
+                  class-name="block"
+                />
+              </h3>
+              <div class="mt-3 h-1 w-24 bg-white rounded-full"></div>
+              <p class="mt-2 text-sm sm:text-base">{{ item.label }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,6 +71,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import OrderModal from '@/components/OrderModal.vue'
+import CountUp from '@/components/CountUp.vue'
 import slide2 from '@/assets/2.jpeg'
 import slide3 from '@/assets/3.jpeg'
 import slide54 from '@/assets/54.jpeg'
@@ -93,48 +108,12 @@ const slides = ref([
 // Удваиваем массив, чтобы движение было бесшовным
 const loopSlides = computed(() => [...slides.value, ...slides.value])
 
-// Статистика
 const stats = ref([
   { label: 'лифтов', value: 600 },
   { label: 'жилых домов', value: 225 },
   { label: 'ежедневный охват аудитории', value: 55000 },
   { label: 'ежемесячный охват аудитории', value: 1650000 },
 ])
-
-// Форматирование статистики (анимация чисел)
-const formattedStats = ref({})
-const animateNumbers = () => {
-  stats.value.forEach((item) => {
-    formattedStats.value[item.label] = 0
-    const target = item.value
-    const increment = target / 200
-    const updateCount = () => {
-      formattedStats.value[item.label] += increment
-      if (formattedStats.value[item.label] < target) {
-        requestAnimationFrame(updateCount)
-      } else {
-        formattedStats.value[item.label] = target
-      }
-    }
-    updateCount()
-  })
-}
-
-// Использование Intersection Observer для запуска анимации при видимости
-const statsSection = ref(null)
-import { useIntersectionObserver } from '@vueuse/core'
-
-useIntersectionObserver(
-  statsSection,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      animateNumbers()
-    }
-  },
-  {
-    threshold: 0.5,
-  }
-)
 </script>
 
 <style scoped>
@@ -155,7 +134,7 @@ useIntersectionObserver(
   gap: 12px;
   width: max-content;
   height: 100%;
-  animation: slide-left 18s linear infinite;
+  animation: slide-left 36s linear infinite;
 }
 
 .slider-card {

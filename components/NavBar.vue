@@ -39,12 +39,18 @@
 
       <!-- Навигация десктоп -->
       <nav
-        class="hidden md:flex space-x-8 flex-grow justify-center text-lg"
+        class="hidden md:flex space-x-8 flex-grow justify-center text-lg items-center"
       >
         <NuxtLink to="/lift"  class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
         <NuxtLink to="/led"   class="text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
         <NuxtLink to="/owners" class="text-gray-800 hover:text-custom-green">Собственникам лифтов</NuxtLink>
         <NuxtLink to="/we"     class="text-gray-800 hover:text-custom-green">О нас</NuxtLink>
+        <NuxtLink
+          to="/otzyvy"
+          class="px-4 py-2 rounded-full border border-custom-green text-custom-green font-semibold hover:bg-custom-green hover:text-white transition"
+        >
+          Отзывы
+        </NuxtLink>
       </nav>
 
       <!-- Телефон десктоп + отдельный WhatsApp -->
@@ -88,6 +94,12 @@
       <NuxtLink to="/led"   class="block text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
       <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Собственникам лифтов</NuxtLink>
       <NuxtLink to="/we"     class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
+      <NuxtLink
+        to="/otzyvy"
+        class="block text-center px-4 py-2 rounded-full border border-custom-green text-custom-green font-semibold hover:bg-custom-green hover:text-white transition"
+      >
+        Отзывы
+      </NuxtLink>
 
       <div class="flex items-center gap-3 pt-2">
         <a

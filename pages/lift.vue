@@ -40,6 +40,7 @@
       </template>
     </Suspense>-->
      <Info id="services"/>
+    <ReviewsPreview />
  <Suspense>
       <template #default>
         <AsyncFaq />
@@ -59,6 +60,7 @@ import HeroComponents from '@/components/HeroComponents.vue';
 import Info from '@/components/Info.vue';
 import Blocks from '@/components/Blocks.vue';
 import Footer from '@/components/Footer.vue';
+import ReviewsPreview from '@/components/ReviewsPreview.vue';
 useSeoMeta({
   title: 'Реклама в лифтах Караганды – охват до 48 000 в день | GreenW',
   description: 'Размещение в 450+ лифтах Караганды. Ежедневный контакт с жильцами. От 20 000 ₸/мес. Фотоотчёт и помощь с макетом.',

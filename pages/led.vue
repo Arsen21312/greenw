@@ -272,6 +272,7 @@
           </div>
         </div>
       </section>
+      <ReviewsPreview />
       <FaqLed class="py-12 bg-gray-200" />
     </main>
 
@@ -318,6 +319,7 @@
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import FaqLed from '@/components/FaqLed.vue'
+import ReviewsPreview from '@/components/ReviewsPreview.vue'
 import OrderModal from '@/components/OrderModal.vue'
 import { ref, onMounted } from 'vue'
 

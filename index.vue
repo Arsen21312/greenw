@@ -121,6 +121,8 @@
           </div>
         </div>
       </section>
+
+      <ReviewsPreview />
       <!-- Новый блок “Нам доверяют” -->
       <section class="bg-white py-6">
         <div class="container mx-auto px-4 text-center">
@@ -163,6 +165,7 @@ import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import PartnersMarquee from '@/components/PartnersMarquee.vue'
 import OrderModal from '@/components/OrderModal.vue'
+import ReviewsPreview from '@/components/ReviewsPreview.vue'
 import { ref } from 'vue'
 
 useSeoMeta({

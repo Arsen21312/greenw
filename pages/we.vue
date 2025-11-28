@@ -196,15 +196,12 @@
           class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 max-w-5xl mx-auto"
         >
           <StatCard
-            value="605+"
-            label="лифтов с&nbsp;размещённой&nbsp;рекламой"
+            v-for="item in statsPreview"
+            :key="item.label"
+            :value="item.value"
+            :label="item.label"
+            :delay="item.delay"
           />
-          <StatCard value="28" label="экрана по&nbsp;всей&nbsp;Караганде" />
-          <StatCard
-            value="55&nbsp;200+"
-            label="человек видят рекламу&nbsp;каждый&nbsp;день"
-          />
-          <StatCard value="150+" label="довольных&nbsp;клиентов" />
         </div>
       </div>
     </section>
@@ -269,6 +266,7 @@
       </div>
     </section>
 
+    <ReviewsPreview />
     <Footer />
 
     <!-- Модалка заказа -->
@@ -286,6 +284,7 @@ import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import PartnersMarquee from '@/components/PartnersMarquee.vue'
 import OrderModal from '@/components/OrderModal.vue'
+import ReviewsPreview from '@/components/ReviewsPreview.vue'
 import logo from '@/assets/logo.svg'
 
 useSeoMeta({
@@ -360,17 +359,71 @@ const Adv = defineComponent({
 
 /* ── StatCard ── */
 const StatCard = defineComponent({
-  props: { value: String, label: String },
+  props: {
+    value: String,
+    label: String,
+    delay: { type: Number, default: 0 }
+  },
   setup (props) {
+    const el = ref<HTMLElement | null>(null)
+    const displayValue = ref('0')
+    let started = false
+
+    const startAnimation = () => {
+      if (started) return
+      started = true
+      const numericTarget = Number(props.value?.replace(/[^\d]/g, '')) || 0
+      const suffixPlus = props.value?.includes('+') ? '+' : ''
+      const hasSpaces = props.value?.includes('&nbsp;')
+      const target = numericTarget
+      const duration = 1000
+      const start = performance.now()
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const current = Math.floor(target * progress)
+        let formatted = current.toString()
+        if (hasSpaces) {
+          formatted = current
+            .toLocaleString('ru-RU')
+            .replace(/\u00a0/g, '&nbsp;')
+        }
+        displayValue.value = `${formatted}${suffixPlus}`
+        if (progress < 1) {
+          requestAnimationFrame(tick)
+        }
+      }
+
+      requestAnimationFrame(tick)
+    }
+
+    onMounted(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(startAnimation, props.delay)
+            observer.disconnect()
+          }
+        },
+        { threshold: 0.4 }
+      )
+      if (el.value) {
+        observer.observe(el.value)
+      }
+    })
+
     return () =>
-      h('div', {
+      h(
+        'div',
+        {
+          ref: el,
           class:
             'flex flex-col items-center rounded-2xl bg-white/90 p-8 shadow-lg ring-1 ring-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl'
         },
         [
           h('p', {
             class: 'mb-3 text-5xl font-extrabold text-[#4caf4f]',
-            innerHTML: props.value
+            innerHTML: displayValue.value
           }),
           h('p', {
             class: 'text-center text-sm lg:text-base leading-snug text-gray-700',
@@ -380,6 +433,13 @@ const StatCard = defineComponent({
       )
   }
 })
+
+const statsPreview = [
+  { value: '605+', label: 'лифтов с&nbsp;размещённой&nbsp;рекламой', delay: 0 },
+  { value: '28', label: 'экрана по&nbsp;всей&nbsp;Караганде', delay: 100 },
+  { value: '55&nbsp;200+', label: 'человек видят рекламу&nbsp;каждый&nbsp;день', delay: 200 },
+  { value: '150+', label: 'довольных&nbsp;клиентов', delay: 300 }
+]
 
 /* ── canvas-noise ── */
 const noise = ref<HTMLCanvasElement | null>(null)

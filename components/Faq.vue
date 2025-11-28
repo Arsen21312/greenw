@@ -3,22 +3,22 @@
   <section class="faq-section bg-gray-200 py-12">
     <div class="container mx-auto">
       <h2 class="text-5xl font-bold mb-8 text-center text-primary">Частые вопросы</h2>
-      <div>
+      <TransitionGroup name="faq-list" tag="div">
         <FaqItem
-          v-for="faq in faqs"
+          v-for="faq in visibleFaqs"
           :key="faq.id"
           :id="faq.id"
           :question="faq.question"
           :answer="faq.answer"
           @toggle="handleToggle"
         />
-      </div>
+      </TransitionGroup>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import FaqItem from '@/components/FaqItem.vue'
 
 /* Данные FAQ — используем точно тот текст, который дал заказчик */
@@ -119,17 +119,22 @@ const faqsData = [
 ]
 
 const faqs = ref(faqsData)
+const visibleCount = ref(3)
+const openedMap = reactive({})
 
-/* Если нужно, чтобы был открыт только один пункт одновременно,
-   раскомментируйте логику ниже и добавьте поле open в каждый объект. */
+const visibleFaqs = computed(() => faqs.value.slice(0, visibleCount.value))
+
 const handleToggle = (id, isOpen) => {
-  /* Пример одно-вкладочного поведения:
-  faqs.value.forEach(faq => {
-    if (faq.id !== id) {
-      faq.open = false
-    }
-  })
-  */
+  if (isOpen) {
+    openedMap[id] = true
+  }
+
+  const allVisibleOpened =
+    visibleFaqs.value.length > 0 && visibleFaqs.value.every((faq) => openedMap[faq.id])
+
+  if (allVisibleOpened && visibleCount.value < faqs.value.length) {
+    visibleCount.value = Math.min(visibleCount.value + 3, faqs.value.length)
+  }
 }
 </script>
 
@@ -140,5 +145,16 @@ const handleToggle = (id, isOpen) => {
 
 .text-primary {
   color: #333; /* основной цвет текста */
+}
+
+.faq-list-enter-active,
+.faq-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.faq-list-enter-from,
+.faq-list-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>

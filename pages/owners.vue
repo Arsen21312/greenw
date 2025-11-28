@@ -9,6 +9,7 @@
       <OwnersContent />
     </main>
 
+    <ReviewsPreview />
     <Footer />
   </div>
 </template>
@@ -17,6 +18,7 @@
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import OwnersContent from '@/components/OwnersContent.vue'
+import ReviewsPreview from '@/components/ReviewsPreview.vue'
 import { useHead } from '#app' // Корректный импорт для Nuxt 3
 
 useHead({

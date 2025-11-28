@@ -1,237 +1,224 @@
-<!-- components/QuizForm.vue -->
-<template>
-    <div class="max-w-3xl mx-auto">
-      <form @submit.prevent="submitForm">
-        <!-- Вопрос 1 -->
-        <div v-if="step === 1" class="mb-6">
-          <h3 class="text-2xl font-bold mb-4">1) Вы являетесь:</h3>
-          <div class="space-y-2">
-            <label class="flex items-center">
-              <input type="radio" value="Председатель КСК" v-model="formData.role" class="form-radio text-custom-green" />
-              <span class="ml-2">Председателем КСК</span>
-            </label>
-            <label class="flex items-center">
-              <input type="radio" value="Управляющая компания" v-model="formData.role" class="form-radio text-custom-green" />
-              <span class="ml-2">Управляющей компанией</span>
-            </label>
-            <label class="flex items-center">
-              <input type="radio" value="Старший по дому" v-model="formData.role" class="form-radio text-custom-green" />
-              <span class="ml-2">Старшим по дому</span>
-            </label>
-            <label class="flex items-center">
-              <input type="radio" value="Старший по подъезду" v-model="formData.role" class="form-radio text-custom-green" />
-              <span class="ml-2">Старшим по подъезду</span>
-            </label>
-          </div>
-        </div>
-  
-        <!-- Вопрос 2 -->
-        <div v-else-if="step === 2" class="mb-6">
-          <h3 class="text-2xl font-bold mb-4">2) В каком районе города находится ваш дом:</h3>
-          <div class="space-y-2">
-            <label class="flex items-center">
-              <input type="radio" value="Майкудук" v-model="formData.district" class="form-radio text-custom-green" />
-              <span class="ml-2">Майкудук</span>
-            </label>
-            <label class="flex items-center">
-              <input type="radio" value="Город" v-model="formData.district" class="form-radio text-custom-green" />
-              <span class="ml-2">Город</span>
-            </label>
-            <label class="flex items-center">
-              <input type="radio" value="Юго-Восток" v-model="formData.district" class="form-radio text-custom-green" />
-              <span class="ml-2">Юго-Восток</span>
-            </label>
-          </div>
-        </div>
-  
-        <!-- Вопрос 3 -->
-        <div v-else-if="step === 3" class="mb-6">
-          <h3 class="text-2xl font-bold mb-4">3) Сколько подъездов в доме:</h3>
-          <div class="flex items-center">
-            <button type="button" @click="decrease('entrances', 1)" class="bg-gray-300 px-4 py-2 rounded-l">-</button>
-            <input type="number" v-model.number="formData.entrances" min="1" max="100" class="w-20 text-center border-t border-b border-gray-300" />
-            <button type="button" @click="increase('entrances', 100)" class="bg-gray-300 px-4 py-2 rounded-r">+</button>
-          </div>
-        </div>
-  
-        <!-- Вопрос 4 -->
-        <div v-else-if="step === 4" class="mb-6">
-          <h3 class="text-2xl font-bold mb-4">4) Сколько лифтов в подъезде:</h3>
-          <div class="flex items-center">
-            <button type="button" @click="decrease('lifts', 1)" class="bg-gray-300 px-4 py-2 rounded-l">-</button>
-            <input type="number" v-model.number="formData.lifts" min="1" max="10" class="w-20 text-center border-t border-b border-gray-300" />
-            <button type="button" @click="increase('lifts', 10)" class="bg-gray-300 px-4 py-2 rounded-r">+</button>
-          </div>
-        </div>
-  
-        <!-- Вопрос 5 -->
-        <div v-else-if="step === 5" class="mb-6">
-          <h3 class="text-2xl font-bold mb-4">5) Укажите телефон и мы вам перезвоним:</h3>
-          <div class="mb-4">
-            <label class="block text-lg mb-2">Имя:</label>
-            <input type="text" v-model="formData.name" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-custom-green" />
-          </div>
-          <div>
-            <label class="block text-lg mb-2">Телефон:</label>
-            <input type="tel" v-model="formData.phone" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-custom-green" />
-          </div>
-        </div>
-  
-        <!-- Согласие на обработку персональных данных -->
-        <div v-if="step === 5" class="mb-6">
-          <label class="flex items-center">
-            <input type="checkbox" v-model="formData.agree" required class="form-checkbox text-custom-green" />
-            <span class="ml-2 text-sm">
-              Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь с политикой конфиденциальности.
-            </span>
+﻿<template>
+  <div class="text-left max-w-xl mx-auto">
+    <!-- Этап 1. Контакты -->
+    <div v-if="stage === 'lead'" class="space-y-6">
+      <p class="text-base text-slate-700">
+        Сначала оставьте контакты. Мы пришлём расчёт и варианты договора.
+      </p>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">
+            Имя
           </label>
+          <input
+            v-model="lead.name"
+            type="text"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            placeholder="Как к вам обращаться"
+          />
         </div>
-  
-        <!-- Кнопки навигации -->
-        <div class="flex justify-between">
-          <button type="button" v-if="step > 1" @click="prevStep" class="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400">
-            Назад
-          </button>
-          <button type="button" v-if="step < 5" @click="nextStep" class="bg-custom-green text-white py-2 px-4 rounded hover:bg-green-500">
-            Далее
-          </button>
-          <button type="submit" v-if="step === 5" class="bg-custom-green text-white py-2 px-4 rounded hover:bg-green-500">
-            Отправить
-          </button>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">
+            Телефон
+          </label>
+          <input
+            v-model="lead.phone"
+            type="tel"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            placeholder="8 777 123 45 67"
+          />
         </div>
-  
-        <!-- Сообщение после отправки -->
-        <p v-if="message" class="text-center mt-4 text-lg" :class="{ 'text-green-600': !error, 'text-red-600': error }">
-          {{ message }}
-        </p>
-      </form>
+      </div>
+
+      <button
+        type="button"
+        class="mt-4 inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed transition"
+        :disabled="isSubmitting || !lead.name || !lead.phone"
+        @click="submitLead"
+      >
+        Начать квиз
+      </button>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  
-  const step = ref(1)
-  const formData = ref({
-    role: '',
-    district: '',
-    entrances: 1,
-    lifts: 1,
-    name: '',
-    phone: '',
-    agree: false
-  })
-  const message = ref('')
-  const error = ref(false)
-  
-  const nextStep = () => {
-    if (validateStep()) {
-      step.value++
-    }
+
+    <!-- Этап 2. Квиз -->
+    <div v-else-if="stage === 'quiz'" class="space-y-6">
+      <p class="text-sm uppercase tracking-[0.2em] text-emerald-600 text-center">
+        Вопрос {{ currentIndex + 1 }} из {{ questions.length }}
+      </p>
+
+      <h3 class="text-lg font-semibold text-slate-900 text-center">
+        {{ currentQuestion.title }}
+      </h3>
+
+      <div class="space-y-3 mt-4">
+        <label
+          v-for="option in currentQuestion.options"
+          :key="option.value"
+          class="flex items-center gap-3 cursor-pointer text-slate-800"
+        >
+          <input
+            type="radio"
+            class="h-4 w-4 text-emerald-500 focus:ring-emerald-500"
+            :name="'q-' + currentQuestion.key"
+            :value="option.value"
+            v-model="currentAnswer"
+          />
+          <span>{{ option.label }}</span>
+        </label>
+      </div>
+
+      <button
+        type="button"
+        class="mt-6 inline-flex items-center justify-center rounded-lg bg-lime-400 px-6 py-3 text-sm font-semibold text-slate-900 shadow-md hover:bg-lime-500 disabled:opacity-60 disabled:cursor-not-allowed transition"
+        :disabled="!currentAnswer || isSubmitting"
+        @click="nextQuestion"
+      >
+        {{ currentIndex === questions.length - 1 ? 'Отправить ответы' : 'Далее' }}
+      </button>
+    </div>
+
+    <!-- Этап 3. Спасибо -->
+    <div v-else-if="stage === 'done'" class="space-y-4 text-center">
+      <h3 class="text-2xl font-semibold text-slate-900">
+        Спасибо
+      </h3>
+      <p class="text-base text-slate-700">
+        Мы получили ваши ответы и расчитаем доход. Менеджер свяжется с вами по указанному телефону.
+      </p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { computed, ref } from 'vue'
+import axios from 'axios'
+
+const stage = ref('lead') // lead | quiz | done
+const isSubmitting = ref(false)
+const leadId = ref(null)
+
+const lead = ref({
+  name: '',
+  phone: ''
+})
+
+const questions = ref([
+  {
+    key: 'role',
+    title: 'Вы являетесь',
+    options: [
+      { value: 'ksk', label: 'Председателем КСК или ОСИ' },
+      { value: 'uprav_komp', label: 'Управляющей компанией' },
+      { value: 'star_dom', label: 'Старшим по дому' },
+      { value: 'star_pod', label: 'Старшим по подъезду' },
+      { value: 'other', label: 'Другое' }
+    ]
+  },
+  {
+    key: 'entrances',
+    title: 'Сколько подъездов в доме',
+    options: [
+      { value: '1', label: '1 подъезд' },
+      { value: '2', label: '2 подъезда' },
+      { value: '3_4', label: '3–4 подъезда' },
+      { value: '5_plus', label: '5 и больше подъездов' }
+    ]
+  },
+  {
+    key: 'lifts',
+    title: 'Сколько работающих лифтов в доме',
+    options: [
+      { value: '1', label: '1 лифт' },
+      { value: '2', label: '2 лифта' },
+      { value: '3_plus', label: '3 и больше лифтов' }
+    ]
+  },
+  {
+    key: 'has_ads',
+    title: 'Есть ли сейчас реклама в лифтах',
+    options: [
+      { value: 'none', label: 'Нет, рекламы нет' },
+      { value: 'notes', label: 'Только объявления от жильцов' },
+      { value: 'other_company', label: 'Реклама другой компании' }
+    ]
+  },
+  {
+    key: 'payout_type',
+    title: 'Какой формат выплат вам удобнее',
+    options: [
+      { value: 'account', label: 'Деньги на расчётный счёт ОСИ или КСК' },
+      { value: 'cash', label: 'Наличные' },
+      { value: 'service', label: 'Уборка или сервис вместо аренды' }
+    ]
+  },
+  {
+    key: 'contract_term',
+    title: 'На какой срок готовы обсуждать договор',
+    options: [
+      { value: 'up_6', label: 'До 6 месяцев' },
+      { value: '6_12', label: 'От 6 до 12 месяцев' },
+      { value: '12_plus', label: 'От 12 месяцев и дольше' },
+      { value: 'not_sure', label: 'Пока не решили, хочу варианты' }
+    ]
   }
-  
-  const prevStep = () => {
-    step.value--
+])
+
+const currentIndex = ref(0)
+const currentAnswer = ref(null)
+
+const currentQuestion = computed(() => questions.value[currentIndex.value])
+
+async function submitLead() {
+  if (!lead.value.name || !lead.value.phone) return
+
+  isSubmitting.value = true
+  try {
+    const { data } = await axios.post('/api/owners-quiz/lead', {
+      name: lead.value.name,
+      phone: lead.value.phone,
+      source: 'owners_quiz'
+    })
+
+    leadId.value = data?.lead_id || null
+    stage.value = 'quiz'
+  } catch (e) {
+    console.error('Ошибка при отправке контактов', e)
+    alert('Не получилось отправить форму. Попробуйте ещё раз')
+  } finally {
+    isSubmitting.value = false
   }
-  
-  const increase = (field, max) => {
-    if (formData.value[field] < max) {
-      formData.value[field]++
-    }
-  }
-  
-  const decrease = (field, min) => {
-    if (formData.value[field] > min) {
-      formData.value[field]--
-    }
-  }
-  
-  const validateStep = () => {
-    switch (step.value) {
-      case 1:
-        return !!formData.value.role
-      case 2:
-        return !!formData.value.district
-      case 3:
-        return formData.value.entrances > 0
-      case 4:
-        return formData.value.lifts > 0
-      default:
-        return true
-    }
-  }
-  
-  const submitForm = async () => {
-    if (!formData.value.agree) {
-      error.value = true
-      message.value = 'Вы должны согласиться с политикой конфиденциальности.'
-      return
-    }
-  
-    try {
-      // Собираем все данные формы в читаемый текст
-      const combinedInfo = `
-  Имя: ${formData.value.name}
-  Телефон: ${formData.value.phone}
-  Вы являетесь: ${formData.value.role}
-  Район города: ${formData.value.district}
-  Количество подъездов в доме: ${formData.value.entrances}
-  Количество лифтов в подъезде: ${formData.value.lifts}
-  `.trim()
-  
-      // Подготавливаем данные для отправки
-      const dataToSend = {
-        name: combinedInfo,
-        phone: formData.value.phone
-      }
-  
-      // Отправляем данные на сервер
-      const response = await fetch('/api/create-lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToSend)
+}
+
+async function nextQuestion() {
+  if (!currentAnswer.value) return
+  isSubmitting.value = true
+
+  try {
+    await axios.post('/api/owners-quiz/answer', {
+      lead_id: leadId.value,
+      phone: lead.value.phone,
+      question_key: currentQuestion.value.key,
+      answer: currentAnswer.value
+    })
+
+    currentAnswer.value = null
+
+    if (currentIndex.value < questions.value.length - 1) {
+      currentIndex.value += 1
+    } else {
+      await axios.post('/api/owners-quiz/complete', {
+        lead_id: leadId.value,
+        phone: lead.value.phone
       })
-  
-      const result = await response.json()
-  
-      if (response.ok) {
-        message.value = 'Спасибо! Мы свяжемся с вами в ближайшее время.'
-        error.value = false
-        // Очистка формы
-        step.value = 1
-        formData.value = {
-          role: '',
-          district: '',
-          entrances: 1,
-          lifts: 1,
-          name: '',
-          phone: '',
-          agree: false
-        }
-      } else {
-        error.value = true
-        message.value = result.message || 'Ошибка при отправке данных.'
-      }
-    } catch (err) {
-      error.value = true
-      message.value = 'Ошибка при отправке данных. Пожалуйста, попробуйте позже.'
-      console.error('Ошибка при отправке формы:', err)
+      stage.value = 'done'
     }
+  } catch (e) {
+    console.error('Ошибка при отправке ответа', e)
+    alert('Не получилось отправить ответ. Попробуйте ещё раз')
+  } finally {
+    isSubmitting.value = false
   }
-  </script>
-  
-  <style scoped>
-  .text-custom-green {
-    color: #98C850;
-  }
-  .form-radio:checked {
-    border-color: #98C850;
-  }
-  .form-checkbox:checked {
-    border-color: #98C850;
-    background-color: #98C850;
-  }
-  </style>
-  
+}
+</script>

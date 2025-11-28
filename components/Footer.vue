@@ -1,63 +1,202 @@
 <template>
-  <footer class="bg-white py-6">
-    <!-- Информационный зелёный блок -->
-    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 mx-4 rounded">
-      <p class="font-bold">Внимание</p>
-      <p>Сейчас мы работаем удалённо. Чтобы организовать личную встречу с представителем для подписания договора или обсуждения вопросов просьба связаться с менеджером. Благодарим за понимание!</p>
-    </div>
-    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 space-y-4 md:space-y-0">
-      
-      <!-- Левая часть с контактами -->
-      <div class="flex flex-col space-y-2 text-center md:text-left">
-        <p class="text-sm text-gray-700">+7 708 675 5846</p>
-        <p class="text-sm text-gray-700">GREENWAYKRG@GMAIL.COM</p>
-        <p class="text-sm text-gray-700">ПН-ПТ: 09:00-18:00</p>
-        <p class="text-sm text-gray-700">СБ-ВС: ВЫХОДНОЙ</p>
-      </div>
-      
-      <!-- Иконки социальных сетей -->
-      <div class="flex justify-center space-x-4">
-        <a href="https://www.instagram.com/greenw.kz" target="_blank" class="text-gray-500 hover:text-gray-700">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 fill-current text-custom-green">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6ZM6 4C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM17.5 8C18.3284 8 19 7.32843 19 6.5C19 5.67157 18.3284 5 17.5 5C16.6716 5 16 5.67157 16 6.5C16 7.32843 16.6716 8 17.5 8Z" fill="#98C850"></path>
-          </svg>
-        </a>
-                <a href="https://www.tiktok.com/@greenw.kz" target="_blank" class="text-gray-500 hover:text-gray-700">
-          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 fill-current text-custom-green">
-            <path d="M412.19,118.66a109.27,109.27,0,0,1-9.45-5.5,132.87,132.87,0,0,1-24.27-20.62c-18.1-20.71-24.86-41.72-27.35-56.43h.1C349.14,23.9,350,16,350.13,16H267.69V334.78c0,4.28,0,8.51-.18,12.69,0,.52-.05,1-.08,1.56,0,.23,0,.47-.05.71,0,.06,0,.12,0,.18a70,70,0,0,1-35.22,55.56,68.8,68.8,0,0,1-34.11,9c-38.41,0-69.54-31.32-69.54-70s31.13-70,69.54-70a68.9,68.9,0,0,1,21.41,3.39l.1-83.94a153.14,153.14,0,0,0-118,34.52,161.79,161.79,0,0,0-35.3,43.53c-3.48,6-16.61,30.11-18.2,69.24-1,22.21,5.67,45.22,8.85,54.73v.2c2,5.6,9.75,24.71,22.38,40.82A167.53,167.53,0,0,0,115,470.66v-.2l.2.2C155.11,497.78,199.36,496,199.36,496c7.66-.31,33.32,0,62.46-13.81,32.32-15.31,50.72-38.12,50.72-38.12a158.46,158.46,0,0,0,27.64-45.93c7.46-19.61,9.95-43.13,9.95-52.53V176.49c1,.6,14.32,9.41,14.32,9.41s19.19,12.3,49.13,20.31c21.48,5.7,50.42,6.9,50.42,6.9V131.27C453.86,132.37,433.27,129.17,412.19,118.66Z"></path>
-          </svg>
-        </a>
-      
-        <a href="https://wa.me/77086755846" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-700">
-          <svg viewBox="0 0 30.667 30.667" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 fill-current text-custom-green">
-            <path d="M30.667,14.939c0,8.25-6.74,14.938-15.056,14.938c-2.639,0-5.118-0.675-7.276-1.857L0,30.667l2.717-8.017 c-1.37-2.25-2.159-4.892-2.159-7.712C0.559,6.688,7.297,0,15.613,0C23.928,0.002,30.667,6.689,30.667,14.939z M15.61,2.382 c-6.979,0-12.656,5.634-12.656,12.56c0,2.748,0.896,5.292,2.411,7.362l-1.58,4.663l4.862-1.545c2,1.312,4.393,2.076,6.963,2.076 c6.979,0,12.658-5.633,12.658-12.559C28.27,8.016,22.59,2.382,15.61,2.382z M23.214,18.38c-0.094-0.151-0.34-0.243-0.708-0.427 c-0.367-0.184-2.184-1.069-2.521-1.189c-0.34-0.123-0.586-0.185-0.832,0.182c-0.243,0.367-0.951,1.191-1.168,1.437 c-0.215,0.245-0.43,0.276-0.799,0.095c-0.369-0.186-1.559-0.57-2.969-1.817c-1.097-0.972-1.838-2.169-2.052-2.536 c-0.217-0.366-0.022-0.564,0.161-0.746c0.165-0.165,0.369-0.428,0.554-0.643c0.185-0.213,0.246-0.364,0.369-0.609 c0.121-0.245,0.06-0.458-0.031-0.643c-0.092-0.184-0.829-1.984-1.138-2.717c-0.307-0.732-0.614-0.611-0.83-0.611 c-0.215,0-0.461-0.03-0.707-0.03S9.897,8.215,9.56,8.582s-1.291,1.252-1.291,3.054c0,1.804,1.321,3.543,1.506,3.787 c0.186,0.243,2.554,4.062,6.305,5.528c3.753,1.465,3.753,0.976,4.429,0.914c0.678-0.062,2.184-0.885,2.49-1.739 C23.307,19.268,23.307,18.533,23.214,18.38z"></path>
-          </svg>
-        </a>
-      </div>
-      
-      <!-- Логотип -->
-      <div class="flex items-center justify-center md:justify-end space-x-2">
-        
-        <span class="ml-3 text-lg font-bold text-custom-green text-center md:text-left">Рекламное агентство <br/> <span class=" text-4xl">GreenW.KZ</span></span>
+  <footer class="modern-footer text-gray-900">
+    <div class="container mx-auto px-4 py-8 space-y-6">
+      <div class="attention-pin">
+        <div class="attention-card">
+          <div>
+            <p class="text-sm uppercase font-semibold text-custom-green tracking-wide">Внимание</p>
+            <p class="mt-1 text-sm text-gray-700">
+              Работаем удалённо. Для встречи, подписания договора или уточнения вопросов напишите менеджеру — подберём удобный
+              формат офлайн.
+            </p>
+          </div>
+          <a href="https://wa.me/77086755846" target="_blank" rel="noopener" class="btn-contact">Связаться</a>
+        </div>
+        <div class="scroll-hint">
+          <span>Потяните ниже</span>
+          <span class="hint-arrow">↓</span>
+        </div>
       </div>
 
-      <!-- Колонка с реквизитами -->
-      <div class="flex flex-col space-y-2 text-center md:text-left">
-        <p class="text-sm text-gray-700">Полное наименование ИП "GreenWay"</p>
-        <p class="text-sm text-gray-700">Индекс 100000, Республика Казахстан, город Караганда</p>
-        <p class="text-sm text-gray-700">Юридический адрес Республика Казахстан, Карагандинская область, г.<br/> Караганда, 14 микрорайон, дом №42, кв 20</p>
-        <p class="text-sm text-gray-700">БИН/ИИН 710 128 450 661</p>
+      <div class="grid gap-4 md:grid-cols-[1fr_auto_1fr]">
+        <div class="info-card">
+          <p class="card-title">Контакты</p>
+          <ul class="space-y-2 text-sm">
+            <li>+7 708 675 5846</li>
+            <li>GREENWAYKRG@GMAIL.COM</li>
+            <li>ПН–ПТ: 09:00–18:00</li>
+            <li>СБ–ВС: выходной</li>
+          </ul>
+        </div>
+
+        <div class="brand-card">
+          <p class="text-xs uppercase text-gray-500 tracking-[0.3em]">Рекламное агентство</p>
+          <img src="/_nuxt/assets/svg/loggo.svg" alt="Логотип рекламного агентства GreenW в Караганде" class="mx-auto h-12 mt-2" />
+          <div class="mt-3 flex items-center justify-center gap-3">
+            <a href="https://www.instagram.com/greenw.kz" target="_blank" class="social-btn" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="2.5" y="2.5" width="11" height="11" rx="3.5" />
+                <circle cx="8" cy="8" r="3" />
+                <circle cx="11.5" cy="4.5" r="0.9" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@greenw.kz" target="_blank" class="social-btn" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/77086755846" target="_blank" class="social-btn" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                  d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <p class="card-title">Реквизиты</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>ИП «GreenWay»</li>
+            <li>Индекс 100000, Республика Казахстан, г. Караганда</li>
+            <li>14 микрорайон, дом 42, кв. 20</li>
+            <li>БИН/ИИН 710 128 450 661</li>
+          </ul>
+        </div>
       </div>
+
+      <p class="text-center text-xs text-gray-500">
+        © {{ new Date().getFullYear() }} GreenW — лифтовая реклама в Караганде. Все права защищены.
+      </p>
     </div>
   </footer>
 </template>
 
-<script setup>
- 
-</script>
+<script setup></script>
 
 <style scoped>
+.modern-footer {
+  background: radial-gradient(circle at top, #f3fce8 0%, #e4f1da 40%, #f9faf7 100%);
+  border-top: 1px solid #e6edd8;
+}
+
+.attention-pin {
+  position: sticky;
+  top: 10px;
+  z-index: 5;
+}
+
+.attention-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(152, 200, 80, 0.25);
+  box-shadow: 0 10px 30px rgba(152, 200, 80, 0.14);
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .attention-card {
+    flex-direction: row;
+    align-items: center;
+  }
+  .attention-pin {
+    top: 24px;
+  }
+}
+
+.btn-contact {
+  border-radius: 999px;
+  background: #98c850;
+  color: #fff;
+  font-weight: 600;
+  padding: 9px 22px;
+  font-size: 0.85rem;
+  transition: opacity 0.2s ease;
+  text-align: center;
+}
+.btn-contact:hover {
+  opacity: 0.88;
+}
+
+.scroll-hint {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: #77835a;
+}
+
+.hint-arrow {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(152, 200, 80, 0.15);
+  color: #5f7531;
+  font-weight: 700;
+  animation: hint-bounce 1.2s ease-in-out infinite alternate;
+}
+
+.info-card,
+.brand-card {
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(152, 200, 80, 0.15);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+}
+
+.brand-card {
+  text-align: center;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(244, 252, 235, 0.9));
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4f5d37;
+  margin-bottom: 0.75rem;
+}
+
+.social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(152, 200, 80, 0.4);
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #98c850;
+  box-shadow: 0 6px 16px rgba(152, 200, 80, 0.18);
+  transition: transform 0.2s ease;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+}
+
 .text-custom-green {
-  color: #98C850;
+  color: #98c850;
+}
+
+@keyframes hint-bounce {
+  from {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(7px);
+    opacity: 1;
+  }
 }
 </style>
