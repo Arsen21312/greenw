@@ -31,7 +31,7 @@
 
         <div class="brand-card">
           <p class="text-xs uppercase text-gray-500 tracking-[0.3em]">Рекламное агентство</p>
-          <img src="/_nuxt/assets/svg/loggo.svg" alt="Логотип рекламного агентства GreenW в Караганде" class="mx-auto h-12 mt-2" />
+          <img :src="logo" alt="Логотип рекламного агентства GreenW в Караганде" class="mx-auto h-12 mt-2" />
           <div class="mt-3 flex items-center justify-center gap-3">
             <a href="https://www.instagram.com/greenw.kz" target="_blank" class="social-btn" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
@@ -73,7 +73,9 @@
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+import logo from '@/assets/svg/loggo.svg'
+</script>
 
 <style scoped>
 .modern-footer {
