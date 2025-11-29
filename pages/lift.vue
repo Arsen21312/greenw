@@ -1,25 +1,38 @@
 <template>
-  <div>
+  <div class="relative overflow-hidden page-shell">
     <NavBar class="shadow-md bg-white z-10" />
     <HeroComponents id="about" />
-     <Blocks/>
-    <Suspense>
-      <template #default>
-        <AsyncModule /> 
-      </template>
-      <template #fallback>
-        <div>Загрузка модуля...</div>
-      </template>
-    </Suspense>
-    <Suspense>
-      <template #default>
-        <AsyncFeedbackForm id="contact"/>
-      </template>
-      <template #fallback>
-        <div>Загрузка формы обратной связи...</div>
-      </template>
-    </Suspense>
-    
+    <WaveDivider color="#e9f4da" />
+
+    <section class="bg-[#e9f4da]">
+      <Blocks />
+    </section>
+    <WaveDivider color="#f4f9f1" :flip="true" />
+
+    <section class="bg-[#f4f9f1]">
+      <Suspense>
+        <template #default>
+          <AsyncModule />
+        </template>
+        <template #fallback>
+          <div>Загрузка модуля...</div>
+        </template>
+      </Suspense>
+    </section>
+    <WaveDivider color="#eef6ff" />
+
+    <section class="bg-[#eef6ff]">
+      <Suspense>
+        <template #default>
+          <AsyncFeedbackForm id="contact" />
+        </template>
+        <template #fallback>
+          <div>Загрузка формы обратной связи...</div>
+        </template>
+      </Suspense>
+    </section>
+    <WaveDivider color="#f8fbff" :flip="true" />
+
     <!-- Дополнительные асинхронные компоненты -->
     <!--<Suspense>
       <template #default>
@@ -39,17 +52,29 @@
         <div>Загрузка слайдера...</div>
       </template>
     </Suspense>-->
-     <Info id="services"/>
-    <ReviewsPreview />
- <Suspense>
-      <template #default>
-        <AsyncFaq />
-      </template>
-      <template #fallback>
-        <div>Загрузка FAQ...</div>
-      </template>
-    </Suspense>
-    <Footer id="bank"/>
+    <section class="bg-[#f8fbff]">
+      <Info id="services" />
+    </section>
+    <WaveDivider color="#f4f9f1" />
+
+    <section class="bg-[#f4f9f1]">
+      <ReviewsPreview />
+    </section>
+    <WaveDivider color="#eef6ff" :flip="true" />
+
+    <section class="bg-[#eef6ff]">
+      <Suspense>
+        <template #default>
+          <AsyncFaq />
+        </template>
+        <template #fallback>
+          <div>Загрузка FAQ...</div>
+        </template>
+      </Suspense>
+    </section>
+    <WaveDivider color="#f8fbff" />
+
+    <Footer id="bank" />
   </div>
 </template>
 
@@ -61,6 +86,7 @@ import Info from '@/components/Info.vue';
 import Blocks from '@/components/Blocks.vue';
 import Footer from '@/components/Footer.vue';
 import ReviewsPreview from '@/components/ReviewsPreview.vue';
+import WaveDivider from '@/components/WaveDivider.vue';
 useSeoMeta({
   title: 'Реклама в лифтах Караганды – охват до 48 000 в день | GreenW',
   description: 'Размещение в 450+ лифтах Караганды. Ежедневный контакт с жильцами. От 20 000 ₸/мес. Фотоотчёт и помощь с макетом.',
@@ -72,6 +98,9 @@ useSeoMeta({
 })
 useHead({
   link: [{ rel: 'canonical', href: 'https://www.greenw.kz/lift' }],
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
+  ],
   script: [
     {
       type:'application/ld+json',
@@ -110,3 +139,26 @@ const AsyncMap2GisWraper = defineAsyncComponent(() => import('~/components/Map2G
 const AsyncSlider = defineAsyncComponent(() => import('@/components/Slider.vue'));
 const AsyncFaq = defineAsyncComponent(() => import('@/components/Faq.vue'));
 </script>
+
+<style scoped>
+.page-shell {
+  animation: pageFade 0.7s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-shell {
+    animation: none;
+  }
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

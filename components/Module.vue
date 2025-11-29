@@ -3,9 +3,22 @@
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 mb-2">Выберите блоки и формат</h2>
-        <p class="text-gray-600">
-          Сначала выбираем блоки размещения, проваливаемся в их форматы и цены, затем задаём срок и сразу видим итог.
-        </p>
+        <p class="text-gray-600">Как это работает:</p>
+        <div class="how-it-works mt-5 grid gap-4 text-left md:grid-cols-3">
+          <div
+            v-for="(step, index) in howItWorksSteps"
+            :key="step.title"
+            class="how-it-works__item rounded-2xl border border-lime-100 bg-white/80 p-4 shadow-sm"
+          >
+            <div
+              class="how-it-works__index mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-custom-green/10 text-sm font-semibold text-custom-green"
+            >
+              {{ index + 1 }}
+            </div>
+            <p class="text-sm font-semibold text-gray-900">{{ step.title }}</p>
+            <p class="text-xs text-gray-600">{{ step.description }}</p>
+          </div>
+        </div>
       </div>
 
       <div class="mt-8 bg-white rounded-2xl shadow-xl p-5 lg:p-7">
@@ -58,19 +71,29 @@
                     "
                     @click="setBlockFormat(currentBlock, format.id)"
                   >
-                    <div class="flex items-center gap-2">
-                      <div class="w-8 h-8 rounded-full bg-green-50 border border-green-100 text-custom-green font-semibold grid place-items-center text-sm">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="grid h-9 w-9 place-items-center rounded-full border text-sm font-semibold"
+                        :style="format.badge"
+                      >
                         {{ format.id }}
                       </div>
                       <div>
                         <p class="text-sm font-semibold text-gray-900">{{ format.name }}</p>
-                        <p class="text-xs text-gray-500">{{ format.size }}</p>
+                        <p class="text-xs text-gray-500">{{ format.summary }}</p>
                       </div>
                     </div>
-                    <p class="text-xs text-gray-500">{{ format.orientation }}</p>
-                    <p class="text-sm font-semibold text-gray-900 mt-1">
-                      {{ formatPrice(prices[`block${currentBlock}`][format.id]) }} / мес
-                    </p>
+                    <p class="text-xs text-gray-500">{{ format.size }} · {{ format.orientation }}</p>
+                    <p class="text-xs text-gray-500">{{ format.preview }}</p>
+                    <div class="mt-1 flex items-center justify-between text-sm font-semibold text-gray-900">
+                      <span>{{ formatPrice(prices[`block${currentBlock}`][format.id]) }} / мес</span>
+                      <span
+                        v-if="!isFormatDiscountable(format.id)"
+                        class="rounded-full bg-rose-50 px-2 py-0.5 text-[11px] font-medium text-rose-500"
+                      >
+                        без скидок
+                      </span>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -94,7 +117,7 @@
                   />
                   <span class="text-xs text-gray-500">{{ monthLabel(months) }}</span>
                 </div>
-                <p class="text-[11px] text-gray-400 mt-1">Введите от 1 до 12. По умолчанию 3 месяца.</p>
+                <p class="text-[11px] text-gray-400 mt-1">Введите от 1 до 12. По умолчанию 1 месяц.</p>
               </div>
 
               <div class="grid gap-3 sm:grid-cols-2 text-sm text-gray-600">
@@ -115,6 +138,9 @@
                   <p class="text-lg font-semibold text-gray-900">{{ formatCurrency(totalWithDiscount) }}</p>
                 </div>
               </div>
+              <p class="text-xs text-gray-500 italic">
+                Скидки не применяются к форматам A7 и A9.
+              </p>
 
               <button
                 type="button"
@@ -137,7 +163,12 @@
               <div class="badge">Пример макета</div>
               <img :src="visualMock" alt="Пример размещения рекламы в лифте" class="visual-img" />
               <div class="visual-caption">
-                Вид спереди: A3 и A4 — крупные форматы, A5 и A9 компактные, читаются даже вблизи.
+                <p class="font-semibold text-gray-800">Как выглядит реклама в лифте:</p>
+                <ul class="mt-1 space-y-1 text-gray-600">
+                  <li>A3 и A4 крупные форматы. Максимальная заметность.</li>
+                  <li>A5 и A6 стандартные форматы. Оптимальны по цене и охвату.</li>
+                  <li>A7 и A9 компактные форматы. Видны вблизи, подходят для коротких предложений.</li>
+                </ul>
               </div>
             </div>
             <transition name="fade">
@@ -149,11 +180,23 @@
                 <li class="font-semibold text-gray-900">
                   Блок {{ currentBlock }} · формат {{ activeFormatInfo.id }}
                 </li>
-                <li>{{ activeFormatInfo.size }} — {{ activeFormatInfo.orientation }}</li>
-                <li>{{ activeFormatInfo.note }}</li>
-                <li>{{ activeFormatInfo.highlight }}</li>
+                <li class="text-sm text-gray-600">{{ activeFormatInfo.summary }}</li>
+                <li class="text-sm text-gray-500">{{ activeFormatInfo.size }} — {{ activeFormatInfo.orientation }}</li>
+                <li class="text-xs font-semibold uppercase tracking-wide text-gray-400">Что даёт:</li>
+                <li
+                  v-for="benefit in activeFormatInfo.benefits"
+                  :key="benefit"
+                  class="flex items-start gap-2 text-sm text-gray-700"
+                >
+                  <span class="mt-1 grid h-1.5 w-1.5 place-items-center rounded-full bg-custom-green"></span>
+                  <span>{{ benefit }}</span>
+                </li>
+                <li class="text-sm text-gray-600">{{ activeFormatInfo.feature }}</li>
                 <li class="text-custom-green font-semibold">
                   Стоимость: {{ formatPrice(activeFormatInfo.price) }} / мес
+                </li>
+                <li v-if="!activeFormatInfo.isDiscountable" class="text-[11px] text-gray-500">
+                  На этот формат скидки не применяются.
                 </li>
               </ul>
               <ul v-else key="default" class="mt-4 space-y-2 text-sm text-gray-600">
@@ -174,23 +217,100 @@ import { computed, ref } from 'vue'
 import visualMock from '@/assets/formats-mock.png'
 
 const blocks = [1, 2, 3, 4, 5]
-const formats = [
-  { id: 'A3', name: 'A3', size: '58×20,1 см', orientation: 'горизонтальный', note: 'Максимальная заметность.' },
-  { id: 'A4', name: 'A4', size: '28,8×20,1 см', orientation: 'горизонтальный', note: 'Сбалансированный формат.' },
-  { id: 'A5', name: 'A5', size: '14,2×20,1 см', orientation: 'вертикальный', note: 'Компактно и наглядно.' },
-  { id: 'A6', name: 'A6', size: '14,2×9,8 см', orientation: 'горизонтальный', note: 'Для ключевых офферов.' },
-  { id: 'A7', name: 'A7', size: '6,9×9,8 см', orientation: 'вертикальный', note: 'Краткие контакты и логотип.' },
-  { id: 'A9', name: 'A9', size: '5,2×3,7 см', orientation: 'горизонтальный', note: 'Мини-формат для напоминаний.' },
+const howItWorksSteps = [
+  {
+    title: 'Выберите район города (блок)',
+    description: 'Отметьте дом или квартал, где реклама нужна именно вам.',
+  },
+  {
+    title: 'Подберите размер рекламного модуля',
+    description: 'Сравните форматы от имиджевых A3 до компактных A9.',
+  },
+  {
+    title: 'Укажите срок размещения',
+    description: 'Система мгновенно покажет итоговую стоимость и выгоду.',
+  },
 ]
-
-const formatHighlights = {
-  A3: 'До 1800 контактов — идеален для крупных заявок и брендинга.',
-  A4: 'Средний формат — заметен на расстоянии, даёт до 1200 показов.',
-  A5: 'Компромисс между размером и ценой, отлично подходит для офферов.',
-  A6: 'Короткие сообщения, до 900 просмотров в месяц.',
-  A7: 'Используется для контактов и быстрых CTA, до 700 касаний.',
-  A9: 'Мини-напоминания у кнопки вызова лифта, до 500 касаний.',
-}
+const formats = [
+  {
+    id: 'A3',
+    name: 'A3',
+    summary: 'Крупный имиджевый формат',
+    preview: 'Максимальная заметность с первых секунд.',
+    size: '58×20,1 см',
+    orientation: 'горизонтальный',
+    benefits: [
+      'Максимальная заметность',
+      'Привлекает внимание в первую секунду',
+      'Читается из любой точки лифта',
+    ],
+    feature: 'Создаёт “вау-эффект”. Этот формат невозможно не заметить.',
+    badge: { backgroundColor: '#fef2f2', borderColor: '#fecaca', color: '#b91c1c' },
+  },
+  {
+    id: 'A4',
+    name: 'A4',
+    summary: 'Большой выразительный формат',
+    preview: 'Идеален для акций и спецпредложений.',
+    size: '28,8×20,1 см',
+    orientation: 'горизонтальный',
+    benefits: [
+      'Яркий визуальный акцент',
+      'Идеален для акций и спецпредложений',
+      'Хорошо воспринимается в движении',
+    ],
+    feature: 'Привлекает взгляд первым и держит баланс между ценой и заметностью.',
+    badge: { backgroundColor: '#fef2f2', borderColor: '#fecaca', color: '#b91c1c' },
+  },
+  {
+    id: 'A5',
+    name: 'A5',
+    summary: 'Стандартный универсальный формат',
+    preview: 'Оптимальный баланс цена/эффект.',
+    size: '14,2×20,1 см',
+    orientation: 'вертикальный',
+    benefits: [
+      'Оптимальный баланс цена/эффект',
+      'Быстрое восприятие',
+      'Подходит для большинства задач',
+    ],
+    feature: 'Самый “рабочий” формат — с него начинают 80% клиентов.',
+    badge: { backgroundColor: '#fefce8', borderColor: '#fde68a', color: '#b45309' },
+  },
+  {
+    id: 'A6',
+    name: 'A6',
+    summary: 'Компактный, но информативный',
+    preview: 'Сильный эффект при минимальной цене.',
+    size: '14,2×9,8 см',
+    orientation: 'горизонтальный',
+    benefits: ['Бюджетный вариант', 'Читается вблизи', 'Подходит для коротких сообщений'],
+    feature: 'Сильный эффект при минимальной стоимости.',
+    badge: { backgroundColor: '#ecfccb', borderColor: '#bef264', color: '#3f6212' },
+  },
+  {
+    id: 'A7',
+    name: 'A7',
+    summary: 'Мини-формат для короткой информации',
+    preview: 'Лучше всего для дополнительного сообщения.',
+    size: '6,9×9,8 см',
+    orientation: 'вертикальный',
+    benefits: ['Быстрое восприятие', 'Хорош как дополнительное сообщение', 'Не перегружает макет'],
+    feature: 'Идеален, когда важно только одно чтобы позвонили.',
+    badge: { backgroundColor: '#dbeafe', borderColor: '#bfdbfe', color: '#1d4ed8' },
+  },
+  {
+    id: 'A9',
+    name: 'A9',
+    summary: 'Самый компактный формат',
+    preview: 'Минимальная цена и быстрый контакт.',
+    size: '7×4,7 см',
+    orientation: 'горизонтальный',
+    benefits: ['Минимальная цена', 'Чёткое быстрое сообщение', '“Здесь и сейчас”'],
+    feature: 'Работает за счёт центрального размещения и простоты.',
+    badge: { backgroundColor: '#ede9fe', borderColor: '#ddd6fe', color: '#6d28d9' },
+  },
+]
 
 const prices = {
   block1: { A3: 332000, A4: 166000, A5: 83000, A6: 41500, A7: 23000, A9: 6000 },
@@ -209,8 +329,11 @@ const blockFormats = ref({
 })
 
 const selectedBlocks = ref([])
-const months = ref(3)
+const months = ref(1)
 const activeBlock = ref(null)
+const discountExcludedFormats = new Set(['A7', 'A9'])
+
+const isFormatDiscountable = (formatId) => !discountExcludedFormats.has(formatId)
 
 const toggleBlock = (block) => {
   if (selectedBlocks.value.includes(block)) {
@@ -242,7 +365,7 @@ const getDurationDiscount = (value) => {
 }
 
 const getBlocksDiscount = (count) => {
-  if (count >= 5) return 30
+  if (count >= 5) return 25
   if (count === 4) return 20
   if (count === 3) return 15
   if (count === 2) return 10
@@ -253,17 +376,28 @@ const totalWithoutDiscount = computed(() => {
   if (!selectedBlocks.value.length) return 0
   return selectedBlocks.value.reduce((sum, block) => sum + getBlockPrice(block) * months.value, 0)
 })
+const discountableAmount = computed(() => {
+  if (!selectedBlocks.value.length) return 0
+  return selectedBlocks.value.reduce((sum, block) => {
+    const formatId = blockFormats.value[block] || 'A3'
+    if (!isFormatDiscountable(formatId)) {
+      return sum
+    }
+    return sum + getBlockPrice(block) * months.value
+  }, 0)
+})
 
 const clientDiscountPercent = 10
 const durationDiscountPercent = computed(() => getDurationDiscount(months.value))
 const blocksDiscountPercent = computed(() => getBlocksDiscount(selectedBlocks.value.length))
 
 const totalDiscountPercent = computed(() => {
+  if (!discountableAmount.value) return 0
   const total = clientDiscountPercent + durationDiscountPercent.value + blocksDiscountPercent.value
   return Math.min(50, total)
 })
 
-const discountAmount = computed(() => (totalWithoutDiscount.value * totalDiscountPercent.value) / 100)
+const discountAmount = computed(() => (discountableAmount.value * totalDiscountPercent.value) / 100)
 const totalWithDiscount = computed(() => totalWithoutDiscount.value - discountAmount.value)
 
 const formatCurrency = (value = 0) => `${Math.max(0, Math.round(value || 0)).toLocaleString('ru-RU')} ₸`
@@ -283,9 +417,11 @@ const activeFormatInfo = computed(() => {
       id: '—',
       size: '',
       orientation: '',
-      note: '',
-      highlight: '',
+      summary: '',
+      benefits: [],
+      feature: '',
       price: 0,
+      isDiscountable: true,
     }
   }
   const formatId = blockFormats.value[currentBlock.value] || 'A3'
@@ -294,9 +430,11 @@ const activeFormatInfo = computed(() => {
     id: formatId,
     size: format.size || '',
     orientation: format.orientation || '',
-    note: format.note || '',
-    highlight: formatHighlights[formatId] || '',
+    summary: format.summary || '',
+    benefits: format.benefits || [],
+    feature: format.feature || '',
     price: prices[`block${currentBlock.value}`]?.[formatId] || 0,
+    isDiscountable: isFormatDiscountable(formatId),
   }
 })
 
@@ -376,5 +514,31 @@ const handleOrderClick = () => {
 .fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
+}
+
+.how-it-works__item {
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.how-it-works__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(152, 200, 80, 0.2);
+}
+
+.how-it-works__index {
+  box-shadow: 0 10px 20px rgba(152, 200, 80, 0.16);
+  animation: howItWorksPulse 4s ease-in-out infinite;
+}
+
+@keyframes howItWorksPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(152, 200, 80, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(152, 200, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(152, 200, 80, 0);
+  }
 }
 </style>

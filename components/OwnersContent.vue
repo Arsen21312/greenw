@@ -12,10 +12,13 @@
             Реклама в лифтах Караганды
           </p>
           <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
-            Зарабатывайте на лифтах дома с GreenW.KZ
+            Просто зарабатывайте на своих лифтах вместе с GreenW.KZ
           </h1>
           <p class="text-lg text-slate-700 max-w-2xl">
-            Мы размещаем рекламу в лифтах жилых домов Караганды: стильные конструкции, аккуратный монтаж, стабильные выплаты и более 250 ОСИ и КСК, которые уже работают с нами.
+            GreenW.KZ профессионально размещает рекламу в лифтах Караганды. Работаем официально, заключаем прозрачные договоры и вовремя оплачиваем аренду.
+          </p>
+          <p class="text-lg text-slate-700 max-w-2xl">
+            Вы сдаёте небольшую площадь на стене лифта под аккуратный рекламный модуль — он не портит кабину и легко демонтируется при необходимости.
           </p>
           <div class="flex flex-wrap gap-4">
             <button @click="openOrderModal" class="px-6 py-3 rounded-full bg-emerald-500 text-white font-semibold shadow-lg shadow-emerald-200 hover:bg-emerald-600 transition-all duration-200 reveal-on-scroll">
@@ -28,11 +31,11 @@
           <div class="flex flex-wrap gap-6 text-sm text-slate-600">
             <div class="flex items-center gap-2">
               <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-              Более 250 ОСИ и КСК — стабильные договоры
+              Реклама в лифтах — прямой контакт с жителями
             </div>
             <div class="flex items-center gap-2">
               <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-              Альтернатива: ежемесячная уборка вместо аренды
+              С нами уже работают 250+ КСК и ОСИ с прозрачным доходом
             </div>
           </div>
         </div>
@@ -49,30 +52,35 @@
       </div>
     </div>
 
+    <WaveDivider color="#f8fbff" />
+    <div class="bg-[#f8fbff]">
+
     <!-- Интро -->
     <div class="container mx-auto px-4 lg:px-8 pb-8 lg:pb-12">
       <div class="grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-xl shadow-emerald-50 ring-1 ring-emerald-100 p-8 lg:p-12 reveal-on-scroll">
         <div class="space-y-4">
           <h2 class="text-3xl font-semibold text-slate-900">Рекламное агентство GreenW.KZ</h2>
-          <p class="text-lg text-slate-700">Профессионально размещаем рекламу в лифтах Караганды. Заключаем прозрачные договоры: вы сдаёте лифты в аренду, мы обеспечиваем аккуратный монтаж и своевременные выплаты.</p>
-          <p class="text-lg text-slate-700">Реклама в лифтах — прямой контакт с жителями. Мы подбираем контент под аудиторию района, чтобы объявления были заметными и полезными.</p>
+          <p class="text-lg text-slate-700">GreenW.KZ профессионально размещает рекламу в лифтах Караганды. Работаем официально, заключаем прозрачные договоры и своевременно производим выплаты.</p>
+          <p class="text-lg text-slate-700">Вы сдаёте небольшую площадь на стене лифта под аккуратный рекламный модуль, который не портит кабину и легко демонтируется при необходимости.</p>
+          <p class="text-lg text-slate-700">Реклама в лифтах — это прямой контакт с жителями. Мы подбираем контент под район, чтобы объявления были полезными и действительно читались.</p>
+          <p class="text-lg text-slate-700">С нами уже работают 250+ КСК и ОСИ, и каждый месяц получают стабильный и прозрачный доход.</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="card-soft">
             <p class="text-4xl font-bold text-emerald-500">24/7</p>
-            <p class="text-slate-600">Поддержка и оперативный демонтаж при необходимости</p>
+            <p class="text-slate-600">Поддержка и оперативный выезд: заменим или снимем стенд быстро.</p>
           </div>
           <div class="card-soft">
             <p class="text-4xl font-bold text-emerald-500">610×990</p>
-            <p class="text-slate-600">Размер стенда, продуманный под лифты без ущерба отделке</p>
+            <p class="text-slate-600">Оптимальный размер стенда — подходит большинству лифтов без ущерба отделке.</p>
           </div>
           <div class="card-soft">
             <p class="text-4xl font-bold text-emerald-500">PVC</p>
-            <p class="text-slate-600">Безопасный материал, не ломается и не царапает кабину</p>
+            <p class="text-slate-600">Безопасный материал на антивандальном скотче — не портит и не царапает кабину.</p>
           </div>
           <div class="card-soft">
             <p class="text-4xl font-bold text-emerald-500">250+</p>
-            <p class="text-slate-600">ОСИ и КСК уже получают доход от размещений</p>
+            <p class="text-slate-600">КСК и ОСИ уже получают стабильный доход. Подключаем без хлопот.</p>
           </div>
         </div>
       </div>
@@ -205,9 +213,10 @@
             <a href="https://www.instagram.com/greenw.kz" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-full bg-emerald-500 text-white font-semibold shadow-md hover:bg-emerald-600 transition-all duration-200">
               Смотреть видео процесса
             </a>
+            <!-- обсудить монтаж кнопка 
             <button @click="openOrderModal" class="px-5 py-3 rounded-full bg-white text-emerald-700 font-semibold shadow ring-1 ring-emerald-100 hover:ring-emerald-200 transition-all duration-200">
               Обсудить монтаж
-            </button>
+            </button> -->
           </div>
         </div>
         <div class="relative reveal-on-scroll">
@@ -248,11 +257,13 @@
     </div>
 
     <OrderModal v-if="isOrderModalOpen" :block="block" @close-order-modal="closeOrderModal" />
+    </div>
   </section>
 </template>
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import WaveDivider from '@/components/WaveDivider.vue'
 import QuizForm from '@/components/QuizForm.vue'
 import OrderModal from '@/components/OrderModal.vue'
 import img from '@/assets/3.webp'

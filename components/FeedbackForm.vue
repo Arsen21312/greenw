@@ -93,22 +93,16 @@
               {{ currentQuestion.text }}
             </p>
 
-            <div class="flex justify-center gap-4">
+            <div class="flex flex-wrap justify-center gap-3">
               <button
                 type="button"
-                class="min-w-[120px] py-3 px-6 rounded-xl border border-[#a8cc55] text-[#0f172a] font-semibold transition transform"
-                :class="{ 'scale-95 shadow-md': lastAnswer === true }"
-                @click="answerQuestion(true)"
+                v-for="option in currentQuestion.options"
+                :key="option"
+                class="min-w-[160px] max-w-xs whitespace-normal py-3 px-4 rounded-xl border text-[#0f172a] font-semibold transition transform"
+                :class="lastAnswer === option ? 'border-[#a8cc55] bg-[#f4fae6] shadow-md scale-95' : 'border-gray-300 hover:border-[#a8cc55]'"
+                @click="answerQuestion(option)"
               >
-                Да
-              </button>
-              <button
-                type="button"
-                class="min-w-[120px] py-3 px-6 rounded-xl border border-gray-300 text-gray-700 font-semibold transition transform"
-                :class="{ 'scale-95 shadow-md': lastAnswer === false }"
-                @click="answerQuestion(false)"
-              >
-                Нет
+                {{ option }}
               </button>
             </div>
           </div>
@@ -145,16 +139,66 @@ export default {
       currentQuestionIndex: 0,
       lastAnswer: null,
       surveyQuestions: [
-        { key: 'preferred_messenger', text: 'Предпочитаете общение через мессенджер?', answer: null },
-        { key: 'is_lift_owner', text: 'Вы собственник лифта?', answer: null },
-        { key: 'need_qr', text: 'Нужен QR-код?', answer: null },
-        { key: 'need_design', text: 'Нужен дизайн макета от нас?', answer: null },
-        { key: 'need_led', text: 'Интересно размещение на LED-экранах?', answer: null },
-        { key: 'long_term', text: 'Рассматриваете долгосрочное размещение?', answer: null },
-        { key: 'cross_promo', text: 'Готовы к кросс-промо с партнёрами?', answer: null },
-        { key: 'brand_lift', text: 'Хотите брендирование лифта?', answer: null },
-        { key: 'print_need', text: 'Нужна печать полиграфии?', answer: null },
-        { key: 'priority_contact', text: 'Связаться прямо сегодня?', answer: null },
+        {
+          key: 'industry',
+          text: 'В какой сфере вы работаете?',
+          options: ['услуги', 'доставка', 'розница', 'медицина', 'обучение', 'другое'],
+          answer: null,
+        },
+        {
+          key: 'audience_location',
+          text: 'Где находятся ваши клиенты чаще всего?',
+          options: ['ЮВ', 'Центр', 'Майкудук', 'весь город'],
+          answer: null,
+        },
+        {
+          key: 'ad_goal',
+          text: 'Какую цель хотите достичь рекламой?',
+          options: ['узнаваемость', 'клиенты', 'трафик в Instagram', 'продажи', 'открытие нового филиала'],
+          answer: null,
+        },
+        {
+          key: 'preferred_format',
+          text: 'Какой формат вам интереснее?',
+          options: ['лифт', 'LED-экран', 'не знаю — подскажите'],
+          answer: null,
+        },
+        {
+          key: 'have_creative',
+          text: 'У вас уже есть готовый макет или видео?',
+          options: ['да', 'нет', 'нужно сделать'],
+          answer: null,
+        },
+        {
+          key: 'has_offer',
+          text: 'Есть ли у вас акция или спецпредложение?',
+          options: ['да', 'нет', 'планирую'],
+          answer: null,
+        },
+        {
+          key: 'budget',
+          text: 'Какой бюджет вы рассматриваете?',
+          options: ['до 50 тыс', '50–150 тыс', '150–300 тыс', '300+ тыс', 'не знаю'],
+          answer: null,
+        },
+        {
+          key: 'priority_area',
+          text: 'В каком районе вам важно показываться?',
+          options: ['конкретные районы', 'где будет эффективнее'],
+          answer: null,
+        },
+        {
+          key: 'start_time',
+          text: 'Когда вы хотите запустить рекламу?',
+          options: ['в течение 3 дней', 'на этой неделе', 'в этом месяце', 'позже'],
+          answer: null,
+        },
+        {
+          key: 'contact_channel',
+          text: 'Как вам удобнее получить предложение?',
+          options: ['WhatsApp', 'звонок', 'e-mail'],
+          answer: null,
+        },
       ]
     };
   },
@@ -196,6 +240,7 @@ export default {
     async sendQuizAnswer(question, value) {
       const payload = {
         phone: this.leadData.phone,
+        name: this.leadData.name,
         question_key: question.key,
         question_text: question.text,
         answer: value
@@ -216,8 +261,6 @@ export default {
           this.message = '';
           this.isError = false;
           this.stage = 'invite';
-          // очищаем только имя, телефон оставляем для опроса
-          this.leadData.name = '';
         } else {
           this.message = 'Ошибка при отправке заявки. Попробуйте позже.';
           this.isError = true;

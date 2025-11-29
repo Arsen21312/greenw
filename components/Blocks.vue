@@ -1,11 +1,12 @@
 <!-- components/BlocksSection.vue -->
 <template>
-  <section class="bg-gradient-to-r from-green-100 to-gray-100 py-16">
-    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 px-4">
+  <section class="bg-[#e9f4da] py-16">
+    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 px-4 items-start">
       <BlockCard
         v-for="block in blocks"
         :key="block.id"
         :block="block"
+        @order="scrollToContact"
       />
     </div>
   </section>
@@ -26,19 +27,21 @@ import image5 from '@/assets/5b.webp'
 const blocks = ref([
   {
     id: 1,
-    name: 'Блок 1 Юго-Восток (вторичное жильё)',
+    title: 'Блок 1 Юго-Восток',
+    subtitle: 'вторичное жильё',
     image: image1,
     houses: '40',
     lifts: '102',
     apartments: '3 894',
     population: '11 682',
     addressUrl: '/addresses/block-1-address.docx',
-    
+
     details: 'Улицы: Орбита, Гапеева, Дюсембекова, Карбышева, Муканова, Сатыбалдина, Язева, Университетская и др.'
   },
   {
     id: 2,
-    name: 'Блок 2 Юго-Восток (вторичное жильё)',
+    title: 'Блок 2 Юго-Восток',
+    subtitle: 'вторичное жильё',
     image: image2,
     houses: '60',
     lifts: '108',
@@ -49,7 +52,8 @@ const blocks = ref([
   },
   {
     id: 3,
-    name: 'Блок 3 Элитные ЖК и новостройки',
+    title: 'Блок 3 Элитные ЖК',
+    subtitle: 'новостройки и современные комплексы',
     image: image3,
     houses: '19',
     lifts: '102',
@@ -60,7 +64,8 @@ const blocks = ref([
   },
   {
     id: 4,
-    name: 'Блок 4 Майкудук (вторичное жильё)',
+    title: 'Блок 4 Майкудук',
+    subtitle: 'вторичное жильё',
     image: image4,
     houses: '36',
     lifts: '102',
@@ -72,7 +77,8 @@ const blocks = ref([
   },
   {
     id: 5,
-    name: 'Блок 5 Центр города',
+    title: 'Блок 5 Центр города',
+    subtitle: 'вторичное жильё + ЖК, центр города',
     image: image5,
     houses: '40',
     lifts: '90',
@@ -83,19 +89,17 @@ const blocks = ref([
   }
 
 ])
+
+const scrollToContact = () => {
+  const el = document.getElementById('contact')
+  if (!el) return
+
+  el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  })
+}
 </script>
 
 <style scoped>
-.bg-custom-green {
-  background-color: #4CAF50; /* Ваш оригинальный цвет */
-}
-.text-custom-green {
-  color: #4CAF50; /* Ваш оригинальный цвет */
-}
-.shadow-lg {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-}
 </style>

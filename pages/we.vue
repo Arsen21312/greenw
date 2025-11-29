@@ -1,4 +1,4 @@
-<!-- pages/screens/about.vue -->
+﻿<!-- pages/screens/about.vue -->
 <template>
   <main class="bg-white text-gray-900 scroll-smooth">
     <!-- ░░░ Навбар ░░░ -->
@@ -198,9 +198,12 @@
           <div
             v-for="item in statsPreview"
             :key="item.label"
-            class="flex flex-col items-center rounded-2xl bg-white/90 p-8 shadow-lg ring-1 ring-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            :class="[
+              'flex flex-col items-center justify-center gap-4 rounded-2xl bg-white/90 p-8 shadow-lg ring-1 ring-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl h-full',
+              item.wide && 'min-w-[230px] md:min-w-[240px]'
+            ]"
           >
-            <p class="mb-3 text-5xl font-extrabold text-[#4caf4f]">
+            <p class="text-4xl md:text-5xl font-extrabold text-[#4caf4f] leading-tight text-center">
               <CountUp
                 :to="item.value"
                 :duration="1.2"
