@@ -394,7 +394,7 @@ const blocksDiscountPercent = computed(() => getBlocksDiscount(selectedBlocks.va
 const totalDiscountPercent = computed(() => {
   if (!discountableAmount.value) return 0
   const total = clientDiscountPercent + durationDiscountPercent.value + blocksDiscountPercent.value
-  return Math.min(50, total)
+  return Math.min(30, total)
 })
 
 const discountAmount = computed(() => (discountableAmount.value * totalDiscountPercent.value) / 100)

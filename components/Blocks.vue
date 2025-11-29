@@ -53,7 +53,7 @@ const blocks = ref([
   {
     id: 3,
     title: 'Блок 3 Элитные ЖК',
-    subtitle: 'новостройки и современные комплексы',
+    subtitle: 'новостройки',
     image: image3,
     houses: '19',
     lifts: '102',
@@ -73,19 +73,19 @@ const blocks = ref([
     population: '10 452',
     addressUrl: '/addresses/block-4-address.docx',
 
-    details: 'Микрорайоны: Восток 1–5, Голубые пруды, Сердарья, Карла Маркса и др.'
+    details: 'Микрорайоны: Восток 1–5, Голубые пруды, Сердарья, Карла Маркса и 19 микрорайон.'
   },
   {
     id: 5,
-    title: 'Блок 5 Центр города',
-    subtitle: 'вторичное жильё + ЖК, центр города',
+    title: 'Блок 5 Город',
+    subtitle: 'вторичное жильё + ЖК',
     image: image5,
     houses: '40',
     lifts: '90',
     apartments: '3 236',
     population: '9 925',
     addressUrl: '/addresses/block-5-address.docx',
-    details: 'Улицы: Назарбаева, Ерубаева, Ержанова, Ермекова и прилегающие кварталы.'
+    details: 'Улицы:  Бухар Жырау, Назарбаева, Ерубаева, Ержанова, Ермекова и прилегающие кварталы.'
   }
 
 ])

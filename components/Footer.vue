@@ -12,18 +12,9 @@
           </div>
           <a href="https://wa.me/77086755846" target="_blank" rel="noopener" class="btn-contact">Связаться</a>
         </div>
-        <button type="button" class="pull-handle" @click.stop="toggle">
-          <span>{{ isOpen ? 'Скрыть' : 'Дополнительная информация' }}</span>
-          <span class="hint-arrow">{{ isOpen ? '↑' : '↓' }}</span>
-        </button>
       </div>
 
-      <div
-        class="collapsible"
-        :class="{ open: isOpen }"
-        :style="panelStyle"
-        aria-hidden="false"
-      >
+      <div class="collapsible open" aria-hidden="false">
         <div class="footer-grid">
           <div class="info-card">
             <p class="card-title">Контакты</p>
@@ -72,7 +63,7 @@
           </div>
         </div>
 
-        <p class="text-center text-xs text-gray-500">
+        <p class="text-center text-xs text-gray-500 mt-4">
           © {{ new Date().getFullYear() }} GreenW — лифтовая реклама в Караганде. Все права защищены.
         </p>
       </div>
@@ -81,21 +72,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
 import logo from '@/assets/svg/loggo.svg'
-
-const isOpen = ref(false)
-
-const panelStyle = computed(() => {
-  return {
-    maxHeight: isOpen.value ? '1200px' : '0px',
-    opacity: isOpen.value ? 1 : 0,
-  }
-})
-
-const toggle = () => {
-  isOpen.value = !isOpen.value
-}
 </script>
 
 <style scoped>
@@ -237,8 +214,7 @@ const toggle = () => {
 }
 
 .collapsible {
-  overflow: hidden;
-  transition: max-height 0.28s ease, opacity 0.28s ease;
+  overflow: visible;
 }
 
 .text-custom-green {
@@ -257,9 +233,6 @@ const toggle = () => {
 }
 
 .collapsible {
-  will-change: transform, opacity;
-  transition: transform 0.24s ease, opacity 0.24s ease;
-  touch-action: none;
-  transform: translateZ(0);
+  will-change: auto;
 }
 </style>

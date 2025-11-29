@@ -10,13 +10,13 @@
         <p v-if="block.subtitle" class="mt-1 text-sm text-gray-600 text-center">{{ block.subtitle }}</p>
 
         <div v-if="isExpanded" class="mt-4 space-y-1 text-sm text-gray-700">
+          <p v-if="block.details" class="mt-2 text-xs text-gray-500 leading-snug">
+            {{ block.details }}
+          </p>
           <p><span class="font-medium">Дома:</span> {{ block.houses }}</p>
           <p><span class="font-medium">Лифты:</span> {{ block.lifts }}</p>
           <p><span class="font-medium">Квартиры:</span> {{ block.apartments }}</p>
           <p><span class="font-medium">Население:</span> {{ block.population }}</p>
-          <p v-if="block.details" class="mt-2 text-xs text-gray-500 leading-snug">
-            {{ block.details }}
-          </p>
         </div>
       </div>
 
