@@ -106,7 +106,7 @@ const tabs = [
 const tabLabels = {
   advertiser: 'Рекламодатель',
   locals: 'Местный житель',
-  owners: 'Владелец лифта / ОСИ',
+  owners: 'Владелец лифта / КСК',
 }
 
 const selectedTab = ref('all')

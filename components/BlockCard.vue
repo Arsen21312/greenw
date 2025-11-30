@@ -1,18 +1,21 @@
-<template>
+﻿<template>
   <article class="block-card flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden">
     <div class="h-56 overflow-hidden">
-      <img :src="block.image" loading="lazy" :alt="`Блок ${block.title}`" class="w-full h-full object-cover" />
+      <img :src="block.image" loading="lazy" :alt="block.title" class="w-full h-full object-cover" />
     </div>
 
     <div class="flex-1 flex flex-col p-5">
       <div class="flex-1">
         <h3 class="text-2xl font-semibold text-center text-gray-800">{{ block.title }}</h3>
         <p v-if="block.subtitle" class="mt-1 text-sm text-gray-600 text-center">{{ block.subtitle }}</p>
+        <p
+          v-if="block.details"
+          class="mt-2 text-base font-medium text-gray-800 text-center leading-snug"
+        >
+          {{ block.details }}
+        </p>
 
-        <div v-if="isExpanded" class="mt-4 space-y-1 text-sm text-gray-700">
-          <p v-if="block.details" class="mt-2 text-xs text-gray-500 leading-snug">
-            {{ block.details }}
-          </p>
+        <div v-if="isExpanded" class="mt-4 space-y-2 text-sm text-gray-700">
           <p><span class="font-medium">Дома:</span> {{ block.houses }}</p>
           <p><span class="font-medium">Лифты:</span> {{ block.lifts }}</p>
           <p><span class="font-medium">Квартиры:</span> {{ block.apartments }}</p>
@@ -26,7 +29,7 @@
           @click="handleOrder"
           class="px-4 py-2 rounded-lg bg-lime-500 text-white text-sm font-semibold shadow-sm hover:opacity-90 transition"
         >
-          Заказать
+          Оставить заявку
         </button>
 
         <button
@@ -35,7 +38,7 @@
           @click="handleMore"
           class="px-4 py-2 rounded-lg border border-lime-500 text-lime-600 text-sm font-semibold bg-white hover:bg-lime-50 transition"
         >
-          Подробнее
+          Показать детали
         </button>
 
         <a
@@ -43,7 +46,7 @@
           :href="block.addressUrl"
           class="px-4 py-2 rounded-lg border border-lime-500 text-lime-600 text-sm font-semibold bg-white hover:bg-lime-50 transition text-center"
         >
-          Скачать адреса
+          Скачать список адресов
         </a>
       </div>
     </div>
