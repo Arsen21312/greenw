@@ -216,6 +216,8 @@
 import { computed, ref } from 'vue'
 import visualMock from '@/assets/formats-mock.png'
 
+const emit = defineEmits(['lift-order'])
+
 const blocks = [1, 2, 3, 4, 5]
 const howItWorksSteps = [
   {
@@ -440,14 +442,27 @@ const activeFormatInfo = computed(() => {
 
 const handleOrderClick = () => {
   if (!selectedBlocks.value.length) return
-  console.log({
-    blocks: selectedBlocks.value,
-    blockFormats: blockFormats.value,
+
+  const payload = {
+    blocks: [...selectedBlocks.value],
+    blockFormats: { ...blockFormats.value },
     months: months.value,
     totalWithoutDiscount: totalWithoutDiscount.value,
+    discountableAmount: discountableAmount.value,
     totalDiscountPercent: totalDiscountPercent.value,
     totalWithDiscount: totalWithDiscount.value,
-  })
+  }
+
+  // отдаем данные наверх
+  emit('lift-order', payload)
+
+  // плавный скролл к форме с id="contact"
+  if (typeof window !== 'undefined') {
+    const el = document.getElementById('contact')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 }
 </script>
 

@@ -127,11 +127,18 @@
 import axios from 'axios';
 
 export default {
+  props: {
+    liftOrder: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
       leadData: {
         name: '',
         phone: '',
+        leadId: null,
       },
       message: '',
       isError: false,
@@ -241,9 +248,11 @@ export default {
       const payload = {
         phone: this.leadData.phone,
         name: this.leadData.name,
+        leadId: this.leadData.leadId || null,
         question_key: question.key,
         question_text: question.text,
-        answer: value
+        answer: value,
+        liftOrder: this.liftOrder || null,
       };
 
       await axios.post('/api/quiz-answer', payload);
@@ -252,12 +261,16 @@ export default {
       try {
         const dataToSend = {
           name: this.leadData.name,
-          phone: this.leadData.phone
+          phone: this.leadData.phone,
+          liftOrder: this.liftOrder || null,
         };
 
         const response = await axios.post('/api/create-lead', dataToSend);
 
         if (response.status === 200) {
+          if (response.data && response.data.leadId) {
+            this.leadData.leadId = response.data.leadId;
+          }
           this.message = '';
           this.isError = false;
           this.stage = 'invite';

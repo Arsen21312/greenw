@@ -12,7 +12,7 @@
     <section class="bg-[#f4f9f1]">
       <Suspense>
         <template #default>
-          <AsyncModule />
+          <AsyncModule @lift-order="handleLiftOrder" />
         </template>
         <template #fallback>
           <div>Загрузка модуля...</div>
@@ -24,7 +24,7 @@
     <section class="bg-[#eef6ff]">
       <Suspense>
         <template #default>
-          <AsyncFeedbackForm id="contact" />
+          <AsyncFeedbackForm id="contact" :lift-order="liftOrder" />
         </template>
         <template #fallback>
           <div>Загрузка формы обратной связи...</div>
@@ -79,7 +79,7 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, ref } from 'vue';
 import NavBar from '@/components/NavBar.vue';
 import HeroComponents from '@/components/HeroComponents.vue';
 import Info from '@/components/Info.vue';
@@ -138,6 +138,12 @@ const AsyncFeedbackForm = defineAsyncComponent(() => import('@/components/Feedba
 const AsyncMap2GisWraper = defineAsyncComponent(() => import('~/components/Map2GisWraper.vue'));
 const AsyncSlider = defineAsyncComponent(() => import('@/components/Slider.vue'));
 const AsyncFaq = defineAsyncComponent(() => import('@/components/Faq.vue'));
+
+const liftOrder = ref(null);
+
+const handleLiftOrder = (payload) => {
+  liftOrder.value = payload;
+};
 </script>
 
 <style scoped>

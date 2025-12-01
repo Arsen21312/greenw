@@ -4,6 +4,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    amoDomain: process.env.NUXT_AMO_DOMAIN,
+    amoAccessToken: process.env.NUXT_AMO_ACCESS_TOKEN,
+    amoPipelineId: process.env.NUXT_AMO_PIPELINE_ID,
+    amoStatusId: process.env.NUXT_AMO_STATUS_ID,
+    public: {},
+  },
+
   app: {
     head: {
       htmlAttrs: {
@@ -53,7 +61,25 @@ export default defineNuxtConfig({
         // Дополнительные ссылки на ресурсы
       ],
       script: [
-        // Структурированные данные Schema.org
+        // Google Tag Manager
+        {
+          hid: 'gtm-script',
+          innerHTML: `
+            (function(w,d,s,l,i){
+              w[l]=w[l]||[];
+              w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+              var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),
+                  dl=l!='dataLayer'?'&l='+l:'';
+              j.async=true;
+              j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+              f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${process.env.VITE_GTM_ID}');
+          `,
+          type: 'text/javascript',
+          charset: 'utf-8',
+        },
+        // Schema.org
         {
           type: 'application/ld+json',
           children: `
@@ -82,7 +108,7 @@ export default defineNuxtConfig({
           }
           `,
         },
-        // Добавление Яндекс.Метрики
+        // Yandex Metrika
         {
           hid: 'yandex-metrika',
           innerHTML: `
@@ -108,9 +134,9 @@ export default defineNuxtConfig({
           `,
           type: 'text/javascript',
           charset: 'utf-8',
-          body: true, // Размещает скрипт перед закрывающим тегом </body>
+          body: true,
         },
-        // Добавление Google Tag (gtag.js)
+        // Google Tag (gtag.js)
         {
           hid: 'google-tag',
           src: `https://www.googletagmanager.com/gtag/js?id=${process.env.VITE_GOOGLE_TAG_ID}`,
@@ -132,11 +158,17 @@ export default defineNuxtConfig({
       ],
       noscript: [
         {
+          hid: 'gtm-noscript',
+          innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.VITE_GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+        },
+        {
           hid: 'yandex-metrika-noscript',
           innerHTML: `<div><img src="https://mc.yandex.ru/watch/${process.env.VITE_YANDEX_METRIKA_ID}" style="position:absolute; left:-9999px;" alt="" /></div>`,
         },
       ],
       __dangerouslyDisableSanitizersByTagID: {
+        'gtm-script': ['innerHTML'],
+        'gtm-noscript': ['innerHTML'],
         'yandex-metrika': ['innerHTML'],
         'yandex-metrika-noscript': ['innerHTML'],
         'google-gtag': ['innerHTML'],
