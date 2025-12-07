@@ -53,8 +53,8 @@ const gradientId = `waveGradient-${Math.random().toString(36).slice(2, 8)}`
 .wave-wrapper {
   width: 100%;
   height: 240px;
-  margin-top: -60px;
-  margin-bottom: -60px;
+  margin-top: -40px;
+  margin-bottom: -40px;
   overflow: hidden;
   background: transparent;
 }
@@ -80,5 +80,21 @@ const gradientId = `waveGradient-${Math.random().toString(36).slice(2, 8)}`
 
 .wave-stroke {
   filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.08));
+}
+
+@media (max-width: 1024px) {
+  .wave-wrapper {
+    height: 200px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wave-wrapper {
+    height: 160px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
 }
 </style>

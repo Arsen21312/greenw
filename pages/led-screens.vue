@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-white text-gray-900 overflow-x-hidden pt-24 md:pt-28">
+  <main class="bg-white text-gray-900 overflow-x-hidden pt-20 md:pt-24">
     <NavBar class="bg-white/85 backdrop-blur supports-backdrop-blur:shadow-md shadow" />
 
     <!-- Hero -->
@@ -23,15 +23,15 @@
             LED экраны по всей Караганде
           </span>
 
-          <h1 class="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
+          <h1 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-snug md:leading-snug lg:leading-tight text-gray-900">
             Реклама на уличных LED экранах города Караганды
           </h1>
 
-          <p class="text-lg text-gray-700 md:text-xl">
+          <p class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
             Ваш бренд видят тысячи людей каждый день, на дорогах, в центре города и возле крупных ТЦ
           </p>
 
-          <div class="space-y-4 text-base leading-relaxed text-gray-700 md:text-lg">
+          <div class="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>Мы размещаем видеорекламу на 26 уличных LED экранах по всему городу.</p>
             <p>Эти экраны находятся вдоль дорог, на стенах зданий и на ключевых городских точках.</p>
             <p>Формат отлично работает на узнаваемость, охват и эффект «вижу каждый день».</p>
@@ -121,7 +121,7 @@
     <!-- Типы экранов -->
     <section class="bg-white py-16 md:py-24 overflow-hidden">
       <div class="container mx-auto space-y-10 px-6">
-        <div class="max-w-3xl space-y-3 text-center mx-auto">
+        <div class="max-w-4xl space-y-3 text-center mx-auto px-4">
           <h2 class="text-3xl font-extrabold text-gray-900 md:text-4xl">
             Выберите вид экрана и посмотрите трафик, пример экрана и стоимость размещения
           </h2>
@@ -135,7 +135,7 @@
             :id="type.id"
             v-for="(type, idx) in screenTypes"
             :key="type.title"
-            class="flex h-full flex-col gap-6 rounded-3xl bg-gray-50/80 p-8 shadow-sm ring-1 ring-gray-100 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            class="flex h-full flex-col gap-6 rounded-3xl bg-gray-50/80 p-6 sm:p-8 shadow-sm ring-1 ring-gray-100 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
             <div class="grid gap-6 lg:grid-cols-2 lg:items-center">
               <div class="space-y-4">
@@ -194,7 +194,7 @@
                       <img
                         :src="image"
                         :alt="`Фотография ${type.title}`"
-                        class="w-full h-full object-cover"
+                        class="w-full h-full object-cover rounded-xl"
                       />
                     </div>
                   </div>
@@ -516,9 +516,26 @@ const screenTypes: ScreenType[] = [
 @media (max-width: 1024px) {
   .led-slider-viewport {
     max-width: 100%;
+    min-height: 15rem;
   }
   .led-slider-card {
     flex: 0 0 calc((100% - 20px) / 2);
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .led-slider-viewport {
+    min-height: 14rem;
+  }
+  .led-slider-card {
+    flex: 0 0 calc((100% - 16px) / 2);
+    min-width: 200px;
+  }
+  .led-slider-track {
+    gap: 12px;
+    animation: none;
+    transform: translateX(0);
   }
 }
 
@@ -526,10 +543,15 @@ const screenTypes: ScreenType[] = [
   .led-slider-viewport {
     max-width: calc(100vw - 32px);
     margin: 0 auto;
+    min-height: 14rem;
   }
   .led-slider-card {
-    flex: 0 0 75%;
-    min-width: 180px;
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  .led-slider-track {
+    animation: none;
+    transform: translateX(0);
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-white text-gray-900 overflow-x-hidden pt-24 md:pt-28">
+  <main class="bg-white text-gray-900 overflow-x-hidden pt-20 md:pt-24">
     <NavBar class="bg-white/85 backdrop-blur supports-backdrop-blur:shadow-md shadow" />
 
     <!-- Hero -->
@@ -22,15 +22,15 @@
             LED экраны внутри помещений
           </span>
 
-          <h1 class="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug md:leading-snug lg:leading-tight text-gray-900">
             Реклама на LED экранах внутри помещений
           </h1>
 
-          <p class="text-lg text-gray-700 md:text-xl">
+          <p class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
             Ваш ролик видят там, где люди ежедневно проходят, ждут и совершают покупки
           </p>
 
-          <div class="space-y-4 text-base leading-relaxed text-gray-700 md:text-lg">
+          <div class="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>Мы размещаем видеорекламу на экранах в супермаркетах, ТЦ и на вокзале.</p>
             <p>68 экранов по всей Караганде. Быстрый запуск от 1 дня.</p>
             <p>Формат идеально подходит для акций, открытия нового филиала и повышения узнаваемости бренда.</p>
@@ -232,19 +232,21 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import FaqLed from '@/components/FaqLed.vue'
 import Footer from '@/components/Footer.vue'
-import led1 from '@/assets/led-screens1.png'
-import led2 from '@/assets/led-screens2.png'
-import led3 from '@/assets/led-screens3.png'
-import led4 from '@/assets/led-screens4.png'
-import led5 from '@/assets/led-screens5.png'
-import led6 from '@/assets/led-screens6.png'
-import led7 from '@/assets/led-screens7.png'
-import led8 from '@/assets/led-screens8.png'
-import led9 from '@/assets/led-screens9.png'
-import led10 from '@/assets/led-screens10.png'
-import led11 from '@/assets/led-screens11.png'
-import led12 from '@/assets/led-screens12.png'
-import led13 from '@/assets/led-screens13.png'
+// indoor временные фото из public/exampleled
+const heroImages = [
+  '/exampleled/GCP1.png',
+  '/exampleled/GCP2.png',
+  '/exampleled/ledbig1.png',
+  '/exampleled/ledbig2.png',
+  '/exampleled/ledbig3.png',
+  '/exampleled/smarteco1.png',
+  '/exampleled/smarteco2.png',
+  '/exampleled/tair1.png',
+  '/exampleled/tair2.png',
+  '/exampleled/tair3.png',
+  '/exampleled/tair4.png',
+  '/exampleled/tair5.png'
+]
 
 useSeoMeta({
   title: 'Реклама на LED экранах внутри помещений в Караганде GreenW',
@@ -268,21 +270,7 @@ type ScreenType = {
 
 const noop = () => {}
 
-const ledSlides = ref<string[]>([
-  led1,
-  led2,
-  led3,
-  led4,
-  led5,
-  led6,
-  led7,
-  led8,
-  led9,
-  led10,
-  led11,
-  led12,
-  led13
-])
+const ledSlides = ref<string[]>([...heroImages])
 
 const shuffleSlides = (arr: string[]) => {
   const copy = [...arr]
@@ -396,8 +384,8 @@ const screenTypes: ScreenType[] = [
       'Размещение: 7 или 30 дней'
     ],
     price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
-    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led8, led9, led10]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/GCP1.png', '/exampleled/GCP2.png', '/exampleled/GCP3.jpg']
   },
   {
     id: 'indoor-railway-station',
@@ -414,8 +402,8 @@ const screenTypes: ScreenType[] = [
       'Количество мониторов: 2, работают в связке и продаются только в паре'
     ],
     price: 'Стоимость от 20 000 ₸ до 100 000 ₸ в месяц',
-    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led1, led2, led3]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/ledbig1.png', '/exampleled/ledbig2.png', '/exampleled/ledbig3.png']
   },
   {
     id: 'indoor-tair',
@@ -432,8 +420,8 @@ const screenTypes: ScreenType[] = [
       'Количество мониторов: 10, продаются только пакетом'
     ],
     price: 'Стоимость 40 000 ₸ в месяц',
-    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led4, led5, led6]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/tair1.png', '/exampleled/tair2.png', '/exampleled/tair3.png']
   },
   {
     id: 'indoor-vostok-ayan',
@@ -449,8 +437,8 @@ const screenTypes: ScreenType[] = [
       'Размещение: 7 или 30 дней'
     ],
     price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
-    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led7, led8, led9]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/ledbig4.png', '/exampleled/ledbig5.png', '/exampleled/ledbig.jpg']
   },
   {
     id: 'indoor-southern-chain',
@@ -468,8 +456,8 @@ const screenTypes: ScreenType[] = [
     ],
     price:
       'Стоимость от 50 000 ₸ в месяц за одну локацию или от 100 000 ₸ в месяц за все локации',
-    actions: ['Галерея/видео YouTube', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led10, led11, led12]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/smarteco1.png', '/exampleled/smarteco2.png', '/exampleled/smarteco3.png']
   },
   {
     id: 'indoor-belarus-damezhan',
@@ -484,8 +472,8 @@ const screenTypes: ScreenType[] = [
       'Размещение: от 30 дней'
     ],
     price: 'Стоимость 25 000 ₸ в месяц за одну локацию',
-    actions: ['Галерея/видео YouTube', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led12, led13, led1]
+    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: ['/exampleled/ledbig1.png', '/exampleled/ledbig2.png', '/exampleled/ledbig3.png']
   }
 ]
 </script>
@@ -552,6 +540,7 @@ const screenTypes: ScreenType[] = [
 @media (max-width: 1024px) {
   .led-slider-viewport {
     max-width: 100%;
+    min-height: 15rem;
   }
   .led-slider-card {
     flex: 0 0 calc((100% - 20px) / 2);
@@ -562,10 +551,15 @@ const screenTypes: ScreenType[] = [
   .led-slider-viewport {
     max-width: calc(100vw - 32px);
     margin: 0 auto;
+    min-height: 14rem;
   }
   .led-slider-card {
-    flex: 0 0 75%;
-    min-width: 180px;
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  .led-slider-track {
+    animation: none;
+    transform: translateX(0);
   }
 }
 </style>

@@ -125,7 +125,7 @@ export default defineNuxtConfig({
             })
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
     
-            ym(${process.env.VITE_YANDEX_METRIKA_ID}, "init", { 
+            ym(98672200, "init", { 
               clickmap:true, 
               trackLinks:true, 
               accurateTrackBounce:true, 
@@ -163,7 +163,7 @@ export default defineNuxtConfig({
         },
         {
           hid: 'yandex-metrika-noscript',
-          innerHTML: `<div><img src="https://mc.yandex.ru/watch/${process.env.VITE_YANDEX_METRIKA_ID}" style="position:absolute; left:-9999px;" alt="" /></div>`,
+          innerHTML: `<div><img src="https://mc.yandex.ru/watch/98672200" style="position:absolute; left:-9999px;" alt="" /></div>`,
         },
       ],
       __dangerouslyDisableSanitizersByTagID: {

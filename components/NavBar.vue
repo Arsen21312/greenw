@@ -1,6 +1,4 @@
-<!-- components/NavBar.vue -->
 <template>
-  <!-- ¢'ے: ‘"گٌگَ‘?گٌ‘?‘?گçگ? ‘'گ?گ>‘?گَگ? گ?گّ mobile -->
   <header
     :class="[
       'bg-white shadow-xl fixed top-0 inset-x-0 w-full z-50 transition-transform duration-300',
@@ -8,59 +6,28 @@
     ]"
   >
     <div class="container mx-auto flex items-center justify-between p-4">
-      <!-- گ>گ?گ?گ?‘'گٌگُ ¢?" ‘?‘?‘<گ>گَگّ گ?گّ گ?گ>گّگ?گ?‘?‘? -->
       <NuxtLink to="/" class="flex items-center space-x-2">
-        <img
-          :src="logo"
-          alt="گ>گ?گ?گ?‘'گٌگُ ‘?گçگَگ>گّگ?گ?گ?گ?گ? گّگ?گçگ?‘'‘?‘'گ?گّ GreenW گ? گ?گّ‘?گّگ?گّگ?گ?گç"
-          class="h-16"
-        />
-        <span class="font-bold text-lg text-custom-green">
-         
-        </span>
+        <img :src="logo" alt="GreenW" class="h-16" />
       </NuxtLink>
 
-      <!-- گ'‘?‘?گ?گç‘? ‘'گ?گ>‘?گَگ? گ?گّ mobile -->
+      <!-- Mobile burger -->
       <div class="md:hidden">
-        <button
-          @click="isMenuOpen = !isMenuOpen"
-          class="text-gray-800 focus:outline-none"
-        >
-          <svg
-            class="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
+        <button @click="isMenuOpen = !isMenuOpen" class="text-gray-800 focus:outline-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
       </div>
 
-      <!-- گ?گّگ?گٌگ?گّ‘إگٌ‘? گ?گç‘?گَ‘'گ?گُ -->
-      <nav
-        class="hidden md:flex space-x-8 flex-grow justify-center text-lg items-center"
-      >
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex space-x-8 flex-grow justify-center text-lg items-center">
         <div class="relative flex items-center">
           <button
             @click="toggleSearch"
             class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
             aria-label="Поиск"
           >
-            <svg
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="7" />
               <line x1="16.65" y1="16.65" x2="21" y2="21" />
             </svg>
@@ -72,15 +39,7 @@
             ref="searchWrapper"
           >
             <div class="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-2 bg-gray-50">
-              <svg
-                class="w-4 h-4 text-gray-500"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
+              <svg class="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="16.65" y1="16.65" x2="21" y2="21" />
               </svg>
@@ -92,20 +51,11 @@
                 @keydown.escape="closeSearch"
                 ref="searchInput"
               />
-              <button
-                @click="clearSearch"
-                class="text-gray-500 hover:text-gray-800"
-                aria-label="Очистить поиск"
-              >
-                ×
-              </button>
+              <button @click="clearSearch" class="text-gray-500 hover:text-gray-800" aria-label="Очистить поиск">×</button>
             </div>
 
             <ul class="mt-3 space-y-1">
-              <li
-                v-for="item in searchResults"
-                :key="item.path"
-              >
+              <li v-for="item in searchResults" :key="item.path">
                 <NuxtLink
                   :to="item.path"
                   class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-sm text-gray-800"
@@ -118,10 +68,11 @@
             </ul>
           </div>
         </div>
-        <NuxtLink to="/lift"  class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
-        <NuxtLink to="/led"   class="text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
+
+        <NuxtLink to="/lift" class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
+        <NuxtLink to="/led" class="text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
         <NuxtLink to="/owners" class="text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
-        <NuxtLink to="/we"     class="text-gray-800 hover:text-custom-green">О нас</NuxtLink>
+        <NuxtLink to="/we" class="text-gray-800 hover:text-custom-green">О нас</NuxtLink>
         <NuxtLink
           to="/otzyvy"
           class="px-4 py-2 rounded-full border border-custom-green text-custom-green font-semibold hover:bg-custom-green hover:text-white transition"
@@ -130,28 +81,17 @@
         </NuxtLink>
       </nav>
 
-      <!-- گ÷گçگ>گç‘"گ?گ? گ?گç‘?گَ‘'گ?گُ + گ?‘'گ?گçگ>‘?گ?‘<گü WhatsApp -->
+      <!-- Right actions -->
       <div class="hidden md:flex items-center gap-3">
-        <a
-          href="tel:+77086755846"
-          class="font-normal text-lg text-black hover:text-custom-green"
-        >
-          +7 708 675 5846
-        </a>
-
+        <a href="tel:+77086755846" class="font-normal text-lg text-black hover:text-custom-green">+7 708 675 5846</a>
         <a
           href="https://wa.me/77086755846"
           class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="گ?گّگُگٌ‘?گّ‘'‘? گ? WhatsApp"
+          aria-label="Написать в WhatsApp"
         >
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
               d="M12.04 2a9.93 9.93 0 0 0-9.94 9.93c0 1.75.46 3.43 1.34 4.92L2 22l5.26-1.38a9.96 9.96 0 0 0 4.78 1.21h.01a9.93 9.93 0 0 0 9.94-9.93A9.94 9.94 0 0 0 12.04 2Zm0 17.97h-.01a8.04 8.04 0 0 1-4.1-1.12l-.29-.17-3.12.82.83-3.04-.19-.31a7.97 7.97 0 0 1-1.18-4.23 8.04 8.04 0 0 1 8.05-8.03 8.03 8.03 0 0 1 5.7 13.73 8 8 0 0 1-5.69 2.35Z"
             />
@@ -163,15 +103,15 @@
       </div>
     </div>
 
-    <!-- ¢'ِ: گ?گ?گ+گٌگ>‘?گ?گ?گç گ?گçگ?‘? ¢?" ‘"گٌگَ‘?گٌ‘?‘?گçگ? گُگ?گ? ‘?گّگُگَگ?گü -->
+    <!-- Mobile menu -->
     <nav
       v-if="isMenuOpen"
       class="md:hidden fixed top-16 inset-x-0 p-4 space-y-4 bg-gray-50 shadow-lg rounded-b-md z-40"
     >
-      <NuxtLink to="/lift"  class="block text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
-      <NuxtLink to="/led"   class="block text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
+      <NuxtLink to="/lift" class="block text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
+      <NuxtLink to="/led" class="block text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
       <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
-      <NuxtLink to="/we"     class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
+      <NuxtLink to="/we" class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
       <NuxtLink
         to="/otzyvy"
         class="block text-center px-4 py-2 rounded-full border border-custom-green text-custom-green font-semibold hover:bg-custom-green hover:text-white transition"
@@ -180,25 +120,15 @@
       </NuxtLink>
 
       <div class="flex items-center gap-3 pt-2">
-        <a
-          href="tel:+77086755846"
-          class="block text-gray-800 hover:text-custom-green font-bold text-lg"
-        >
-          +7 708 675 5846
-        </a>
+        <a href="tel:+77086755846" class="block text-gray-800 hover:text-custom-green font-bold text-lg">+7 708 675 5846</a>
         <a
           href="https://wa.me/77086755846"
           class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="گ?گّگُگٌ‘?گّ‘'‘? گ? WhatsApp"
+          aria-label="Написать в WhatsApp"
         >
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
               d="M12.04 2a9.93 9.93 0 0 0-9.94 9.93c0 1.75.46 3.43 1.34 4.92L2 22l5.26-1.38a9.96 9.96 0 0 0 4.78 1.21h.01a9.93 9.93 0 0 0 9.94-9.93A9.94 9.94 0 0 0 12.04 2Zm0 17.97h-.01a8.04 8.04 0 0 1-4.1-1.12l-.29-.17-3.12.82.83-3.04-.19-.31a7.97 7.97 0 0 1-1.18-4.23 8.04 8.04 0 0 1 8.05-8.03 8.03 8.03 0 0 1 5.7 13.73 8 8 0 0 1-5.69 2.35Z"
             />
@@ -209,40 +139,23 @@
         </a>
       </div>
 
-        <div class="pt-3 space-y-2">
-          <div class="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-2 bg-white shadow">
-            <svg
-              class="w-4 h-4 text-gray-500"
-              viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <line x1="16.65" y1="16.65" x2="21" y2="21" />
-            </svg>
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Поиск: цены, районы..."
-              class="flex-1 bg-transparent text-sm focus:outline-none"
-              ref="searchInput"
-            />
-            <button
-              @click="clearSearch"
-              class="text-gray-500 hover:text-gray-800"
-              aria-label="Очистить поиск"
-            >
-              ×
-            </button>
-          </div>
+      <div class="pt-3 space-y-2">
+        <div class="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-2 bg-white shadow">
+          <svg class="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.65" y1="16.65" x2="21" y2="21" />
+          </svg>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Поиск: цены, районы..."
+            class="flex-1 bg-transparent text-sm focus:outline-none"
+            ref="searchInput"
+          />
+          <button @click="clearSearch" class="text-gray-500 hover:text-gray-800" aria-label="Очистить поиск">×</button>
+        </div>
         <ul class="space-y-1 bg-white rounded-lg shadow border border-gray-100 p-2">
-          <li
-            v-for="item in searchResults"
-            :key="item.path + '-m'"
-          >
+          <li v-for="item in searchResults" :key="item.path + '-m'">
             <NuxtLink
               :to="item.path"
               class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-sm text-gray-800"
@@ -257,22 +170,14 @@
     </nav>
   </header>
 
-  <!-- Плавающая кнопка "наверх" -->
+  <!-- Back to top -->
   <button
     v-if="isCollapsed"
     @click="scrollToTop"
     class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-12 h-12 rounded-full bg-custom-green text-white shadow-lg ring-2 ring-white transition hover:-translate-y-1"
     aria-label="Вернуться вверх"
   >
-    <svg
-      class="w-6 h-6 mx-auto"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
+    <svg class="w-6 h-6 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15" />
     </svg>
   </button>
@@ -292,100 +197,22 @@ const searchWrapper = ref<HTMLElement | null>(null)
 
 const searchItems = [
   {
-    title: 'LED борды вдоль дороги',
-    path: '/led-screens#led-road',
-    summary: '26 точек, форматы 5.76×1.92 и 2.88×1.92 м, яркость 30 000 нит',
-    keywords: 'цены 50-350 тыс трасса вдоль дороги прайс pdf'
-  },
-  {
-    title: 'LED экран Арбат',
-    path: '/led-screens#led-arbat',
-    summary: 'Пешеходная зона, яркость до 30 нит, старт от 30 000 ₸',
-    keywords: 'арбат центр прогулочная зона цены'
-  },
-  {
-    title: 'LED экран CITY Mall',
-    path: '/led-screens#led-city-mall',
-    summary: 'ТРЦ, яркость 10 нит, прайс и техкарта в PDF',
-    keywords: 'city mall прайс pdf техтребования'
-  },
-  {
-    title: 'Smart Eco / Smart Media Board',
-    path: '/led-screens#led-smart-eco',
-    summary: 'Экран 6×2 или 1.8×1 м, яркость 30 нит, 150–450 тыс ₸',
-    keywords: 'smart eco media board led смарт'
-  },
-  {
-    title: 'Все типы LED экранов',
+    title: 'LED наружные экраны',
     path: '/led-screens',
-    summary: 'Каталог LED-бордов: трасса, Арбат, CITY Mall, Smart Eco, цены и характеристики',
-    keywords: 'led экраны борды каталог цены яркость размеры'
+    summary: '26 уличных экранов по городу, прайсы и трафик',
+    keywords: 'led борды улица прайс трафик'
   },
   {
-    title: 'Оставить заявку (LED борды)',
-    path: '/led-screens#led-contact',
-    summary: 'Форма обратной связи на странице LED-бордов',
-    keywords: 'заявка форма контакт led-screens'
-  },
-  {
-    title: 'Скачать: правила изготовления постера',
-    path: '/presend/pravila-izgotovleniya-cifrovogo-postera.pdf',
-    summary: 'Техтребования к роликам для LED',
-    keywords: 'тех требования pdf постер'
-  },
-  {
-    title: 'Скачать: презентация трассовых LED',
-    path: '/presend/led-ekrany-vdol-dorogi-20.pdf',
-    summary: 'Прайс/презентация трассовых экранов',
-    keywords: 'презентация pdf трасса'
-  },
-  {
-    title: 'Скачать: прайс CITY Mall',
-    path: '/presend/prise-CITY-Mall.pdf',
-    summary: 'PDF с ценами для CITY Mall',
-    keywords: 'city mall pdf прайс'
-  },
-  {
-    title: 'Скачать: техкарта CITY Mall',
-    path: '/presend/teh-CITY-Mall.pdf',
-    summary: 'Технические требования для CITY Mall',
-    keywords: 'city mall pdf техкарта'
-  },
-  {
-    title: 'Реклама на LED-экранах',
-    path: '/led',
-    summary: '22+ экранов по городу, ролики 10–30 с, от 20 000 ₸',
-    keywords: 'led экраны сеть охват'
+    title: 'LED indoor экраны',
+    path: '/led-indoor',
+    summary: '68 экранов внутри помещений, супермаркеты, ТЦ, вокзал',
+    keywords: 'indoor led супермаркеты тц вокзал'
   },
   {
     title: 'Реклама в лифтах',
     path: '/lift',
-    summary: '450+ подъездов, от 20 000 ₸/мес, охват 48 000+ квартир',
-    keywords: 'лифты подъезды стоимость 20000'
-  },
-  {
-    title: 'Партнёрство площадок',
-    path: '/owners',
-    summary: 'Сдать поверхность под рекламу: подъезды, фасады, ТРЦ',
-    keywords: 'владельцы аренда поверхности районы'
-  },
-  {
-    title: 'О компании GreenW',
-    path: '/we',
-    summary: 'Команда, история, 605 лифтов, 28 экранов, 55 200+ охват',
-    keywords: 'о нас караганда команда история'
-  },
-  {
-    title: 'Отзывы',
-    path: '/otzyvy',
-    summary: 'Видео отзывы: рекламодатели, жители, владельцы подъездов',
-    keywords: 'видео отзывы клиенты'
-  },
-  {
-    title: 'Главная',
-    path: '/',
-    summary: 'Быстрый переход: лифты, LED-экраны, партнёры, Instagram',
-    keywords: 'главная greenw'
+    summary: '450+ подъездов, форматы A3–A9, быстрый запуск',
+    keywords: 'лифты реклама подъезды'
   }
 ]
 
@@ -401,9 +228,9 @@ const fuse = new Fuse(searchItems, {
 
 const searchResults = computed(() => {
   if (!searchQuery.value.trim()) {
-    return searchItems.slice(0, 5)
+    return searchItems.slice(0, 3)
   }
-  return fuse.search(searchQuery.value.trim()).map((r) => r.item).slice(0, 5)
+  return fuse.search(searchQuery.value.trim()).map((r) => r.item).slice(0, 3)
 })
 
 const closeSearch = () => {
