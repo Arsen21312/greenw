@@ -1,5 +1,5 @@
 <template>
-  <section class="faq-section bg-gray-200 py-12">
+  <section class="faq-section py-12">
     <div class="container mx-auto">
       <h2 class="text-5xl font-bold mb-8 text-center text-primary">Частые вопросы</h2>
       <TransitionGroup name="faq-list" tag="div">
@@ -130,10 +130,6 @@ const toggleAll = () => {
 </script>
 
 <style scoped>
-.faq-section {
-  background: #f3f4f6;
-}
-
 .text-primary {
   color: #333;
 }

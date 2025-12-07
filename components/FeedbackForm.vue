@@ -253,6 +253,8 @@ export default {
         question_text: question.text,
         answer: value,
         liftOrder: this.liftOrder || null,
+        source: this.liftOrder?.source || 'unknown',
+        page: 'led-screens',
       };
 
       await axios.post('/api/quiz-answer', payload);
@@ -263,6 +265,8 @@ export default {
           name: this.leadData.name,
           phone: this.leadData.phone,
           liftOrder: this.liftOrder || null,
+          source: this.liftOrder?.source || 'unknown',
+          page: 'led-screens',
         };
 
         const response = await axios.post('/api/create-lead', dataToSend);

@@ -10,16 +10,22 @@
     <section
       class="relative isolate overflow-hidden bg-gradient-to-br from-[#4caf4f] via-[#8ecb48] to-[#a8cc55] pt-28 pb-44 lg:pt-36 lg:pb-56"
     >
+      <!-- Orb вместо статичных кругов -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -top-6 -left-6 h-64 w-64 opacity-70">
+          <Orb :hover-intensity="0.32" :rotate-on-hover="true" :hue="95" :force-hover-state="true" :rotation-speed="0.08" />
+        </div>
+        <div class="absolute -bottom-10 -right-10 h-64 w-64 opacity-70">
+          <Orb :hover-intensity="0.32" :rotate-on-hover="true" :hue="125" :force-hover-state="true" :rotation-speed="0.08" />
+        </div>
+      </div>
+
       <!-- шум-оверлей -->
       <div
         class="absolute inset-0 pointer-events-none mix-blend-overlay opacity-15 [mask-image:radial-gradient(circle,white,transparent)]"
       >
         <canvas ref="noise" class="h-full w-full" />
       </div>
-
-      <!-- декоративные «капли» -->
-      <Blob :size="540" extra-class="-top-56 -left-28 opacity-[0.10] blur-sm" />
-      <Blob :size="420" extra-class="-bottom-44 -right-24 opacity-[0.14] blur-sm" />
 
       <!-- контент -->
       <div
@@ -301,6 +307,7 @@ import OrderModal from '@/components/OrderModal.vue'
 import ReviewsPreview from '@/components/ReviewsPreview.vue'
 import logo from '@/assets/logo.svg'
 import CountUp from '@/components/CountUp.vue'
+import Orb from '@/components/Orb.vue'
 
 useSeoMeta({
   title: 'О нас — GreenW Караганда',

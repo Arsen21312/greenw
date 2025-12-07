@@ -1,13 +1,18 @@
 <!-- components/NavBar.vue -->
 <template>
-  <!-- ①: фиксируем только на mobile -->
-  <header class="bg-white shadow-xl fixed top-0 inset-x-0 w-full z-50 md:relative">
+  <!-- ¢'ے: ‘"گٌگَ‘?گٌ‘?‘?گçگ? ‘'گ?گ>‘?گَگ? گ?گّ mobile -->
+  <header
+    :class="[
+      'bg-white shadow-xl fixed top-0 inset-x-0 w-full z-50 transition-transform duration-300',
+      isCollapsed ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+    ]"
+  >
     <div class="container mx-auto flex items-center justify-between p-4">
-      <!-- Логотип — ссылка на главную -->
+      <!-- گ>گ?گ?گ?‘'گٌگُ ¢?" ‘?‘?‘<گ>گَگّ گ?گّ گ?گ>گّگ?گ?‘?‘? -->
       <NuxtLink to="/" class="flex items-center space-x-2">
         <img
           :src="logo"
-          alt="Логотип рекламного агентства GreenW в Караганде"
+          alt="گ>گ?گ?گ?‘'گٌگُ ‘?گçگَگ>گّگ?گ?گ?گ?گ? گّگ?گçگ?‘'‘?‘'گ?گّ GreenW گ? گ?گّ‘?گّگ?گّگ?گ?گç"
           class="h-16"
         />
         <span class="font-bold text-lg text-custom-green">
@@ -15,7 +20,7 @@
         </span>
       </NuxtLink>
 
-      <!-- Бургер только на mobile -->
+      <!-- گ'‘?‘?گ?گç‘? ‘'گ?گ>‘?گَگ? گ?گّ mobile -->
       <div class="md:hidden">
         <button
           @click="isMenuOpen = !isMenuOpen"
@@ -37,13 +42,85 @@
         </button>
       </div>
 
-      <!-- Навигация десктоп -->
+      <!-- گ?گّگ?گٌگ?گّ‘إگٌ‘? گ?گç‘?گَ‘'گ?گُ -->
       <nav
         class="hidden md:flex space-x-8 flex-grow justify-center text-lg items-center"
       >
+        <div class="relative flex items-center">
+          <button
+            @click="toggleSearch"
+            class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
+            aria-label="Поиск"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.65" y1="16.65" x2="21" y2="21" />
+            </svg>
+          </button>
+
+          <div
+            v-if="isSearchOpen"
+            class="absolute left-0 top-12 w-80 bg-white border border-gray-200 rounded-xl shadow-lg p-3 z-50"
+            ref="searchWrapper"
+          >
+            <div class="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-2 bg-gray-50">
+              <svg
+                class="w-4 h-4 text-gray-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.65" y1="16.65" x2="21" y2="21" />
+              </svg>
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="Поиск: цены, районы, экраны..."
+                class="flex-1 bg-transparent text-sm focus:outline-none"
+                @keydown.escape="closeSearch"
+                ref="searchInput"
+              />
+              <button
+                @click="clearSearch"
+                class="text-gray-500 hover:text-gray-800"
+                aria-label="Очистить поиск"
+              >
+                ×
+              </button>
+            </div>
+
+            <ul class="mt-3 space-y-1">
+              <li
+                v-for="item in searchResults"
+                :key="item.path"
+              >
+                <NuxtLink
+                  :to="item.path"
+                  class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-sm text-gray-800"
+                  @click="handleResultClick"
+                >
+                  <p class="font-semibold">{{ item.title }}</p>
+                  <p class="text-xs text-gray-500">{{ item.summary }}</p>
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+        </div>
         <NuxtLink to="/lift"  class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
         <NuxtLink to="/led"   class="text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
-        <NuxtLink to="/owners" class="text-gray-800 hover:text-custom-green">Собственникам лифтов</NuxtLink>
+        <NuxtLink to="/owners" class="text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
         <NuxtLink to="/we"     class="text-gray-800 hover:text-custom-green">О нас</NuxtLink>
         <NuxtLink
           to="/otzyvy"
@@ -53,7 +130,7 @@
         </NuxtLink>
       </nav>
 
-      <!-- Телефон десктоп + отдельный WhatsApp -->
+      <!-- گ÷گçگ>گç‘"گ?گ? گ?گç‘?گَ‘'گ?گُ + گ?‘'گ?گçگ>‘?گ?‘<گü WhatsApp -->
       <div class="hidden md:flex items-center gap-3">
         <a
           href="tel:+77086755846"
@@ -61,12 +138,13 @@
         >
           +7 708 675 5846
         </a>
+
         <a
           href="https://wa.me/77086755846"
           class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Написать в WhatsApp"
+          aria-label="گ?گّگُگٌ‘?گّ‘'‘? گ? WhatsApp"
         >
           <svg
             class="w-5 h-5"
@@ -85,14 +163,14 @@
       </div>
     </div>
 
-    <!-- ②: мобильное меню — фиксируем под шапкой -->
+    <!-- ¢'ِ: گ?گ?گ+گٌگ>‘?گ?گ?گç گ?گçگ?‘? ¢?" ‘"گٌگَ‘?گٌ‘?‘?گçگ? گُگ?گ? ‘?گّگُگَگ?گü -->
     <nav
       v-if="isMenuOpen"
       class="md:hidden fixed top-16 inset-x-0 p-4 space-y-4 bg-gray-50 shadow-lg rounded-b-md z-40"
     >
       <NuxtLink to="/lift"  class="block text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
       <NuxtLink to="/led"   class="block text-gray-800 hover:text-custom-green">Реклама на экранах</NuxtLink>
-      <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Собственникам лифтов</NuxtLink>
+      <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
       <NuxtLink to="/we"     class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
       <NuxtLink
         to="/otzyvy"
@@ -113,7 +191,7 @@
           class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Написать в WhatsApp"
+          aria-label="گ?گّگُگٌ‘?گّ‘'‘? گ? WhatsApp"
         >
           <svg
             class="w-5 h-5"
@@ -130,13 +208,257 @@
           </svg>
         </a>
       </div>
+
+        <div class="pt-3 space-y-2">
+          <div class="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-2 bg-white shadow">
+            <svg
+              class="w-4 h-4 text-gray-500"
+              viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.65" y1="16.65" x2="21" y2="21" />
+            </svg>
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Поиск: цены, районы..."
+              class="flex-1 bg-transparent text-sm focus:outline-none"
+              ref="searchInput"
+            />
+            <button
+              @click="clearSearch"
+              class="text-gray-500 hover:text-gray-800"
+              aria-label="Очистить поиск"
+            >
+              ×
+            </button>
+          </div>
+        <ul class="space-y-1 bg-white rounded-lg shadow border border-gray-100 p-2">
+          <li
+            v-for="item in searchResults"
+            :key="item.path + '-m'"
+          >
+            <NuxtLink
+              :to="item.path"
+              class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-sm text-gray-800"
+              @click="handleResultClick"
+            >
+              <p class="font-semibold">{{ item.title }}</p>
+              <p class="text-xs text-gray-500">{{ item.summary }}</p>
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
+
+  <!-- Плавающая кнопка "наверх" -->
+  <button
+    v-if="isCollapsed"
+    @click="scrollToTop"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-12 h-12 rounded-full bg-custom-green text-white shadow-lg ring-2 ring-white transition hover:-translate-y-1"
+    aria-label="Вернуться вверх"
+  >
+    <svg
+      class="w-6 h-6 mx-auto"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import Fuse from 'fuse.js'
 import logo from '@/assets/svg/loggo.svg'
 
 const isMenuOpen = ref(false)
+const isSearchOpen = ref(false)
+const isCollapsed = ref(false)
+const searchQuery = ref('')
+const searchInput = ref<HTMLInputElement | null>(null)
+const searchWrapper = ref<HTMLElement | null>(null)
+
+const searchItems = [
+  {
+    title: 'LED борды вдоль дороги',
+    path: '/led-screens#led-road',
+    summary: '26 точек, форматы 5.76×1.92 и 2.88×1.92 м, яркость 30 000 нит',
+    keywords: 'цены 50-350 тыс трасса вдоль дороги прайс pdf'
+  },
+  {
+    title: 'LED экран Арбат',
+    path: '/led-screens#led-arbat',
+    summary: 'Пешеходная зона, яркость до 30 нит, старт от 30 000 ₸',
+    keywords: 'арбат центр прогулочная зона цены'
+  },
+  {
+    title: 'LED экран CITY Mall',
+    path: '/led-screens#led-city-mall',
+    summary: 'ТРЦ, яркость 10 нит, прайс и техкарта в PDF',
+    keywords: 'city mall прайс pdf техтребования'
+  },
+  {
+    title: 'Smart Eco / Smart Media Board',
+    path: '/led-screens#led-smart-eco',
+    summary: 'Экран 6×2 или 1.8×1 м, яркость 30 нит, 150–450 тыс ₸',
+    keywords: 'smart eco media board led смарт'
+  },
+  {
+    title: 'Все типы LED экранов',
+    path: '/led-screens',
+    summary: 'Каталог LED-бордов: трасса, Арбат, CITY Mall, Smart Eco, цены и характеристики',
+    keywords: 'led экраны борды каталог цены яркость размеры'
+  },
+  {
+    title: 'Оставить заявку (LED борды)',
+    path: '/led-screens#led-contact',
+    summary: 'Форма обратной связи на странице LED-бордов',
+    keywords: 'заявка форма контакт led-screens'
+  },
+  {
+    title: 'Скачать: правила изготовления постера',
+    path: '/presend/pravila-izgotovleniya-cifrovogo-postera.pdf',
+    summary: 'Техтребования к роликам для LED',
+    keywords: 'тех требования pdf постер'
+  },
+  {
+    title: 'Скачать: презентация трассовых LED',
+    path: '/presend/led-ekrany-vdol-dorogi-20.pdf',
+    summary: 'Прайс/презентация трассовых экранов',
+    keywords: 'презентация pdf трасса'
+  },
+  {
+    title: 'Скачать: прайс CITY Mall',
+    path: '/presend/prise-CITY-Mall.pdf',
+    summary: 'PDF с ценами для CITY Mall',
+    keywords: 'city mall pdf прайс'
+  },
+  {
+    title: 'Скачать: техкарта CITY Mall',
+    path: '/presend/teh-CITY-Mall.pdf',
+    summary: 'Технические требования для CITY Mall',
+    keywords: 'city mall pdf техкарта'
+  },
+  {
+    title: 'Реклама на LED-экранах',
+    path: '/led',
+    summary: '22+ экранов по городу, ролики 10–30 с, от 20 000 ₸',
+    keywords: 'led экраны сеть охват'
+  },
+  {
+    title: 'Реклама в лифтах',
+    path: '/lift',
+    summary: '450+ подъездов, от 20 000 ₸/мес, охват 48 000+ квартир',
+    keywords: 'лифты подъезды стоимость 20000'
+  },
+  {
+    title: 'Партнёрство площадок',
+    path: '/owners',
+    summary: 'Сдать поверхность под рекламу: подъезды, фасады, ТРЦ',
+    keywords: 'владельцы аренда поверхности районы'
+  },
+  {
+    title: 'О компании GreenW',
+    path: '/we',
+    summary: 'Команда, история, 605 лифтов, 28 экранов, 55 200+ охват',
+    keywords: 'о нас караганда команда история'
+  },
+  {
+    title: 'Отзывы',
+    path: '/otzyvy',
+    summary: 'Видео отзывы: рекламодатели, жители, владельцы подъездов',
+    keywords: 'видео отзывы клиенты'
+  },
+  {
+    title: 'Главная',
+    path: '/',
+    summary: 'Быстрый переход: лифты, LED-экраны, партнёры, Instagram',
+    keywords: 'главная greenw'
+  }
+]
+
+const fuse = new Fuse(searchItems, {
+  includeScore: true,
+  threshold: 0.38,
+  keys: [
+    { name: 'title', weight: 0.5 },
+    { name: 'summary', weight: 0.3 },
+    { name: 'keywords', weight: 0.2 }
+  ]
+})
+
+const searchResults = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return searchItems.slice(0, 5)
+  }
+  return fuse.search(searchQuery.value.trim()).map((r) => r.item).slice(0, 5)
+})
+
+const closeSearch = () => {
+  isSearchOpen.value = false
+  searchQuery.value = ''
+}
+
+const toggleSearch = () => {
+  isSearchOpen.value = !isSearchOpen.value
+  if (!isSearchOpen.value) {
+    searchQuery.value = ''
+  } else {
+    nextTick(() => searchInput.value?.focus())
+  }
+}
+
+const clearSearch = () => {
+  searchQuery.value = ''
+  nextTick(() => searchInput.value?.focus())
+}
+
+const handleResultClick = () => {
+  closeSearch()
+  isMenuOpen.value = false
+}
+
+const onClickOutside = (e: MouseEvent) => {
+  if (!isSearchOpen.value) return
+  const target = e.target as HTMLElement
+  if (searchWrapper.value && !searchWrapper.value.contains(target)) {
+    closeSearch()
+  }
+}
+
+const handleScroll = () => {
+  const y = window.scrollY || 0
+  const shouldCollapse = y > 120
+  if (shouldCollapse !== isCollapsed.value) {
+    isCollapsed.value = shouldCollapse
+    if (shouldCollapse) closeSearch()
+  }
+}
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  isCollapsed.value = false
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', onClickOutside)
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousedown', onClickOutside)
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>

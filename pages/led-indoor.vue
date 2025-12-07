@@ -4,9 +4,8 @@
 
     <!-- Hero -->
     <section
-  class="relative bg-gradient-to-br from-[#f6ffe9] via-white to-[#e3f4d9] pt-28 pb-16 md:pt-32 md:pb-24"
->
-
+      class="relative bg-gradient-to-br from-[#f6ffe9] via-white to-[#e3f4d9] pt-28 pb-16 md:pt-32 md:pb-24"
+    >
       <div
         class="pointer-events-none absolute inset-0 opacity-60"
         aria-hidden="true"
@@ -20,27 +19,27 @@
           <span
             class="inline-flex items-center rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-[#2e7d32] shadow"
           >
-            LED экраны по всей Караганде
+            LED экраны внутри помещений
           </span>
 
           <h1 class="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
-            Реклама на уличных LED экранах города Караганды
+            Реклама на LED экранах внутри помещений
           </h1>
 
           <p class="text-lg text-gray-700 md:text-xl">
-            Ваш бренд видят тысячи людей каждый день, на дорогах, в центре города и возле крупных ТЦ
+            Ваш ролик видят там, где люди ежедневно проходят, ждут и совершают покупки
           </p>
 
           <div class="space-y-4 text-base leading-relaxed text-gray-700 md:text-lg">
-            <p>Мы размещаем видеорекламу на 26 уличных LED экранах по всему городу.</p>
-            <p>Эти экраны находятся вдоль дорог, на стенах зданий и на ключевых городских точках.</p>
-            <p>Формат отлично работает на узнаваемость, охват и эффект «вижу каждый день».</p>
+            <p>Мы размещаем видеорекламу на экранах в супермаркетах, ТЦ и на вокзале.</p>
+            <p>68 экранов по всей Караганде. Быстрый запуск от 1 дня.</p>
+            <p>Формат идеально подходит для акций, открытия нового филиала и повышения узнаваемости бренда.</p>
           </div>
 
           <div class="flex flex-wrap gap-4 pt-4">
             <div class="relative">
               <button @click="toggleLedNav" class="btn btn-primary">
-                Все LED
+                Все локации
               </button>
               <div
                 v-if="showLedNav"
@@ -67,12 +66,12 @@
             <div class="led-slider-track">
               <div
                 v-for="(image, index) in ledLoopSlides"
-                :key="`led-${index}`"
+                :key="`led-indoor-${index}`"
                 class="led-slider-card"
               >
                 <img
                   :src="image"
-                  alt="Реклама на уличных LED экранах"
+                  alt="Реклама на LED экранах внутри помещений"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -92,7 +91,7 @@
             Коротко о главном
           </h2>
           <p class="mt-3 text-base text-gray-600 md:text-lg">
-            Охват, гибкие форматы и имиджевый эффект для вашего бренда
+            Экранная реклама там, где люди ходят каждый день, ждут и совершают покупки
           </p>
         </div>
 
@@ -123,11 +122,11 @@
       <div class="container mx-auto space-y-10 px-6">
         <div class="max-w-3xl space-y-3 text-center mx-auto">
           <h2 class="text-3xl font-extrabold text-gray-900 md:text-4xl">
-            Выберите вид экрана и посмотрите трафик, пример экрана и стоимость размещения
+            Выберите локацию и посмотрите трафик, пример экрана и стоимость размещения
           </h2>
-         <!-- <p class="text-base text-gray-600 md:text-lg">
-            На мобиле блоки идут в одну колонку, на десктопе в две — как удобный каталог форматов.
-          </p>-->
+          <p class="text-base text-gray-600 md:text-lg">
+            Каждая локация — это несколько экранов в самых проходимых местах города
+          </p>
         </div>
 
         <div class="space-y-8">
@@ -228,9 +227,11 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import NavBar from '@/components/NavBar.vue'
 import FeedbackForm from '@/components/FeedbackForm.vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import FaqLed from '@/components/FaqLed.vue'
+import Footer from '@/components/Footer.vue'
 import led1 from '@/assets/led-screens1.png'
 import led2 from '@/assets/led-screens2.png'
 import led3 from '@/assets/led-screens3.png'
@@ -246,12 +247,12 @@ import led12 from '@/assets/led-screens12.png'
 import led13 from '@/assets/led-screens13.png'
 
 useSeoMeta({
-  title: 'Реклама на уличных LED экранах в Караганде GreenW',
+  title: 'Реклама на LED экранах внутри помещений в Караганде GreenW',
   description:
-    'Размещение видеорекламы на 26 уличных LED экранах по всему городу Караганда охват до 30 000 человек в сутки форматы 8–60 секунд GreenW',
-  ogTitle: 'Реклама на уличных LED экранах в Караганде GreenW',
+    'Видеореклама на LED экранах в супермаркетах, ТЦ и на вокзале Караганды 68 экранов по городу, быстрый запуск от 1 дня, форматы 10–30 секунд',
+  ogTitle: 'Реклама на LED экранах внутри помещений в Караганде GreenW',
   ogDescription:
-    'Размещение видеорекламы на 26 уличных LED экранах по всему городу Караганда охват до 30 000 человек в сутки форматы 8–60 секунд GreenW'
+    'Видеореклама на LED экранах в супермаркетах, ТЦ и на вокзале Караганды 68 экранов по городу, быстрый запуск от 1 дня, форматы 10–30 секунд'
 })
 
 type ScreenType = {
@@ -305,9 +306,9 @@ const cityMallTech = '/presend/teh-CITY-Mall.pdf'
 const smartEcoPresentation = '/presend/Led-egm.pdf'
 
 const selectedOrder = ref<{ name: string; id?: string; source: string } | null>({
-  name: 'LED экраны',
-  id: 'led-screens',
-  source: 'led-screens'
+  name: 'LED indoor',
+  id: 'led-indoor',
+  source: 'led-indoor'
 })
 
 const getLoopImages = (images?: string[]) =>
@@ -336,12 +337,10 @@ const scrollToType = (id: string) => {
 const scrollToForm = () => scrollToType('led-contact')
 
 const handleAction = (action: string, type?: ScreenType) => {
-  const isCityMall = type?.title.includes('CITY Mall')
-  const isSmartEco = type?.title.includes('Smart Eco')
   if (action === 'Заказать') {
     selectedOrder.value = type
-      ? { name: type.title, id: type.id, source: 'led-screens' }
-      : { name: 'LED экраны', id: 'led-screens', source: 'led-screens' }
+      ? { name: type.title, id: type.id, source: 'led-indoor' }
+      : { name: 'LED indoor', id: 'led-indoor', source: 'led-indoor' }
     const el = document.getElementById('led-contact')
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -350,18 +349,13 @@ const handleAction = (action: string, type?: ScreenType) => {
   }
   if (action === 'Скачать презентацию') {
     if (typeof window !== 'undefined') {
-      const link = isCityMall
-        ? cityMallPresentation
-        : isSmartEco
-          ? smartEcoPresentation
-          : presentationUrl
-      window.open(link, '_blank')
+      window.open(presentationUrl, '_blank')
     }
     return
   }
   if (action === 'Характеристики к видео') {
     if (typeof window !== 'undefined') {
-      window.open(isCityMall ? cityMallTech : rulesUrl, '_blank')
+      window.open(rulesUrl, '_blank')
     }
     return
   }
@@ -370,81 +364,128 @@ const handleAction = (action: string, type?: ScreenType) => {
 
 const advantages = [
   {
-    title: 'От 200 до 1000 показов в день',
-    text: 'Ролик демонстрируется регулярно и стабильно'
+    title: 'Высокая видимость',
+    text: 'Экраны стоят в ключевых точках города'
   },
   {
-    title: 'Хронометраж 8–60 секунд',
-    text: 'Длинные и короткие ролики под любую задачу'
+    title: 'До 400 показов в день',
+    text: 'Стабильная частота контакта с вашим роликом'
   },
   {
-    title: 'Высокий охват города',
-    text: 'Экраны стоят вдоль дорог и в самых проходимых точках'
+    title: '10–30 секунд ролика',
+    text: 'Этого достаточно, чтобы донести главную выгоду'
   },
   {
-    title: 'Имиджевый эффект',
-    text: 'Уличный LED экран усиливает статус бренда и повышает доверие'
+    title: 'Есть звук',
+    text: 'Реклама лучше удерживает внимание и запоминается'
   }
 ]
 
 const screenTypes: ScreenType[] = [
   {
-    id: 'led-road',
-    title: 'LED экраны вдоль дорог',
+    id: 'indoor-green-city-park',
+    title: 'Монитор в ЖК Green City Park',
+    description: 'Улица Ержанова, 34/1',
+    specs: [
+      'Проходимость: 7 500 человек в день',
+      'Охват: 4 500 человек в день',
+      'Расположение: рядом кассы супермаркета City Market, банкоматы и лестница на второй этаж в столовую и бизнес-центр',
+      'Время работы: 15 часов в день',
+      'Длительность ролика: от 10 до 25 секунд',
+      'Показы: от 200 до 400 в сутки',
+      'Размещение: 7 или 30 дней'
+    ],
+    price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
+    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led8, led9, led10]
+  },
+  {
+    id: 'indoor-railway-station',
+    title: 'Мониторы Ж/Д вокзала',
+    description: 'Привокзальная площадь, 1',
+    specs: [
+      'Проходимость: 22 000 человек в день',
+      'Охват: 14 000 человек в день',
+      'Расположение: экран №1 — напротив рамок металлодетектора и выхода на перрон, экран №2 — напротив мест ожидания в зале ожидания',
+      'Время работы: 24 часа в сутки',
+      'Длительность ролика: от 10 до 25 секунд',
+      'Показы: от 200 до 400 в сутки',
+      'Размещение: 7 или 30 дней',
+      'Количество мониторов: 2, работают в связке и продаются только в паре'
+    ],
+    price: 'Стоимость от 20 000 ₸ до 100 000 ₸ в месяц',
+    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led1, led2, led3]
+  },
+  {
+    id: 'indoor-tair',
+    title: 'Мониторы ТД «Таир»',
+    description: 'Проспект Бухар Жырау, стр 88/2',
+    specs: [
+      'Проходимость: 20 000 человек в день',
+      'Охват: 12 000 человек в день',
+      'Расположение: два LED экрана на 1 этаже, ещё восемь мониторов на 2 и 4 этажах в зоне фуд-корта',
+      'Время работы: 15 часов в день',
+      'Длительность ролика: от 10 секунд',
+      'Показы: 3 показа в час',
+      'Размещение: от 30 дней',
+      'Количество мониторов: 10, продаются только пакетом'
+    ],
+    price: 'Стоимость 40 000 ₸ в месяц',
+    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led4, led5, led6]
+  },
+  {
+    id: 'indoor-vostok-ayan',
+    title: 'ТД «Восток», супермаркет «Аян»',
+    description: '12-й микрорайон, 51/1',
+    specs: [
+      'Проходимость: 20 000 человек в день',
+      'Охват: 12 000 человек в день',
+      'Расположение: рядом кассы супермаркета Аян, банкоматы, аптека и эскалаторы на второй этаж',
+      'Время работы: 15 часов в день',
+      'Длительность ролика: от 10 до 25 секунд',
+      'Показы: от 200 до 400 в сутки',
+      'Размещение: 7 или 30 дней'
+    ],
+    price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
+    actions: ['Галерея', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led7, led8, led9]
+  },
+  {
+    id: 'indoor-southern-chain',
+    title: 'Мониторы в сетях супермаркетов «Южный»',
     description:
-      '📍 10 экранов на самых оживленных улицах: Пр Бухар Жырау, ул Гоголя, ул Ерубаева, пр Республики, ул Ермекова, ул Сарыарка',
-    size: 'Размер 5,76 × 1,92 м • 2,88 × 1,92 м',
+      '7 локаций: ТД «Таир», ТД «Абзал», ТД «Город», ТД «Галерея», ТД «Айман», ул Зелинского 28А, 17 мкр-н, д 41',
     specs: [
-      'Автоохват до 30 000 в сутки',
-      'Длительность ролика 8 секунд',
-      'Показы 540 в сутки',
-      'Размещение от 7 дней'
+      'В каждом супермаркете от 5 до 10 мониторов',
+      'Экраны в самых проходимых местах: возле касс и оживлённых прилавков',
+      'Звуковое сопровождение рекламы по всему супермаркету',
+      'Время работы: 13 часов в день',
+      'Длительность ролика: до 30 секунд',
+      'Показы: от 4 до 6 показов в час',
+      'Размещение: от 30 дней'
     ],
-    price: 'Стоимость от 50 000 ₸ до 350 000 ₸ за 1 монитор',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led8, led9, led10, led11]
+    price:
+      'Стоимость от 50 000 ₸ в месяц за одну локацию или от 100 000 ₸ в месяц за все локации',
+    actions: ['Галерея/видео YouTube', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led10, led11, led12]
   },
   {
-    id: 'led-arbat',
-    title: 'LED экран на Арбате',
-    description: 'Охват до 6 000 человек в сутки',
+    id: 'indoor-belarus-damezhan',
+    title: 'Мониторы в магазинах «Белорусские продукты» и магазине «Дамежан»',
+    description: '4 локации: ул Бухар Жырау 74, ул Бухар Жырау 75/3, ул Аманжолова 29/1, пр Н Назарбаева 7',
     specs: [
-      'Длительность ролика 8 секунд',
-      'Показы от 200 в сутки',
-      'Размещение от 30 дней'
+      'В каждом магазине от 3 до 7 мониторов',
+      'Звуковое сопровождение рекламы по всему магазину',
+      'Время работы: 11 часов в день',
+      'Длительность ролика: до 30 секунд',
+      'Показы: 6 показов в час',
+      'Размещение: от 30 дней'
     ],
-    price: 'Стоимость от 30 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Заказать'],
-    images: [led12, led13]
-  },
-  {
-    id: 'led-city-mall',
-    title: 'LED экран при ТРЦ «CITY Mall» и ДКГ «Горняков»',
-    description: 'Охват до 10 000',
-    specs: [
-      'Длительность ролика от 10 секунд',
-      'Показы от 100 в сутки',
-      'Размещение от 7 дней'
-    ],
-    price: 'Стоимость от 50 000 ₸ до 300 000 ₸ за 1 конструкцию',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: [led1, led2]
-  },
-  {
-    id: 'led-smart-eco',
-    title: 'Smart Eco Led Smart Media Board',
-    description:
-      '📍 Вдоль дорог, на ключевых перекрестках и трассах: Центральный Парк Культуры и Отдыха, Сквер Абдирова Ерубаева, 45 квартал, Цирк, Акнар, Юбилейный, Караганда Арена, БЦ «Бульвар», Акимат, пр Республики, ул Ермекова, ул Сарыарка',
-    size: 'Размер 6 × 2 м • 1,8 × 1 м',
-    specs: [
-      'Охват до 30 000 в сутки',
-      'Длительность ролика от 10 секунд',
-      'Показы 540 в сутки',
-      'Размещение от 30 дней'
-    ],
-    price: 'Стоимость от 150 000 ₸ до 450 000 ₸ за 1 монитор',
-    actions: ['Скачать презентацию', 'Заказать'],
-    images: [led3, led4, led5, led6, led7]
+    price: 'Стоимость 25 000 ₸ в месяц за одну локацию',
+    actions: ['Галерея/видео YouTube', 'Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    images: [led12, led13, led1]
   }
 ]
 </script>
@@ -460,11 +501,6 @@ const screenTypes: ScreenType[] = [
 
 .btn-outline {
   @apply border border-[#4caf4f] text-[#2e7d32] hover:bg-white/80 hover:-translate-y-0.5;
-}
-
-.pattern-dots {
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.35) 2px, transparent 0);
-  background-size: 24px 24px;
 }
 
 .led-slider-viewport {

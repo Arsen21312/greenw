@@ -75,11 +75,12 @@
   
   <style scoped>
   .accordion {
-    background: #e5e7eb; /* светлый серый фон аккордеона */
+    background: #ffffff; /* белый фон */
     border-radius: 4px;
     transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f2f5;
   }
   
   .accordion.active {
@@ -90,7 +91,7 @@
   .faq-header {
     font-size: 46px; /* увеличен шрифт для заголовков */
     color: #333;
-    background: #f3f4f6;
+    background: #ffffff;
     padding: 20px;
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;

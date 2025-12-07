@@ -1,27 +1,36 @@
 <!-- components/FaqSection.vue -->
 <template>
-  <section class="faq-section bg-gray-200 py-12">
+  <section class="faq-section py-12">
     <div class="container mx-auto">
-      <h2 class="text-5xl font-bold mb-8 text-center text-primary">Частые вопросы</h2>
-      <div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center text-primary">Частые вопросы по LED</h2>
+      <TransitionGroup name="faq-list" tag="div">
         <FaqItem
-          v-for="faq in faqs"
+          v-for="faq in visibleFaqs"
           :key="faq.id"
           :id="faq.id"
           :question="faq.question"
           :answer="faq.answer"
           @toggle="handleToggle"
         />
+      </TransitionGroup>
+
+      <div v-if="hasMore" class="mt-6 text-center">
+        <button
+          type="button"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-slate-800 font-semibold shadow border border-slate-200 hover:border-slate-400 transition"
+          @click="toggleAll"
+        >
+          {{ showAll ? 'Меньше вопросов' : 'Еще вопросы' }}
+        </button>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import FaqItem from '@/components/FaqItem.vue'
 
-/* Данные FAQ — текст использован без сокращений и изменений */
 const faqsData = [
   {
     id: 1,
@@ -86,24 +95,34 @@ const faqsData = [
 ]
 
 const faqs = ref(faqsData)
+const showAll = ref(false)
+const openedMap = reactive({})
 
-/* Для режима «только один пункт открыт» раскомментируйте блок ниже и
-   добавьте каждому объекту поле open (true/false). */
+const hasMore = computed(() => faqs.value.length > 4)
+const visibleFaqs = computed(() => (showAll.value ? faqs.value : faqs.value.slice(0, 4)))
+
 const handleToggle = (id, isOpen) => {
-  /*
-  faqs.value.forEach(faq => {
-    if (faq.id !== id) faq.open = false
-  })
-  */
+  if (isOpen) openedMap[id] = true
+}
+
+const toggleAll = () => {
+  showAll.value = !showAll.value
 }
 </script>
 
 <style scoped>
-.faq-section {
-  background: #f3f4f6; /* светло-серый фон */
+.text-primary {
+  color: #333;
 }
 
-.text-primary {
-  color: #333; /* основной цвет заголовка */
+.faq-list-enter-active,
+.faq-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.faq-list-enter-from,
+.faq-list-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>
