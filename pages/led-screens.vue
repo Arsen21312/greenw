@@ -544,14 +544,27 @@ const screenTypes: ScreenType[] = [
     max-width: calc(100vw - 32px);
     margin: 0 auto;
     min-height: 14rem;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
   }
   .led-slider-card {
     flex: 0 0 100%;
     min-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 260px;
+    border: 1px solid #e5e7eb;
   }
   .led-slider-track {
     animation: none;
     transform: translateX(0);
+    height: auto;
+  }
+  .led-slider-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
   }
 }
 </style>
