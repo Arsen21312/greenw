@@ -543,27 +543,22 @@ const screenTypes: ScreenType[] = [
   .led-slider-viewport {
     max-width: calc(100vw - 32px);
     margin: 0 auto;
-    min-height: 12rem;
-    padding: 10px;
-    border: 1px solid #e5e7eb;
+    min-height: 16rem;
   }
   .led-slider-card {
-    flex: 0 0 100%;
-    min-width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    max-height: 200px;
-    border: 1px solid #e5e7eb;
+    flex: 0 0 75%;
+    min-width: 180px;
+    max-width: 280px;
+    height: 100%;
   }
   .led-slider-track {
-    animation: led-slide-left 28s linear infinite;
-    height: auto;
+    animation: led-slide-left 32s linear infinite;
+    height: 100%;
   }
   .led-slider-card img {
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 12px;
   }
 }
 </style>
