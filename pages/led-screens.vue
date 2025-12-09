@@ -183,7 +183,7 @@
                 </div>
               </div>
 
-              <div class="relative flex justify-center">
+              <div class="relative flex justify-center mobile-slider-block">
                 <div class="led-slider-viewport bg-white/80">
                   <div class="led-slider-track">
                     <div
@@ -504,6 +504,16 @@ const screenTypes: ScreenType[] = [
   object-fit: cover;
 }
 
+.mobile-slider-block {
+  width: 100%;
+  padding: 8px 12px 14px;
+  box-sizing: border-box;
+}
+
+.mobile-slider-block .led-slider-viewport {
+  width: 100%;
+}
+
 @keyframes led-slide-left {
   0% {
     transform: translateX(0);
@@ -513,10 +523,27 @@ const screenTypes: ScreenType[] = [
   }
 }
 
+@media (max-width: 1280px) {
+  .led-slider-viewport {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+  .led-slider-track {
+    gap: 12px;
+    padding: 0 6px;
+  }
+  .led-slider-card {
+    flex: 0 0 calc((100% - 24px) / 2.2);
+    min-width: 220px;
+    max-width: 340px;
+  }
+}
+
 @media (max-width: 1024px) {
   .led-slider-viewport {
     max-width: 100%;
     min-height: 15rem;
+    padding: 0 10px;
   }
   .led-slider-card {
     flex: 0 0 calc((100% - 20px) / 2);
@@ -534,6 +561,7 @@ const screenTypes: ScreenType[] = [
   }
   .led-slider-track {
     gap: 12px;
+    padding: 0 4px;
     animation: none;
     transform: translateX(0);
   }
@@ -541,24 +569,21 @@ const screenTypes: ScreenType[] = [
 
 @media (max-width: 640px) {
   .led-slider-viewport {
-    width: 100%;
-    max-width: 100%;
+    max-width: calc(100vw - 32px);
     margin: 0 auto;
     min-height: 16rem;
-    padding: 0;
     overflow: hidden;
   }
   .led-slider-card {
-    flex: 0 0 82%;
-    min-width: 0;
-    max-width: 88%;
+    flex: 0 0 75%;
+    min-width: 180px;
+    max-width: 280px;
     height: 100%;
     margin: 0 auto;
   }
   .led-slider-track {
     animation: led-slide-left 32s linear infinite;
     gap: 12px;
-    padding: 0 6px;
     height: 100%;
   }
   .led-slider-card img {
