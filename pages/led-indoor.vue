@@ -551,7 +551,7 @@ const screenTypes: ScreenType[] = [
   .led-slider-viewport {
     max-width: calc(100vw - 32px);
     margin: 0 auto;
-    min-height: 14rem;
+    min-height: 12rem;
     padding: 10px;
     border: 1px solid #e5e7eb;
   }
@@ -560,12 +560,11 @@ const screenTypes: ScreenType[] = [
     min-width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
-    max-height: 260px;
+    max-height: 200px;
     border: 1px solid #e5e7eb;
   }
   .led-slider-track {
-    animation: none;
-    transform: translateX(0);
+    animation: led-slide-left 28s linear infinite;
     height: auto;
   }
   .led-slider-card img {

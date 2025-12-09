@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden page-shell">
+  <div class="relative overflow-hidden page-shell pt-24 md:pt-28">
     <NavBar class="shadow-md bg-white z-10" />
     <HeroComponents id="about" />
     <WaveDivider color="#e9f4da" />

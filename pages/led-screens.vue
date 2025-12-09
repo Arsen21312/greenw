@@ -439,10 +439,10 @@ const screenTypes: ScreenType[] = [
     specs: [
       'Охват до 30 000 в сутки',
       'Длительность ролика от 10 секунд',
-      'Показы 540 в сутки',
+      'Показы 720 в сутки',
       'Размещение от 30 дней'
     ],
-    price: 'Стоимость от 150 000 ₸ до 450 000 ₸ за 1 монитор',
+    price: 'Стоимость от 150 000 ₸ до 420 000 ₸ за 1 монитор',
     actions: ['Скачать презентацию', 'Заказать'],
     images: [led3, led4, led5, led6, led7]
   }
@@ -543,7 +543,7 @@ const screenTypes: ScreenType[] = [
   .led-slider-viewport {
     max-width: calc(100vw - 32px);
     margin: 0 auto;
-    min-height: 14rem;
+    min-height: 12rem;
     padding: 10px;
     border: 1px solid #e5e7eb;
   }
@@ -552,12 +552,11 @@ const screenTypes: ScreenType[] = [
     min-width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
-    max-height: 260px;
+    max-height: 200px;
     border: 1px solid #e5e7eb;
   }
   .led-slider-track {
-    animation: none;
-    transform: translateX(0);
+    animation: led-slide-left 28s linear infinite;
     height: auto;
   }
   .led-slider-card img {
