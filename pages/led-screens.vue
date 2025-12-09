@@ -541,22 +541,24 @@ const screenTypes: ScreenType[] = [
 
 @media (max-width: 640px) {
   .led-slider-viewport {
-    max-width: calc(100vw - 32px);
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     min-height: 16rem;
-    padding: 0 10px;
+    padding: 0;
+    overflow: hidden;
   }
   .led-slider-card {
-    flex: 0 0 80%;
-    min-width: 200px;
-    max-width: 280px;
+    flex: 0 0 82%;
+    min-width: 0;
+    max-width: 88%;
     height: 100%;
     margin: 0 auto;
   }
   .led-slider-track {
     animation: led-slide-left 32s linear infinite;
-    gap: 10px;
-    padding-left: 2px;
+    gap: 12px;
+    padding: 0 6px;
     height: 100%;
   }
   .led-slider-card img {
