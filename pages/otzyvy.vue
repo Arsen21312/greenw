@@ -35,7 +35,7 @@
               :key="review.id"
               class="bg-white rounded-2xl shadow-sm p-5 flex flex-col gap-4"
             >
-              <div class="aspect-video rounded-xl overflow-hidden bg-black shadow">
+              <div class="aspect-[9/16] rounded-xl overflow-hidden bg-black shadow">
                 <iframe
                   :src="review.videoUrl"
                   class="w-full h-full"

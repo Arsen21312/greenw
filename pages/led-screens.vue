@@ -63,21 +63,7 @@
         </div>
 
         <div class="relative flex justify-center lg:justify-end">
-          <div class="led-slider-viewport bg-white/80">
-            <div class="led-slider-track">
-              <div
-                v-for="(image, index) in ledLoopSlides"
-                :key="`led-${index}`"
-                class="led-slider-card"
-              >
-                <img
-                  :src="image"
-                  alt="Реклама на уличных LED экранах"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+          <LedSlider :images="ledLoopSlides" :max-width="340" :height="510" />
         </div>
       </div>
     </section>
@@ -125,9 +111,6 @@
           <h2 class="text-3xl font-extrabold text-gray-900 md:text-4xl">
             Выберите вид экрана и посмотрите трафик, пример экрана и стоимость размещения
           </h2>
-         <!-- <p class="text-base text-gray-600 md:text-lg">
-            На мобиле блоки идут в одну колонку, на десктопе в две — как удобный каталог форматов.
-          </p>-->
         </div>
 
         <div class="space-y-8">
@@ -135,7 +118,7 @@
             :id="type.id"
             v-for="(type, idx) in screenTypes"
             :key="type.title"
-            class="flex h-full flex-col gap-6 rounded-3xl bg-gray-50/80 p-6 sm:p-8 shadow-sm ring-1 ring-gray-100 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            class="flex h-full flex-col gap-6 rounded-3xl bg-gray-50/80 p-6 sm:p-8 shadow-sm ring-1 ring-gray-100 overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
             <div class="grid gap-6 lg:grid-cols-2 lg:items-center">
               <div class="space-y-4">
@@ -184,21 +167,7 @@
               </div>
 
               <div class="relative flex justify-center mobile-slider-block">
-                <div class="led-slider-viewport bg-white/80">
-                  <div class="led-slider-track">
-                    <div
-                      v-for="(image, imageIdx) in getLoopImages(type.images)"
-                      :key="`type-${idx}-img-${imageIdx}`"
-                      class="led-slider-card"
-                    >
-                      <img
-                        :src="image"
-                        :alt="`Фотография ${type.title}`"
-                        class="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <LedSlider :images="getLoopImages(type.images)" :max-width="340" :height="510" />
               </div>
             </div>
           </article>
@@ -231,6 +200,7 @@ import { computed, onMounted, ref } from 'vue'
 import FeedbackForm from '@/components/FeedbackForm.vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import FaqLed from '@/components/FaqLed.vue'
+import LedSlider from '~/components/LedSlider.vue'
 import led1 from '@/assets/led-screens1.png'
 import led2 from '@/assets/led-screens2.png'
 import led3 from '@/assets/led-screens3.png'
@@ -466,130 +436,7 @@ const screenTypes: ScreenType[] = [
   background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.35) 2px, transparent 0);
   background-size: 24px 24px;
 }
-
-.led-slider-viewport {
-  position: relative;
-  width: 100%;
-  max-width: 960px;
-  height: 100%;
-  min-height: 16rem;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #f8fbf4;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-.led-slider-track {
-  display: flex;
-  gap: 14px;
-  width: max-content;
-  height: 100%;
-  animation: led-slide-left 36s linear infinite;
-}
-
-.led-slider-card {
-  flex: 0 0 calc((100% - 28px) / 3);
-  min-width: 220px;
-  max-width: 320px;
-  height: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-}
-
-.led-slider-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mobile-slider-block {
-  width: 100%;
-  padding: 8px 12px 14px;
-  box-sizing: border-box;
-}
-
-.mobile-slider-block .led-slider-viewport {
-  width: 100%;
-}
-
-@keyframes led-slide-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 1280px) {
-  .led-slider-viewport {
-    max-width: 100%;
-    padding: 0 12px;
-  }
-  .led-slider-track {
-    gap: 12px;
-    padding: 0 6px;
-  }
-  .led-slider-card {
-    flex: 0 0 calc((100% - 24px) / 2.2);
-    min-width: 220px;
-    max-width: 340px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .led-slider-viewport {
-    max-width: 100%;
-    min-height: 15rem;
-    padding: 0 10px;
-  }
-  .led-slider-card {
-    flex: 0 0 calc((100% - 20px) / 2);
-    min-width: 220px;
-  }
-}
-
-@media (max-width: 900px) {
-  .led-slider-viewport {
-    min-height: 14rem;
-  }
-  .led-slider-card {
-    flex: 0 0 calc((100% - 16px) / 2);
-    min-width: 200px;
-  }
-  .led-slider-track {
-    gap: 12px;
-    padding: 0 4px;
-    animation: none;
-    transform: translateX(0);
-  }
-}
-
-@media (max-width: 640px) {
-  .led-slider-viewport {
-    max-width: calc(100vw - 32px);
-    margin: 0 auto;
-    min-height: 16rem;
-    overflow: hidden;
-  }
-  .led-slider-card {
-    flex: 0 0 75%;
-    min-width: 180px;
-    max-width: 280px;
-    height: 100%;
-    margin: 0 auto;
-  }
-  .led-slider-track {
-    animation: led-slide-left 32s linear infinite;
-    gap: 12px;
-    height: 100%;
-  }
-  .led-slider-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
 </style>
+
+
+
