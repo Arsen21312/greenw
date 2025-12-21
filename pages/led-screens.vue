@@ -155,6 +155,7 @@
                 <p class="text-lg font-semibold text-gray-900">{{ type.price }}</p>
 
                 <div class="flex flex-wrap gap-3">
+                  
                   <button
                     v-for="action in type.actions"
                     :key="action"
@@ -162,7 +163,7 @@
                     class="btn btn-primary"
                   >
                     {{ action }}
-                  </button>
+                  </button>  
                 </div>
               </div>
 
@@ -233,6 +234,7 @@ type ScreenType = {
   price: string
   actions: string[]
   images?: string[]
+  presentationUrl?: string
 }
 
 const noop = () => {}
@@ -270,7 +272,7 @@ const ledLoopSlides = computed(() => [...ledSlides.value, ...ledSlides.value])
 
 const presentationUrl = '/presend/led-ekrany-vdol-dorogi-20.pdf'
 const rulesUrl = '/presend/pravila-izgotovleniya-cifrovogo-postera.pdf'
-const cityMallPresentation = '/presend/prise-CITY-Mall.pdf'
+const cityMallPresentation = '/presend/Led-CityMall.pdf'
 const cityMallTech = '/presend/teh-CITY-Mall.pdf'
 const smartEcoPresentation = '/presend/Led-egm.pdf'
 
@@ -311,7 +313,7 @@ const handleAction = (action: string, type?: ScreenType) => {
   if (action === 'Заказать') {
     selectedOrder.value = type
       ? { name: type.title, id: type.id, source: 'led-screens' }
-      : { name: 'LED экраны', id: 'led-screens', source: 'led-screens' }
+      : { name: 'LED наружные экраны', id: 'led-screens', source: 'led-screens' }
     const el = document.getElementById('led-contact')
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -320,18 +322,20 @@ const handleAction = (action: string, type?: ScreenType) => {
   }
   if (action === 'Скачать презентацию') {
     if (typeof window !== 'undefined') {
-      const link = isCityMall
-        ? cityMallPresentation
-        : isSmartEco
-          ? smartEcoPresentation
-          : presentationUrl
+      const link =
+        type?.presentationUrl ??
+        (isCityMall
+          ? cityMallPresentation
+          : isSmartEco
+            ? smartEcoPresentation
+            : presentationUrl)
       window.open(link, '_blank')
     }
     return
   }
-  if (action === 'Характеристики к видео') {
+  if (action === 'Правила') {
     if (typeof window !== 'undefined') {
-      window.open(isCityMall ? cityMallTech : rulesUrl, '_blank')
+      window.open(rulesUrl, '_blank')
     }
     return
   }
@@ -371,7 +375,7 @@ const screenTypes: ScreenType[] = [
       'Размещение от 7 дней'
     ],
     price: 'Стоимость от 50 000 ₸ до 350 000 ₸ за 1 монитор',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    actions: ['Скачать презентацию', 'Правила', 'Заказать'],
     images: [led8, led9, led10, led11]
   },
   {
@@ -385,7 +389,8 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 30 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [led12, led13]
+    images: [led12, led13],
+    presentationUrl: '/presend/LED-arbat.pdf'
   },
   {
     id: 'led-city-mall',
@@ -397,7 +402,7 @@ const screenTypes: ScreenType[] = [
       'Размещение от 7 дней'
     ],
     price: 'Стоимость от 50 000 ₸ до 300 000 ₸ за 1 конструкцию',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
+    actions: ['Скачать презентацию', 'Заказать'],
     images: [led1, led2]
   },
   {
@@ -413,8 +418,9 @@ const screenTypes: ScreenType[] = [
       'Размещение от 30 дней'
     ],
     price: 'Стоимость от 150 000 ₸ до 420 000 ₸ за 1 монитор',
-    actions: ['Скачать презентацию', 'Заказать'],
-    images: [led3, led4, led5, led6, led7]
+    actions: ['Скачать презентацию', 'Правила', 'Заказать'],
+    images: [led3, led4, led5, led6, led7],
+    presentationUrl: '/presend/Led-Smart.pdf'
   }
 ]
 </script>

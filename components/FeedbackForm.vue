@@ -3,7 +3,7 @@
     <div class="container mx-auto max-w-4xl flex flex-col items-center gap-10">
       <!-- Плашка -->
       <div class="bg-white w-full max-w-2xl rounded-3xl shadow-xl p-10 text-center">
-        <h2 class="text-4xl font-bold text-gray-800 mb-3">Мы вам перезвоним</h2>
+        <h2 class="text-4xl font-bold text-gray-800 mb-3">Мы вам позвоним</h2>
         <p class="text-lg text-gray-700">
           Заполните имя и номер телефона, остальное по желанию
         </p>

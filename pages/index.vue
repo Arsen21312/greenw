@@ -12,7 +12,8 @@
           class="absolute inset-0 bg-[url('/pattern-elevator.svg')] opacity-10 pointer-events-none"
         ></div>
 
-        <div class="relative container mx-auto px-4 py-24 text-center text-white">
+        <div class="relative container mx-auto px-4 pt-32 pb-24 text-center text-white">
+          <div class="mx-auto flex max-w-4xl flex-col items-center gap-8">
           <h1
             class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-16 max-w-4xl mx-auto "
           >
@@ -45,6 +46,8 @@
             >
               Перейти в Instagram
             </a>
+          </div>
+
           </div>
 
           <h2 class="text-2xl md:text-5xl font-semibold mb-20">

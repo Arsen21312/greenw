@@ -120,48 +120,43 @@
             :id="type.id"
             v-for="(type, idx) in screenTypes"
             :key="type.title"
-            class="flex h-full flex-col gap-6 rounded-3xl bg-gray-50/80 p-8 shadow-sm ring-1 ring-gray-100 overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            class="flex h-full w-full max-w-full flex-col gap-5 rounded-3xl bg-gray-50/80 p-5 pb-20 sm:p-8 sm:pb-8 shadow-sm ring-1 ring-gray-100 overflow-hidden break-words min-w-0 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
-            <div class="grid gap-6 lg:grid-cols-2 lg:items-center">
-              <div class="space-y-4">
+            <div class="grid w-full max-w-full gap-6 min-w-0 lg:grid-cols-2 lg:items-center">
+              <div class="space-y-4 min-w-0">
                 <div class="flex items-start justify-between gap-3">
-                  <div class="space-y-2">
-                    <h3 class="text-2xl font-bold text-gray-900">
+                  <div class="space-y-2 min-w-0">
+                    <h3 class="text-2xl font-bold text-gray-900 break-words whitespace-normal">
                       {{ type.title }}
                     </h3>
-                    <p v-if="type.description" class="text-base text-gray-700">
+                    <p v-if="type.description" class="text-base text-gray-700 break-words whitespace-normal">
                       {{ type.description }}
                     </p>
                     <p v-if="type.size" class="text-sm font-medium text-[#2e7d32]">
                       {{ type.size }}
                     </p>
                   </div>
-                  <span
-                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-base font-semibold text-[#2e7d32] shadow-inner ring-1 ring-[#a8cc55]/50"
-                  >
-                    {{ idx + 1 }}
-                  </span>
                 </div>
 
-                <ul class="space-y-2 text-base leading-relaxed text-gray-700">
+                <ul class="space-y-2 text-base leading-relaxed text-gray-700 break-words">
                   <li
                     v-for="spec in type.specs"
                     :key="spec"
-                    class="flex items-start gap-2"
+                    class="flex items-start gap-2 min-w-0"
                   >
-                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-[#4caf4f]" />
-                    <span>{{ spec }}</span>
+                    <span class="mt-1 inline-block h-2 w-2 shrink-0 rounded-full bg-[#4caf4f]" />
+                    <span class="flex-1 min-w-0 break-words whitespace-normal">{{ spec }}</span>
                   </li>
                 </ul>
 
-                <p class="text-lg font-semibold text-gray-900">{{ type.price }}</p>
+                <p class="text-lg font-semibold text-gray-900 break-words whitespace-normal">{{ type.price }}</p>
 
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 max-w-full">
                   <button
                     v-for="action in type.actions"
                     :key="action"
                     @click="handleAction(action, type)"
-                    class="btn btn-primary"
+                    class="btn btn-primary w-full sm:w-auto max-w-full text-center break-words whitespace-normal"
                   >
                     {{ action }}
                   </button>
@@ -243,6 +238,7 @@ type ScreenType = {
   price: string
   actions: string[]
   images?: string[]
+  presentationUrl?: string
 }
 
 const noop = () => {}
@@ -265,7 +261,6 @@ onMounted(() => {
 const ledLoopSlides = computed(() => [...ledSlides.value, ...ledSlides.value])
 
 const presentationUrl = '/presend/led-ekrany-vdol-dorogi-20.pdf'
-const rulesUrl = '/presend/pravila-izgotovleniya-cifrovogo-postera.pdf'
 const cityMallPresentation = '/presend/prise-CITY-Mall.pdf'
 const cityMallTech = '/presend/teh-CITY-Mall.pdf'
 const smartEcoPresentation = '/presend/Led-egm.pdf'
@@ -314,13 +309,8 @@ const handleAction = (action: string, type?: ScreenType) => {
   }
   if (action === 'Скачать презентацию') {
     if (typeof window !== 'undefined') {
-      window.open(presentationUrl, '_blank')
-    }
-    return
-  }
-  if (action === 'Характеристики к видео') {
-    if (typeof window !== 'undefined') {
-      window.open(rulesUrl, '_blank')
+      const url = type?.presentationUrl ?? presentationUrl
+      window.open(url, '_blank')
     }
     return
   }
@@ -361,12 +351,18 @@ const screenTypes: ScreenType[] = [
       'Размещение: 7 или 30 дней'
     ],
     price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/GCP1.png', '/exampleled/GCP2.png', '/exampleled/GCP3.jpg']
+    actions: ['Скачать презентацию', 'Заказать'],
+    images: [
+      '/exampleled/GCP1.png',
+      '/exampleled/GCP3.jpg',
+      '/exampleled/ChatGPTsiti.png',
+      '/exampleled/ChatGPT1.png'
+    ],
+    presentationUrl: '/presend/greensiti.pdf'
   },
   {
     id: 'indoor-railway-station',
-    title: 'Мониторы Ж/Д вокзала',
+    title: 'Мониторы Ж/Д вокзал',
     description: 'Привокзальная площадь, 1',
     specs: [
       'Проходимость: 22 000 человек в день',
@@ -379,8 +375,9 @@ const screenTypes: ScreenType[] = [
       'Количество мониторов: 2, работают в связке и продаются только в паре'
     ],
     price: 'Стоимость от 20 000 ₸ до 100 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/ledbig1.png', '/exampleled/ledbig2.png', '/exampleled/ledbig3.png']
+    actions: ['Скачать презентацию', 'Заказать'],
+    images: ['/exampleled/GCP4.jpg', '/exampleled/GCP5.png', '/exampleled/gptvokzaal1.png'],
+    presentationUrl: '/presend/vokzal.pdf'
   },
   {
     id: 'indoor-tair',
@@ -397,8 +394,9 @@ const screenTypes: ScreenType[] = [
       'Количество мониторов: 10, продаются только пакетом'
     ],
     price: 'Стоимость 40 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/tair1.png', '/exampleled/tair2.png', '/exampleled/tair3.png']
+    actions: ['Скачать презентацию', 'Заказать'],
+    images: ['/exampleled/tair2.png', '/exampleled/tair3.png'],
+    presentationUrl: '/presend/tair.pdf'
   },
   {
     id: 'indoor-vostok-ayan',
@@ -414,8 +412,9 @@ const screenTypes: ScreenType[] = [
       'Размещение: 7 или 30 дней'
     ],
     price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/ledbig4.png', '/exampleled/ledbig5.png', '/exampleled/ledbig.jpg']
+    actions: ['Скачать презентацию', 'Заказать'],
+    images: [],
+    presentationUrl: '/presend/ayn.pdf'
   },
   {
     id: 'indoor-southern-chain',
@@ -433,24 +432,8 @@ const screenTypes: ScreenType[] = [
     ],
     price:
       'Стоимость от 50 000 ₸ в месяц за одну локацию или от 100 000 ₸ в месяц за все локации',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/smarteco1.png', '/exampleled/smarteco2.png', '/exampleled/smarteco3.png']
-  },
-  {
-    id: 'indoor-belarus-damezhan',
-    title: 'Мониторы в магазинах «Белорусские продукты» и магазине «Дамежан»',
-    description: '4 локации: ул Бухар Жырау 74, ул Бухар Жырау 75/3, ул Аманжолова 29/1, пр Н Назарбаева 7',
-    specs: [
-      'В каждом магазине от 3 до 7 мониторов',
-      'Звуковое сопровождение рекламы по всему магазину',
-      'Время работы: 11 часов в день',
-      'Длительность ролика: до 30 секунд',
-      'Показы: 6 показов в час',
-      'Размещение: от 30 дней'
-    ],
-    price: 'Стоимость 25 000 ₸ в месяц за одну локацию',
-    actions: ['Скачать презентацию', 'Характеристики к видео', 'Заказать'],
-    images: ['/exampleled/ledbig1.png', '/exampleled/ledbig2.png', '/exampleled/ledbig3.png']
+    actions: ['Скачать презентацию', 'Заказать'],
+    images: []
   }
 ]
 </script>

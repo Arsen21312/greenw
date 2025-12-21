@@ -81,12 +81,12 @@ onBeforeUnmount(() => {
 
 .led-slider-track.animated {
   width: max-content;
-  animation: led-slide-left 28s linear infinite;
+  animation: led-slide-left 36.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .led-slider-track.manual {
   animation: none;
-  transition: transform 0.35s ease;
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .led-slider-card {
@@ -107,6 +107,11 @@ onBeforeUnmount(() => {
   height: 100%;
   object-fit: contain;
   border-radius: inherit;
+  transition: transform 0.25s ease;
+}
+
+.led-slider-card:active img {
+  transform: scale(0.97);
 }
 
 @media (min-width: 768px) {
@@ -132,7 +137,7 @@ onBeforeUnmount(() => {
   }
 
   .led-slider-track.animated {
-    animation-duration: 36s;
+    animation-duration: 46.8s;
   }
 }
 
