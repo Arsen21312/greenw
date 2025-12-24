@@ -207,16 +207,21 @@ import Footer from '@/components/Footer.vue'
 // indoor временные фото из public/exampleled
 const heroImages = [
   '/exampleled/GCP1.png',
-  '/exampleled/GCP2.png',
-  '/exampleled/ledbig1.png',
-  '/exampleled/ledbig2.png',
-  '/exampleled/ledbig3.png',
-  '/exampleled/smarteco1.png',
-  '/exampleled/smarteco2.png',
+  '/exampleled/ChatGPT1.png',
   '/exampleled/tair1.png',
+  '/exampleled/ChatGPTsiti.png',
   '/exampleled/tair2.png',
+  '/exampleled/GCP3.png',
+  '/exampleled/GCP4.png', 
   '/exampleled/tair3.png',
+  '/exampleled/yuzhnyj5.png',
+  '/exampleled/yuzhnyj4.png',
+  '/exampleled/GCP5.png',
   '/exampleled/tair4.png',
+  '/exampleled/gptvokzaal1.png',
+  '/exampleled/yuzhnyj1.png',
+  '/exampleled/yuzhnyj2.png',
+  '/exampleled/yuzhnyj3.png',
   '/exampleled/tair5.png'
 ]
 
@@ -354,9 +359,7 @@ const screenTypes: ScreenType[] = [
     actions: ['Скачать презентацию', 'Заказать'],
     images: [
       '/exampleled/GCP1.png',
-      '/exampleled/GCP3.jpg',
-      '/exampleled/ChatGPTsiti.png',
-      '/exampleled/ChatGPT1.png'
+      '/exampleled/ChatGPTsiti.png'
     ],
     presentationUrl: '/presend/greensiti.pdf'
   },
@@ -376,7 +379,11 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 20 000 ₸ до 100 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: ['/exampleled/GCP4.jpg', '/exampleled/GCP5.png', '/exampleled/gptvokzaal1.png'],
+    images: [
+      '/exampleled/GCP4.png', 
+      '/exampleled/gptvokzaal1.png',
+      '/exampleled/GCP3.png'
+      ],
     presentationUrl: '/presend/vokzal.pdf'
   },
   {
@@ -395,7 +402,13 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость 40 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: ['/exampleled/tair2.png', '/exampleled/tair3.png'],
+    images: [
+      '/exampleled/tair2.png', 
+      '/exampleled/tair1.png', 
+      '/exampleled/tair4.png', 
+      '/exampleled/tair5.png', 
+      '/exampleled/tair3.png'
+    ],
     presentationUrl: '/presend/tair.pdf'
   },
   {
@@ -413,8 +426,10 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [],
-    presentationUrl: '/presend/ayn.pdf'
+    images: [
+    '/exampleled/GCP5.png' 
+    ],
+    presentationUrl: '/presend/vostok.pdf'
   },
   {
     id: 'indoor-southern-chain',
@@ -433,7 +448,15 @@ const screenTypes: ScreenType[] = [
     price:
       'Стоимость от 50 000 ₸ в месяц за одну локацию или от 100 000 ₸ в месяц за все локации',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: []
+    images: [
+      '/exampleled/yuzhnyj1.png',
+      '/exampleled/yuzhnyj2.png',
+      '/exampleled/yuzhnyj3.png',
+      '/exampleled/yuzhnyj4.png',
+      '/exampleled/yuzhnyj5.png',
+      '/exampleled/tair1.png'
+    ],
+    presentationUrl: '/presend/yuzhnyj.pdf'
   }
 ]
 </script>

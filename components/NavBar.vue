@@ -43,7 +43,6 @@
         <div class="flex items-center gap-5 lg:gap-6">
           <NuxtLink to="/lift" class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
           <NuxtLink to="/led-screens" class="text-gray-800 hover:text-custom-green">LED наружные большие</NuxtLink>
-          <NuxtLink to="/led-indoor" class="text-gray-800 hover:text-custom-green">LED в помещениях</NuxtLink>
           <NuxtLink to="/owners" class="hidden lg:inline-flex text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
           <NuxtLink to="/we" class="hidden lg:inline-flex text-gray-800 hover:text-custom-green">О нас</NuxtLink>
         </div>
@@ -84,7 +83,6 @@
       >
       <NuxtLink to="/lift" class="block text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
       <NuxtLink to="/led-screens" class="block text-gray-800 hover:text-custom-green">LED наружные большие</NuxtLink>
-      <NuxtLink to="/led-indoor" class="block text-gray-800 hover:text-custom-green">LED в помещениях</NuxtLink>
       <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
       <NuxtLink to="/we" class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
       <NuxtLink
