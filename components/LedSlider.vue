@@ -20,8 +20,10 @@ const props = defineProps<{
 const loopSlides = computed(() => [...props.images, ...props.images])
 const isAnimated = ref(true)
 const currentIndex = ref(0)
+const isResetting = ref(false)
+const cycleTimer = ref<number | null>(null)
 
-const slides = computed(() => (isAnimated.value ? loopSlides.value : props.images))
+const slides = computed(() => loopSlides.value)
 
 const viewportStyle = computed(() => ({
   '--slider-max-width': props.maxWidth ? `${props.maxWidth}px` : undefined,
@@ -30,18 +32,54 @@ const viewportStyle = computed(() => ({
 
 const trackStyle = computed(() => {
   if (isAnimated.value) return undefined
-  return { transform: `translateX(-${currentIndex.value * 100}%)` }
+  return {
+    transform: `translateX(-${currentIndex.value * 100}%)`,
+    transition: isResetting.value
+      ? 'none'
+      : 'transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)'
+  }
 })
+
+const stopCycle = () => {
+  if (cycleTimer.value !== null) {
+    window.clearInterval(cycleTimer.value)
+    cycleTimer.value = null
+  }
+}
+
+const startCycle = () => {
+  stopCycle()
+  if (isAnimated.value || props.images.length < 2) return
+  cycleTimer.value = window.setInterval(() => {
+    const nextIndex = currentIndex.value + 1
+    currentIndex.value = nextIndex
+    if (nextIndex >= props.images.length) {
+      window.setTimeout(() => {
+        isResetting.value = true
+        currentIndex.value = 0
+        window.setTimeout(() => {
+          isResetting.value = false
+        }, 50)
+      }, 850)
+    }
+  }, 2000)
+}
 
 const updateMode = () => {
   if (typeof window === 'undefined') return
   isAnimated.value = window.matchMedia('(min-width: 768px)').matches
   if (isAnimated.value) currentIndex.value = 0
+  if (isAnimated.value) {
+    stopCycle()
+  } else {
+    startCycle()
+  }
 }
 
 const handleClick = () => {
   if (isAnimated.value) return
-  currentIndex.value = (currentIndex.value + 1) % props.images.length
+  const nextIndex = (currentIndex.value + 1) % props.images.length
+  currentIndex.value = nextIndex
 }
 
 onMounted(() => {
@@ -55,6 +93,7 @@ onBeforeUnmount(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', updateMode)
   }
+  stopCycle()
 })
 </script>
 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="flex flex-col min-h-screen">
     <NavBar class="shadow-md bg-white z-10" />
 
@@ -74,23 +74,41 @@
               </ul>
             </NuxtLink>
 
-            <!-- Экраны и LED-стенды -->
             <NuxtLink
-              to="/led"
+              to="/led-screens"
               class="group relative flex flex-col items-start p-12 bg-lime-300/40 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl min-h-[450px] hover:backdrop-blur-sm hover:border-white/50 hover:shadow-2xl transition"
             >
               <div class="mb-6 w-full text-center">
-                <img src="/assets/svg/led.svg" alt="Реклама Караганда лед экраны" class="w-20 h-20 mx-auto" />
+                <img src="/assets/svg/led.svg" alt="Реклама на уличных LED-экранах" class="w-20 h-20 mx-auto" />
               </div>
               <h3 class="text-2xl font-semibold text-white mb-3">
-                Реклама на экранах и LED-стендах
+                LED наружные большие
               </h3>
               <ul class="mt-4 space-y-2 text-white text-left">
-                <li><span class="font-semibold">Формат:</span> динамичный ролик на экране</li>
-                <li><span class="font-semibold">28 монитора</span> в ТД, на вокзале и улицах</li>
-                <li><span class="font-semibold">200–400 показов</span> в сутки</li>
-                <li>Идеально для акций, имиджа, узнаваемости</li>
-                <li><span class="font-semibold">От 20 000 ₸</span> / месяц</li>
+                <li><span class="font-semibold">Формат:</span> динамичный ролик на большом экране</li>
+                <li><span class="font-semibold">26 экранов</span> по Караганде</li>
+                <li><span class="font-semibold">100–720 показов</span> в сутки</li>
+                <li><span class="font-semibold">От 30 000 ₸</span> / месяц</li>
+                <li>Идеально для охвата и узнаваемости</li>
+              </ul>
+            </NuxtLink>
+
+                        <NuxtLink
+              to="/led-indoor"
+              class="group relative flex flex-col items-start p-12 bg-lime-300/40 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl min-h-[450px] hover:backdrop-blur-sm hover:border-white/50 hover:shadow-2xl transition"
+            >
+              <div class="mb-6 w-full text-center">
+                <img src="/assets/svg/led.svg" alt="LED реклама в помещениях" class="w-20 h-20 mx-auto" />
+              </div>
+              <h3 class="text-2xl font-semibold text-white mb-3">
+                LED в помещениях
+              </h3>
+              <ul class="mt-4 space-y-2 text-white text-left">
+                <li><span class="font-semibold">Формат:</span> ролик в ТЦ, на вокзале и в супермаркетах</li>
+                <li><span class="font-semibold">68 экранов</span> по Караганде</li>
+                <li><span class="font-semibold">30–400 показов</span> в сутки</li>
+                <li><span class="font-semibold">От 10 000 ₸</span> / месяц</li>
+                <li>Точный контакт с аудиторией</li>
               </ul>
             </NuxtLink>
           </div>

@@ -43,6 +43,7 @@
         <div class="flex items-center gap-5 lg:gap-6">
           <NuxtLink to="/lift" class="text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
           <NuxtLink to="/led-screens" class="text-gray-800 hover:text-custom-green">LED наружные большие</NuxtLink>
+          <NuxtLink to="/led-indoor" class="text-gray-800 hover:text-custom-green">LED в помещениях</NuxtLink>
           <NuxtLink to="/owners" class="hidden lg:inline-flex text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
           <NuxtLink to="/we" class="hidden lg:inline-flex text-gray-800 hover:text-custom-green">О нас</NuxtLink>
         </div>
@@ -60,7 +61,7 @@
             class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="???????? ? WhatsApp"
+            aria-label="Перейти в WhatsApp"
           >
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path
@@ -83,6 +84,7 @@
       >
       <NuxtLink to="/lift" class="block text-gray-800 hover:text-custom-green">Реклама в лифтах</NuxtLink>
       <NuxtLink to="/led-screens" class="block text-gray-800 hover:text-custom-green">LED наружные большие</NuxtLink>
+      <NuxtLink to="/led-indoor" class="text-gray-800 hover:text-custom-green">LED в помещениях</NuxtLink>
       <NuxtLink to="/owners" class="block text-gray-800 hover:text-custom-green">Для владельцев</NuxtLink>
       <NuxtLink to="/we" class="block text-gray-800 hover:text-custom-green">О нас</NuxtLink>
       <NuxtLink
@@ -99,7 +101,7 @@
           class="w-10 h-10 rounded-full border border-custom-green text-custom-green hover:bg-custom-green hover:text-white transition grid place-items-center"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="???????? ? WhatsApp"
+          aria-label="Перейти в WhatsApp"
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
