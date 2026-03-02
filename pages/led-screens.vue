@@ -180,7 +180,7 @@
 
     <!-- Финальный CTA: форма обратной связи -->
     <section id="led-contact" class="bg-[#eef6ff]">
-      <FeedbackForm :lift-order="selectedOrder" />
+      <FeedbackForm :lift-order="selectedOrder" page-key="led-screens" />
     </section>
 
     <WaveDivider top-color="#eef6ff" bottom-color="#ffffff" flip />
@@ -394,7 +394,7 @@ const screenTypes: ScreenType[] = [
   },
   {
     id: 'led-city-mall',
-    title: 'LED экран при ТРЦ «CITY Mall» и ДКГ «Горняков»',
+    title: 'LED экран при ТРЦ «CITY Mall»',
     description: 'Охват до 10 000',
     specs: [
       'Длительность ролика от 10 секунд',

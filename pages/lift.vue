@@ -24,7 +24,7 @@
     <section class="bg-[#eef6ff]">
       <Suspense>
         <template #default>
-          <AsyncFeedbackForm id="contact" :lift-order="liftOrder" />
+          <AsyncFeedbackForm id="contact" :lift-order="liftOrder" page-key="lift" />
         </template>
         <template #fallback>
           <div>Загрузка формы обратной связи...</div>

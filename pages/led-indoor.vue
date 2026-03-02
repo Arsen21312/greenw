@@ -180,7 +180,7 @@
 
     <!-- Финальный CTA: форма обратной связи -->
     <section id="led-contact" class="bg-[#eef6ff]">
-      <FeedbackForm :lift-order="selectedOrder" />
+      <FeedbackForm :lift-order="selectedOrder" page-key="led-indoor" />
     </section>
 
     <WaveDivider top-color="#eef6ff" bottom-color="#ffffff" flip />
@@ -206,10 +206,11 @@ import LedSlider from '~/components/LedSlider.vue'
 import Footer from '@/components/Footer.vue'
 // indoor временные фото из public/exampleled
 const heroImages = [
-  '/exampleled/GCP1.png',
-  '/exampleled/ChatGPT1.png',
+  '/exampleled/17ef9906-9cdd-4b48-9bf8-88f83451272d.jpg',
+  '/exampleled/42790fe6-3191-4be3-85bb-18854ffab0e2.jpg',
+  '/exampleled/77180d35-0438-4b2f-a29c-2b4b6c955cae.jpg',
+  '/exampleled/b063d9b5-bbb5-4a42-bc6d-4bc2b11cd683.jpg',
   '/exampleled/tair1.png',
-  '/exampleled/ChatGPTsiti.png',
   '/exampleled/tair2.png',
   '/exampleled/GCP3.png',
   '/exampleled/GCP4.png', 
@@ -349,17 +350,21 @@ const screenTypes: ScreenType[] = [
     specs: [
       'Проходимость: 7 500 человек в день',
       'Охват: 4 500 человек в день',
-      'Расположение: рядом кассы супермаркета City Market, банкоматы и лестница на второй этаж в столовую и бизнес-центр',
+      'Расположение: 2 этаж — бизнес-столовая',
+      '1 основной LED-экран — перед кассой',
+      '+ 3 дополнительных экрана по периметру',
       'Время работы: 15 часов в день',
       'Длительность ролика: от 10 до 25 секунд',
       'Показы: от 200 до 400 в сутки',
       'Размещение: 7 или 30 дней'
     ],
-    price: 'Стоимость от 10 000 ₸ до 50 000 ₸ в месяц',
+    price: 'Стоимость от 20 000 ₸ до 60 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
     images: [
-      '/exampleled/GCP1.png',
-      '/exampleled/ChatGPTsiti.png'
+      '/exampleled/17ef9906-9cdd-4b48-9bf8-88f83451272d.jpg',
+      '/exampleled/42790fe6-3191-4be3-85bb-18854ffab0e2.jpg',
+      '/exampleled/77180d35-0438-4b2f-a29c-2b4b6c955cae.jpg',
+      '/exampleled/b063d9b5-bbb5-4a42-bc6d-4bc2b11cd683.jpg'
     ],
     presentationUrl: '/presend/greensiti.pdf'
   },
@@ -475,5 +480,3 @@ const screenTypes: ScreenType[] = [
 }
 
 </style>
-
-

@@ -336,35 +336,21 @@ export default {
 
         const { selectedModules, totalPriceWithDiscount } = parsedData;
 
-        // Формируем информацию о выбранных модулях
-        let selectedModulesInfo = '';
-        if (selectedModules && Object.keys(selectedModules).length > 0) {
-          selectedModulesInfo = '\nВыбранные модули:\n';
-          for (const [moduleName, moduleData] of Object.entries(selectedModules)) {
-            selectedModulesInfo += `- ${this.formatBlockName(moduleName)}: ${JSON.stringify(moduleData)}\n`;
-          }
-        }
-
-        // Формируем информацию об итоговой цене
-        let totalPriceInfo = '';
-        if (totalPriceWithDiscount !== null && totalPriceWithDiscount !== undefined) {
-          totalPriceInfo = `\nИтоговая цена со скидкой: ${totalPriceWithDiscount} тг`;
-        }
-
-        // Объединяем всю информацию
-        const combinedInfo = `
-Имя: ${this.leadData.name}
-Телефон: ${this.leadData.phone}
-${selectedModulesInfo}
-${totalPriceInfo}
-        `.trim();
-
-        console.log('Отправляемая информация:', combinedInfo);
+        const pageKey =
+          typeof window !== 'undefined'
+            ? String(window.location.pathname || '').replace(/^\/+|\/+$/g, '').toLowerCase() || 'index'
+            : 'unknown';
 
         // Формируем объект для отправки
         const dataToSend = {
-          name: combinedInfo,
-          phone: this.leadData.phone
+          name: this.leadData.name,
+          phone: this.leadData.phone,
+          source: pageKey,
+          page: pageKey,
+          liftOrder: {
+            totalWithDiscount: Number(totalPriceWithDiscount) || 0,
+            selectedModules,
+          },
         };
 
         console.log('Данные для отправки:', dataToSend);

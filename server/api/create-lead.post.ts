@@ -1,9 +1,12 @@
-﻿import { useAmoClient } from '../utils/amoClient'
+import { useAmoClient } from '../utils/amoClient'
+import { resolveLeadLabel } from '../utils/leadLabel'
 
 export default defineEventHandler(async event => {
   const body = await readBody<{
     name: string
     phone: string
+    source?: string
+    page?: string
     liftOrder?: {
       blocks?: number[]
       blockFormats?: Record<string, string>
@@ -21,37 +24,58 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const { createLeadWithContact } = useAmoClient()
+  const { createLeadWithContact, findLeadAndContactByPhone } = useAmoClient()
 
   const lift = body.liftOrder || null
 
   let liftSummary = ''
   if (lift) {
-    const blocks = lift.blocks && lift.blocks.length ? lift.blocks.join(', ') : 'не выбраны'
+    const blocks = lift.blocks && lift.blocks.length ? lift.blocks.join(', ') : 'none'
     const months = lift.months || 1
     const total = lift.totalWithDiscount || lift.totalWithoutDiscount || 0
     const base = lift.totalWithoutDiscount || 0
     const disc = lift.totalDiscountPercent || 0
 
     liftSummary =
-      `Лифтовый калькулятор:` +
-      ` блоки ${blocks},` +
-      ` срок ${months} мес,` +
-      ` цена без скидок ${base.toLocaleString('ru-RU')} ₸,` +
-      ` скидка ${disc} %,` +
-      ` итог ${total.toLocaleString('ru-RU')} ₸`
+      `Lift calculator:` +
+      ` blocks ${blocks},` +
+      ` term ${months} months,` +
+      ` base ${base.toLocaleString('ru-RU')} KZT,` +
+      ` discount ${disc} %,` +
+      ` total ${total.toLocaleString('ru-RU')} KZT`
   }
 
-  const leadName = lift
-    ? `Лифт реклама, калькулятор, ${body.name}`
-    : `Лифт реклама, заявка с формы, ${body.name}`
+  const source = body.source || 'unknown'
+  const page = body.page || 'unknown'
 
-  const lead = await createLeadWithContact({
-    name: leadName,
+  const existing = await findLeadAndContactByPhone(body.phone)
+  if (existing?.leadId) {
+    return {
+      ok: true,
+      leadId: existing.leadId,
+      contactId: existing.contactId || null,
+      reused: true,
+    }
+  }
+
+  const contactName = String(body.name || '').trim()
+  const leadName = `${resolveLeadLabel({
+    page,
+    source,
+    hasLiftOrder: Boolean(lift),
+  })}, ${contactName}`
+
+  const result = await createLeadWithContact({
+    leadName,
+    contactName,
     phone: body.phone,
     price: lift?.totalWithDiscount || lift?.totalWithoutDiscount || 0,
     liftOrderSummary: liftSummary || undefined,
   })
 
-  return { ok: true, leadId: lead.id }
+  return {
+    ok: true,
+    leadId: result?.lead?.id ? Number(result.lead.id) : null,
+    contactId: result?.contact?.id ? Number(result.contact.id) : null,
+  }
 })
