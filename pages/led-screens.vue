@@ -403,7 +403,7 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 50 000 ₸ до 300 000 ₸ за 1 конструкцию',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [led1, led2]
+    images: [led2]
   },
   {
     id: 'led-smart-eco',
