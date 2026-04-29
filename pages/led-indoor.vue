@@ -118,7 +118,7 @@
         <div class="space-y-8">
           <article
             :id="type.id"
-            v-for="(type, idx) in screenTypes"
+            v-for="(type, idx) in visibleScreenTypes"
             :key="type.title"
             class="flex h-full w-full max-w-full flex-col gap-5 rounded-3xl bg-gray-50/80 p-5 pb-20 sm:p-8 sm:pb-8 shadow-sm ring-1 ring-gray-100 overflow-hidden break-words min-w-0 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
@@ -281,9 +281,13 @@ const getLoopImages = (images?: string[]) =>
   images && images.length ? [...images, ...images] : ledLoopSlides.value
 
 const showLedNav = ref(false)
+const hiddenScreenTypeIds = new Set(['indoor-vostok-ayan'])
+const visibleScreenTypes = computed(() =>
+  screenTypes.filter((item) => !hiddenScreenTypeIds.has(item.id))
+)
 
 const ledNavItems = computed(() =>
-  screenTypes.map((item) => ({ id: item.id, title: item.title }))
+  visibleScreenTypes.value.map((item) => ({ id: item.id, title: item.title }))
 )
 
 const toggleLedNav = () => {
