@@ -80,10 +80,10 @@ const blocks = ref([
     title: 'Блок 5 Город',
     subtitle: 'вторичное жильё + ЖК',
     image: image5,
-    houses: '40',
-    lifts: '90',
-    apartments: '3 236',
-    population: '9 925',
+    houses: '25',
+    lifts: '60',
+    apartments: '2 266',
+    population: '6 798',
     addressUrl: '/addresses/block-5-address.docx',
     details: 'Улицы:  Бухар Жырау, Назарбаева, Ерубаева, Ержанова, Ермекова и прилегающие кварталы.'
   }
