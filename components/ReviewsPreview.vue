@@ -23,7 +23,6 @@
       </div>
 
       <div class="rounded-3xl border border-slate-200 shadow-md bg-slate-50/90 px-6 lg:px-10 py-8 space-y-8 min-h-[540px]">
-        <!-- Рекламодатели -->
         <div v-if="selectedTab === 'advertiser'" class="space-y-8 max-w-4xl mx-auto">
           <div class="rounded-2xl border border-emerald-100 bg-white/90 p-5 flex flex-col sm:flex-row items-start gap-4">
             <div class="h-12 w-12 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center text-xs font-semibold uppercase tracking-wide">
@@ -56,103 +55,65 @@
           </div>
         </div>
 
-        <!-- Местные жители -->
         <div v-else-if="selectedTab === 'locals'">
           <div class="mx-auto max-w-4xl grid gap-8 lg:grid-cols-2 items-start">
             <div class="space-y-4 order-2 lg:order-1">
-              <p class="text-xs uppercase tracking-[0.2em] text-emerald-600">местная жительница</p>
-              <h3 class="text-2xl font-semibold text-slate-900">«Светлана находит акции прямо в лифте»</h3>
+              <p class="text-xs uppercase tracking-[0.2em] text-emerald-600">местные жители</p>
+              <h3 class="text-2xl font-semibold text-slate-900">Отзыв из Instagram</h3>
               <p class="text-sm text-slate-700">
-                Светлана говорит, что каждый раз, пока едет домой, просматривает предложения на стендах. Видит скидки на доставку еды,
-                услуги, сразу фотографирует нужные контакты и делится с соседями.
+                Добавили Instagram-пост прямо в превью отзывов, чтобы местные жители могли смотреть ролик на сайте в более нативном формате, а не только через YouTube Shorts.
               </p>
               <p class="text-sm text-slate-500">
-                Видео загружено на YouTube (формат Shorts). Если нужно — вышлем оригинал и контакт Светланы.
+                Оригинал публикации остаётся доступен по ссылке в Instagram.
               </p>
-              <div class="grid gap-3 text-sm text-slate-700">
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Любимые категории:</p>
-                    <p>Доставка еды, бытовые услуги, скидки на товары для дома.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Как использует:</p>
-                    <p>Фотографирует контакты, сохраняет акции, делится с соседями.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Комментарий:</p>
-                    <p>«Пока еду, успеваю посмотреть все новинки, ничего не пропускаю».</p>
-                  </div>
-                </div>
-              </div>
+              <a
+                :href="instagramPostUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex text-sm font-semibold text-custom-green hover:underline"
+              >
+                Открыть пост в Instagram
+              </a>
             </div>
 
-            <div class="order-1 lg:order-2 w-full max-w-sm justify-self-end rounded-2xl overflow-hidden shadow bg-black" style="aspect-ratio: 9 / 16; max-height: 620px;">
-              <iframe
-                :src="localsYoutubeEmbed"
-                title="Отзыв местной жительницы"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                class="w-full h-full"
-              ></iframe>
-            </div>
+            <SocialVideoEmbed
+              :src="instagramEmbed"
+              platform="instagram"
+              :source-url="instagramPostUrl"
+              title="Отзыв местных жителей из Instagram"
+              class="order-1 lg:order-2 w-full max-w-sm justify-self-end"
+              aspect-ratio="9 / 16"
+            />
           </div>
         </div>
 
-        <!-- Владельцы лифтов -->
         <div v-else>
           <div class="mx-auto max-w-4xl grid gap-8 lg:grid-cols-2 items-start">
-            <div class="w-full max-w-sm rounded-2xl overflow-hidden shadow bg-black" style="aspect-ratio: 9 / 16; max-height: 620px;">
-              <iframe
-                :src="youtubeEmbed"
-                title="Отзыв владельца лифта"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                class="w-full h-full"
-              ></iframe>
-            </div>
+            <SocialVideoEmbed
+              :src="instagramEmbed"
+              platform="instagram"
+              :source-url="instagramPostUrl"
+              title="Отзыв владельцев лифтов из Instagram"
+              class="w-full max-w-sm"
+              aspect-ratio="9 / 16"
+            />
             <div class="space-y-4">
-              <p class="text-xs uppercase tracking-[0.2em] text-emerald-600">председатель кск / владелец лифта</p>
-              <h3 class="text-2xl font-semibold text-slate-900">Отзыв о сотрудничестве</h3>
+              <p class="text-xs uppercase tracking-[0.2em] text-emerald-600">владельцы лифтов</p>
+              <h3 class="text-2xl font-semibold text-slate-900">Отзыв из Instagram</h3>
               <p class="text-sm text-slate-700">
-                «Команда GreenW аккуратно смонтировала рекламные стенды, не повредив отделку лифта. Выплаты приходят вовремя, жильцы не жалуются.
-                Если нужно снять или заменить — реагируют быстро».
+                Этот же ролик выведен и во вкладке владельцев лифтов, чтобы нужный отзыв был виден в обеих категориях превью и не терялся среди Shorts.
               </p>
               <p class="text-sm text-slate-500">
-                Видео загружено на YouTube. Если нужен оригинал с подписью — можем отправить файл и контакт председателя.
+                Если потребуется, можно позже заменить его на отдельный Instagram-ролик именно для владельцев.
               </p>
-              <div class="grid gap-3 text-sm text-slate-700">
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Дом:</p>
-                    <p>КСК «Полёт», на управлении с 1997 года.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Результат:</p>
-                    <p>Разместили стенды без шума и следов. Своевременные выплаты, жильцы довольны.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-2 w-2 rounded-full bg-emerald-500 mt-1"></span>
-                  <div>
-                    <p class="font-semibold text-slate-900">Контакт:</p>
-                    <p>Готовы поделиться номером председателя и отправить оригинал видео.</p>
-                  </div>
-                </div>
-              </div>
+              <a
+                :href="instagramPostUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex text-sm font-semibold text-custom-green hover:underline"
+              >
+                Открыть пост в Instagram
+              </a>
             </div>
           </div>
         </div>
@@ -181,7 +142,7 @@
             @click="closeLetter"
             aria-label="Закрыть"
           >
-            ✕
+            ×
           </button>
           <img :src="activeLetter.src" :alt="activeLetter.alt" class="w-full h-full object-contain" />
         </div>
@@ -194,6 +155,7 @@
 import { ref } from 'vue'
 import otz1 from '@/assets/otz1.jpeg'
 import otz2 from '@/assets/otz2.jpeg'
+import SocialVideoEmbed from '@/components/SocialVideoEmbed.vue'
 
 const tabs = [
   { label: 'Рекламодатели', value: 'advertiser' },
@@ -202,8 +164,8 @@ const tabs = [
 ]
 
 const selectedTab = ref('owners')
-const youtubeEmbed = 'https://www.youtube.com/embed/Ct9biTNJWBM'
-const localsYoutubeEmbed = 'https://www.youtube.com/embed/joFgiXuriIg'
+const instagramPostUrl = 'https://www.instagram.com/p/DX4Xb-FsS9y/'
+const instagramEmbed = 'https://www.instagram.com/p/DX4Xb-FsS9y/embed'
 const twoGisUrl = 'https://go.2gis.com/cnzso'
 
 const thankYouLetters = [
@@ -229,6 +191,7 @@ const closeLetter = () => {
 .fade-leave-active {
   transition: opacity 0.2s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

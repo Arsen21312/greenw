@@ -1,10 +1,39 @@
-﻿export const reviews = [
+export const reviews = [
+  {
+    id: 9,
+    type: 'locals',
+    name: 'Отзыв из Instagram',
+    business: 'местные жители',
+    instagram: '@greenw.kz',
+    platform: 'instagram',
+    videoUrl: 'https://www.instagram.com/p/DX4Xb-FsS9y/embed',
+    sourceUrl: 'https://www.instagram.com/p/DX4Xb-FsS9y/',
+    shortText:
+      'Публикация из Instagram с живой реакцией на рекламу в лифтах и тем, как ее воспринимают жители.',
+    fullText:
+      'Публикация из Instagram с реальным видеоотзывом от локальной аудитории. Оставили ее в разделе местных жителей, чтобы этот формат можно было смотреть прямо на сайте без перехода в Shorts.',
+  },
+  {
+    id: 10,
+    type: 'owners',
+    name: 'Отзыв из Instagram',
+    business: 'владельцы лифтов',
+    instagram: '@greenw.kz',
+    platform: 'instagram',
+    videoUrl: 'https://www.instagram.com/p/DX4Xb-FsS9y/embed',
+    sourceUrl: 'https://www.instagram.com/p/DX4Xb-FsS9y/',
+    shortText:
+      'Публикация из Instagram с живым отзывом, который можно показать и в блоке владельцев лифтов.',
+    fullText:
+      'Этот Instagram-пост добавлен и в категорию владельцев лифтов, чтобы нужный ролик был виден в обеих вкладках на странице отзывов. Оригинал остается доступен по ссылке на Instagram.',
+  },
   {
     id: 1,
     type: 'advertiser',
     name: 'Руслан Малахов',
     business: 'Сборка корбусной мебели',
     instagram: '@greenw.kz',
+    platform: 'youtube',
     videoUrl: 'https://www.youtube.com/embed/XP59PzeRbdI',
     shortText:
       'Запустили рекламу в лифтах на 3 недели и получили заметный рост обращений: люди звонят прямо по QR-коду со стенда.',
@@ -17,6 +46,7 @@
     name: 'Бекманова А.Е.',
     business: 'КСК "Полёт»',
     instagram: '@comfort_krg',
+    platform: 'youtube',
     videoUrl: 'https://www.youtube.com/embed/Ct9biTNJWBM',
     shortText:
       'Отмечают, что рекламные стенды аккуратные и не портят вид подъезда. Контент обновляют вовремя, жалоб от жильцов нет.',
@@ -29,6 +59,7 @@
     name: 'Светлана, Майкудук',
     business: 'житель Караганды',
     instagram: '@greenw.kz',
+    platform: 'youtube',
     videoUrl: 'https://www.youtube.com/embed/joFgiXuriIg',
     shortText:
       'Каждый вечер, пока едет домой, листает стенд: смотрит скидки на доставку еды и услуги, фотографирует нужные контакты.',
@@ -41,6 +72,7 @@
     name: 'Местный житель, Город',
     business: 'житель Караганды',
     instagram: '@greenw.kz',
+    platform: 'youtube',
     videoUrl: 'https://www.youtube.com/embed/rQWChPA4T94',
     shortText:
       'Говорит, что реклама в лифтах его не раздражает, а наоборот полезна: можно быстро узнать про акции и услуги по пути домой.',
@@ -53,6 +85,7 @@
     name: 'Василий, Майкудук',
     business: 'житель Караганды',
     instagram: '@greenw.kz',
+    platform: 'youtube',
     videoUrl: 'https://www.youtube.com/embed/0O6K6JgR9bw',
     shortText:
       'По пути домой смотрит рекламу на стенде: отмечает акции на доставку и сервисы рядом с домом, делится ссылками с соседями.',

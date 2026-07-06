@@ -35,15 +35,13 @@
               :key="review.id"
               class="bg-white rounded-2xl shadow-sm p-5 flex flex-col gap-4"
             >
-              <div class="aspect-[9/16] rounded-xl overflow-hidden bg-black shadow">
-                <iframe
-                  :src="review.videoUrl"
-                  class="w-full h-full"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
+              <SocialVideoEmbed
+                :src="review.videoUrl"
+                :platform="review.platform || 'youtube'"
+                :source-url="review.sourceUrl || ''"
+                :title="review.name"
+                aspect-ratio="9 / 16"
+              />
               <div class="space-y-2 text-slate-800">
                 <p class="text-sm uppercase tracking-widest text-slate-500">
                   {{ tabLabels[review.type] }}
@@ -51,6 +49,15 @@
                 <h3 class="text-xl font-semibold text-slate-900">{{ review.name }}</h3>
                 <p class="text-sm text-slate-600">{{ review.business }} · {{ review.instagram }}</p>
                 <p class="text-slate-700 leading-relaxed">{{ review.fullText }}</p>
+                <a
+                  v-if="review.sourceUrl"
+                  :href="review.sourceUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-sm font-semibold text-custom-green hover:underline"
+                >
+                  Открыть оригинал в Instagram
+                </a>
               </div>
             </article>
           </div>
@@ -93,6 +100,7 @@ import { defineAsyncComponent, ref, computed } from 'vue'
 import { reviews } from '@/assets/reviews'
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
+import SocialVideoEmbed from '@/components/SocialVideoEmbed.vue'
 
 const AsyncFaq = defineAsyncComponent(() => import('@/components/Faq.vue'))
 
