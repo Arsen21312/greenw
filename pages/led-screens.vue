@@ -179,7 +179,7 @@
                   class="max-w-full rounded-2xl"
                   :class="type.id === 'led-city-mall'
                     ? 'w-full aspect-[1600/1131] object-cover object-[center_12%]'
-                    : 'w-auto h-auto max-h-[510px] object-contain'"
+                    : 'w-full h-auto max-h-[510px] object-contain'"
                 />
                 <LedSlider v-else :images="getLoopImages(type.images)" :image-sources="outdoorImageSources" :max-width="340" :height="510" />
               </div>
