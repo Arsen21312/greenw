@@ -13,8 +13,8 @@
           :key="'row1-' + idx"
           class="flex h-24 w-48 items-center justify-center"
         >
-          <img
-            :src="logo"
+          <ResponsiveImage
+            :image="logo" sizes="auto, 192px"
             alt="Логотип партнёра"
             class="max-h-20 w-auto object-contain"
           />
@@ -28,8 +28,8 @@
           :key="'row1-' + idx"
           class="flex h-24 w-48 items-center justify-center"
         >
-          <img
-            :src="logo"
+          <ResponsiveImage
+            :image="logo" sizes="auto, 192px"
             alt="Логотип партнёра"
             class="h-16 w-auto object-contain"
           />
@@ -40,13 +40,8 @@
 </template>
 
 <script setup lang="ts">
-// забираем все лого, можно сразу и svg и png
-const logos = Object.values(
-  import.meta.glob('@/assets/partners/*.{svg,png,jpg,jpeg,webp}', {
-    eager: true,
-    as: 'url'
-  })
-) as string[]
+import { partnerImages } from '~/assets/optimized/partners/images'
+const logos = Object.values(partnerImages)
 </script>
 
 <style scoped>

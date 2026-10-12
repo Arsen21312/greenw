@@ -49,7 +49,7 @@
               class="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm flex items-center justify-center"
             >
               <button type="button" class="block w-full" @click="openLetter(letter)">
-                <img :src="letter.src" :alt="letter.alt" class="w-full h-72 object-contain" loading="lazy" />
+                <ResponsiveImage :image="letter.image" :alt="letter.alt" class="w-full h-72 object-contain" loading="lazy" />
               </button>
             </div>
           </div>
@@ -144,7 +144,7 @@
           >
             ×
           </button>
-          <img :src="activeLetter.src" :alt="activeLetter.alt" class="w-full h-full object-contain" />
+          <ResponsiveImage :image="activeLetter.image" loading="eager" sizes="(min-width: 896px) 896px, calc(100vw - 32px)" :alt="activeLetter.alt" class="w-full h-full object-contain" />
         </div>
       </div>
     </transition>
@@ -152,9 +152,11 @@
 </template>
 
 <script setup>
+import { contentImages } from '~/assets/optimized/content/images'
+const otz1 = contentImages["otz1.jpeg"]
+const otz2 = contentImages["otz2.jpeg"]
 import { ref } from 'vue'
-import otz1 from '@/assets/otz1.jpeg'
-import otz2 from '@/assets/otz2.jpeg'
+
 import SocialVideoEmbed from '@/components/SocialVideoEmbed.vue'
 
 const tabs = [
@@ -169,12 +171,12 @@ const instagramEmbed = 'https://www.instagram.com/p/DX4Xb-FsS9y/embed'
 const twoGisUrl = 'https://go.2gis.com/cnzso'
 
 const thankYouLetters = [
-  { src: otz1, alt: 'Благодарственное письмо 1' },
-  { src: otz2, alt: 'Благодарственное письмо 2' },
+  { image: otz1, alt: 'Благодарственное письмо 1' },
+  { image: otz2, alt: 'Благодарственное письмо 2' },
 ]
 
 const isLetterOpen = ref(false)
-const activeLetter = ref({ src: '', alt: '' })
+const activeLetter = ref({ image: null, alt: '' })
 
 const openLetter = (letter) => {
   activeLetter.value = letter

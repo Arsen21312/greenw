@@ -1,7 +1,7 @@
 ﻿<template>
   <article class="block-card flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden">
     <div class="h-56 overflow-hidden">
-      <img :src="block.image" loading="lazy" :alt="block.title" class="w-full h-full object-cover" />
+      <ResponsiveImage :image="block.image" sizes="auto, (min-width: 1024px) 240px, (min-width: 768px) 300px, (min-width: 640px) 320px, calc(100vw - 32px)" loading="lazy" :alt="block.title" class="w-full h-full object-cover" />
     </div>
 
     <div class="flex-1 flex flex-col p-5">

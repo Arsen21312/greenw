@@ -12,7 +12,7 @@
         :key="index"
         :style="getSlideStyle(index)"
       >
-        <img :src="image" loading="lazy" alt="carousel image" class="carousel-image" />
+        <ResponsiveImage :image="image" sizes="(min-width: 1024px) 250px, (min-width: 768px) 200px, 180px" loading="lazy" alt="carousel image" class="carousel-image" />
       </div>
     </div>
 
@@ -34,20 +34,20 @@
   </div>
 </template>
 
-
 <script setup>
+import { contentImages } from '~/assets/optimized/content/images'
+const image1 = contentImages["5.webp"]
+const image2 = contentImages["1.webp"]
+const image3 = contentImages["2.webp"]
+const image4 = contentImages["3.webp"]
+const image5 = contentImages["4.webp"]
+const image6 = contentImages["6.webp"]
+const image7 = contentImages["7.webp"]
+const image8 = contentImages["8.webp"]
+const image9 = contentImages["9.webp"]
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 // Импорт изображений
-import image1 from '@/assets/5.webp'
-import image2 from '@/assets/1.webp'
-import image3 from '@/assets/2.webp'
-import image4 from '@/assets/3.webp'
-import image5 from '@/assets/4.webp'
-import image6 from '@/assets/6.webp'
-import image7 from '@/assets/7.webp'
-import image8 from '@/assets/8.webp'
-import image9 from '@/assets/9.webp'
 
 // Массив изображений
 const images = [image1, image2, image3, image4, image5, image6, image7, image8, image9]
@@ -164,7 +164,6 @@ const onTouchEnd = () => {
   }
 }
 </script>
-
 
 <style scoped>
 .carousel-wrapper {

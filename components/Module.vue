@@ -161,7 +161,7 @@
             </p>
             <div class="visual-wrapper">
               <div class="badge">Пример макета</div>
-              <img :src="visualMock" alt="Пример размещения рекламы в лифте" class="visual-img" />
+              <ResponsiveImage :image="visualMock" alt="Пример размещения рекламы в лифте" sizes="auto, (min-width: 1024px) 461px, (min-width: 640px) 400px, calc(100vw - 80px)" class="visual-img" />
               <div class="visual-caption">
                 <p class="font-semibold text-gray-800">Как выглядит реклама в лифте:</p>
                 <ul class="mt-1 space-y-1 text-gray-600">
@@ -213,8 +213,9 @@
 </template>
 
 <script setup>
+import { contentImages } from '~/assets/optimized/content/images'
+const visualMock = contentImages["formats-mock.png"]
 import { computed, ref } from 'vue'
-import visualMock from '@/assets/formats-mock.png'
 
 const emit = defineEmits(['lift-order'])
 

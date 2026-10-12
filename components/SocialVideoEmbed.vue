@@ -7,6 +7,7 @@
     <iframe
       :src="src"
       :title="title"
+      loading="lazy"
       class="h-full w-full"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

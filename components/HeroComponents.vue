@@ -22,15 +22,27 @@
         </div>
       </div>
       <!-- Слайдер вместо изображения (3 карточки, движение справа налево) -->
-      <div class="lg:w-1/2 flex justify-center mb-8 lg:mb-0">
+      <div class="w-full min-w-0 lg:w-1/2 flex justify-center mb-8 lg:mb-0">
         <div class="slider-viewport">
           <div class="slider-track">
             <div
               v-for="(image, index) in loopSlides"
               :key="`slide-${index}`"
               class="slider-card"
+              :style="{ backgroundImage: `url(${image.preview})` }"
             >
-              <img :src="image" alt="Реклама в лифтах Караганды" class="w-full h-full object-cover" />
+              <img
+                :src="image.src"
+                :srcset="image.srcset"
+                :sizes="imageSizes"
+                :width="image.width"
+                :height="image.height"
+                loading="eager"
+                :fetchpriority="index < 3 ? 'high' : 'low'"
+                decoding="async"
+                alt="Реклама в лифтах Караганды"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -72,13 +84,18 @@
 import { ref, computed } from 'vue'
 import OrderModal from '@/components/OrderModal.vue'
 import CountUp from '@/components/CountUp.vue'
-import slide2 from '@/assets/2.jpeg'
-import slide3 from '@/assets/3.jpeg'
-import slide54 from '@/assets/54.jpeg'
-import slide85 from '@/assets/85.jpg'
-import slide89 from '@/assets/89.jpeg'
-import slide102 from '@/assets/102.jpg'
-import slide110 from '@/assets/110.jpeg'
+import { liftSlides } from '@/assets/lift/slides'
+
+const imageSizes = '(min-width: 1025px) 280px, (min-width: 641px) 200px, 180px'
+
+// Begin downloading visible photos from the document head, before hydration.
+useHead({
+  link: liftSlides.slice(0, 3).map(({ src, srcset }, index) => ({
+    key: `lift-hero-${index}`,
+    rel: 'preload', as: 'image', href: src, type: 'image/webp', fetchpriority: 'high',
+    imagesrcset: srcset, imagesizes: imageSizes,
+  })),
+})
 
 const isOrderModalOpen = ref(false)
 
@@ -94,19 +111,8 @@ const block = {
   name: 'Рекламную кампанию',
 }
 
-// Изображения для слайдера (замените/добавьте свои JPEG при необходимости)
-const slides = ref([
-  slide2,
-  slide3,
-  slide54,
-  slide85,
-  slide89,
-  slide102,
-  slide110,
-])
-
 // Удваиваем массив, чтобы движение было бесшовным
-const loopSlides = computed(() => [...slides.value, ...slides.value])
+const loopSlides = computed(() => [...liftSlides, ...liftSlides])
 
 const stats = ref([
   { label: 'лифтов', value: 600 },
@@ -121,7 +127,7 @@ const stats = ref([
   position: relative;
   width: 100%;
   max-width: 780px;
-  height: 100%;
+  height: clamp(16rem, 24vw, 23.375rem);
   min-height: 16rem;
   overflow: hidden;
   border-radius: 16px;
@@ -138,7 +144,7 @@ const stats = ref([
 }
 
 .slider-card {
-  flex: 0 0 calc((100% - 24px) / 3);
+  flex: 0 0 280px;
   min-width: 200px;
   max-width: 280px;
   height: 100%;
@@ -146,12 +152,17 @@ const stats = ref([
   overflow: hidden;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
   background: #fff;
+  background-position: center;
+  background-size: cover;
 }
 
 .slider-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Keep fallback text from covering the inline preview during loading. */
+  color: transparent;
+  font-size: 0;
 }
 
 @keyframes slide-left {
@@ -159,7 +170,7 @@ const stats = ref([
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 6px));
   }
 }
 
@@ -168,13 +179,13 @@ const stats = ref([
     max-width: 100%;
   }
   .slider-card {
-    flex: 0 0 calc((100% - 16px) / 2);
+    flex: 0 0 200px;
   }
 }
 
 @media (max-width: 640px) {
   .slider-card {
-    flex: 0 0 75%;
+    flex: 0 0 180px;
     min-width: 180px;
   }
 }

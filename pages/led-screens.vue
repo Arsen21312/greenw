@@ -63,7 +63,7 @@
         </div>
 
         <div class="relative flex justify-center lg:justify-end">
-          <LedSlider :images="ledLoopSlides" :max-width="340" :height="510" />
+          <LedSlider :images="ledSlides" :image-sources="outdoorImageSources" priority :max-width="340" :height="510" />
         </div>
       </div>
     </section>
@@ -168,7 +168,20 @@
               </div>
 
               <div class="relative flex justify-center mobile-slider-block">
-                <LedSlider :images="getLoopImages(type.images)" :max-width="340" :height="510" />
+                <ResponsiveImage
+                  v-if="type.images?.length === 1"
+                  :image="outdoorImageSources[type.images[0]]"
+                  sizes="auto, (min-width: 1024px) 640px, calc(100vw - 96px)"
+                  :alt="type.title"
+                  :width="type.imageWidth"
+                  :height="type.imageHeight"
+                  loading="lazy"
+                  class="max-w-full rounded-2xl"
+                  :class="type.id === 'led-city-mall'
+                    ? 'w-full aspect-[1600/1131] object-cover object-[center_12%]'
+                    : 'w-auto h-auto max-h-[510px] object-contain'"
+                />
+                <LedSlider v-else :images="getLoopImages(type.images)" :image-sources="outdoorImageSources" :max-width="340" :height="510" />
               </div>
             </div>
           </article>
@@ -197,24 +210,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { outdoorImages } from '~/assets/optimized/outdoor/images'
+const led1 = outdoorImages["led-screens1.png"].src
+const led2 = outdoorImages["led-screens2.png"].src
+const led3 = outdoorImages["led-screens3.png"].src
+const led4 = outdoorImages["led-screens4.png"].src
+const led5 = outdoorImages["led-screens5.png"].src
+const led6 = outdoorImages["led-screens6.png"].src
+const led7 = outdoorImages["led-screens7.png"].src
+const led8 = outdoorImages["led-screens8.png"].src
+const led9 = outdoorImages["led-screens9.png"].src
+const led10 = outdoorImages["led-screens10.png"].src
+const led11 = outdoorImages["led-screens11.png"].src
+const led12 = outdoorImages["led-screens12.png"].src
+const led13 = outdoorImages["led-screens13.png"].src
+const ledYubileyny = outdoorImages["led-yubileyny.webp"].src
+const outdoorImageSources = Object.fromEntries(Object.values(outdoorImages).map(image => [image.src, image]))
 import FeedbackForm from '@/components/FeedbackForm.vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import FaqLed from '@/components/FaqLed.vue'
 import LedSlider from '~/components/LedSlider.vue'
-import led1 from '@/assets/led-screens1.png'
-import led2 from '@/assets/led-screens2.png'
-import led3 from '@/assets/led-screens3.png'
-import led4 from '@/assets/led-screens4.png'
-import led5 from '@/assets/led-screens5.png'
-import led6 from '@/assets/led-screens6.png'
-import led7 from '@/assets/led-screens7.png'
-import led8 from '@/assets/led-screens8.png'
-import led9 from '@/assets/led-screens9.png'
-import led10 from '@/assets/led-screens10.png'
-import led11 from '@/assets/led-screens11.png'
-import led12 from '@/assets/led-screens12.png'
-import led13 from '@/assets/led-screens13.png'
 
 useSeoMeta({
   title: 'Реклама на уличных LED экранах в Караганде GreenW',
@@ -234,6 +250,8 @@ type ScreenType = {
   price: string
   actions: string[]
   images?: string[]
+  imageWidth?: number
+  imageHeight?: number
   presentationUrl?: string
 }
 
@@ -255,20 +273,7 @@ const ledSlides = ref<string[]>([
   led13
 ])
 
-const shuffleSlides = (arr: string[]) => {
-  const copy = [...arr]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-}
-
-onMounted(() => {
-  ledSlides.value = shuffleSlides(ledSlides.value)
-})
-
-const ledLoopSlides = computed(() => [...ledSlides.value, ...ledSlides.value])
+// Keep SSR and client photo order identical to avoid restarting downloads.
 
 const presentationUrl = '/presend/led-ekrany-vdol-dorogi-20.pdf'
 const rulesUrl = '/presend/pravila-izgotovleniya-cifrovogo-postera.pdf'
@@ -283,7 +288,7 @@ const selectedOrder = ref<{ name: string; id?: string; source: string } | null>(
 })
 
 const getLoopImages = (images?: string[]) =>
-  images && images.length ? [...images, ...images] : ledLoopSlides.value
+  images && images.length ? images : ledSlides.value
 
 const showLedNav = ref(false)
 
@@ -403,7 +408,9 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 50 000 ₸ до 300 000 ₸ за 1 конструкцию',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [led2]
+    images: [led2],
+    imageWidth: 1024,
+    imageHeight: 1536
   },
   {
     id: 'led-smart-eco',
@@ -421,6 +428,22 @@ const screenTypes: ScreenType[] = [
     actions: ['Скачать презентацию', 'Правила', 'Заказать'],
     images: [led3, led4, led5, led6, led7],
     presentationUrl: '/presend/Led-Smart.pdf'
+  },
+  {
+    id: 'led-yubileyny',
+    title: 'LED экран на «Юбилейном»',
+    description: 'Охват до 15 000',
+    size: 'Размер экрана: 6 × 3 м',
+    specs: [
+      'Длительность ролика от 10 секунд',
+      'Показы от 150 до 350 в сутки',
+      'Размещение от 7 дней'
+    ],
+    price: 'Стоимость от 30 000 ₸ до 378 000 ₸',
+    actions: ['Заказать'],
+    images: [ledYubileyny],
+    imageWidth: 1600,
+    imageHeight: 1131
   }
 ]
 </script>
@@ -443,6 +466,4 @@ const screenTypes: ScreenType[] = [
   background-size: 24px 24px;
 }
 </style>
-
-
 

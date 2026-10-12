@@ -13,15 +13,16 @@
 </template>
 
 <script setup>
+import { contentImages } from '~/assets/optimized/content/images'
+const image1 = contentImages["1b.webp"]
+const image2 = contentImages["2b.webp"]
+const image3 = contentImages["3b.webp"]
+const image4 = contentImages["4b.webp"]
+const image5 = contentImages["5b.webp"]
 import { ref } from 'vue'
 import BlockCard from '@/components/BlockCard.vue'
 
 // Импорт изображений (если они хранятся в assets)
-import image1 from '@/assets/1b.webp'
-import image2 from '@/assets/2b.webp'
-import image3 from '@/assets/3b.webp'
-import image4  from '@/assets/4b.webp'
-import image5 from '@/assets/5b.webp'
 
 // Данные блоков
 const blocks = ref([

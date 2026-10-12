@@ -11,9 +11,9 @@
         >
           &times;
         </button>
-        <img
-          :src="block.image"
-          loading="lazy"
+        <ResponsiveImage
+          :image="block.image" sizes="(min-width: 672px) 608px, calc(100vw - 96px)"
+          loading="eager"
           :alt="`Изображение ${block.name}`"
           class="w-full h-64 object-cover rounded-lg mb-6"
         />

@@ -31,8 +31,7 @@
           </p>
 
           <div class="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
-            <p>Мы размещаем видеорекламу на экранах в супермаркетах, ТЦ и на вокзале.</p>
-            <p>68 экранов по всей Караганде. Быстрый запуск от 1 дня.</p>
+            <p>Быстрый запуск от 1 дня.</p>
             <p>Формат идеально подходит для акций, открытия нового филиала и повышения узнаваемости бренда.</p>
           </div>
 
@@ -62,7 +61,7 @@
         </div>
 
         <div class="relative flex justify-center lg:justify-end">
-          <LedSlider :images="ledLoopSlides" :max-width="340" :height="510" />
+          <LedSlider :images="heroImages" :image-sources="indoorImageSources" priority :max-width="340" :height="510" />
         </div>
       </div>
     </section>
@@ -165,7 +164,8 @@
 
               <div class="relative flex justify-center mobile-slider-block">
                 <LedSlider
-                  :images="getLoopImages(type.images)"
+                  :images="type.images || heroImages"
+                  :image-sources="indoorImageSources"
                   :max-width="340"
                   :height="510"
                 />
@@ -197,42 +197,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import FeedbackForm from '@/components/FeedbackForm.vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import FaqLed from '@/components/FaqLed.vue'
 import LedSlider from '~/components/LedSlider.vue'
 import Footer from '@/components/Footer.vue'
-// indoor временные фото из public/exampleled
-const heroImages = [
-  '/exampleled/17ef9906-9cdd-4b48-9bf8-88f83451272d.jpg',
-  '/exampleled/42790fe6-3191-4be3-85bb-18854ffab0e2.jpg',
-  '/exampleled/77180d35-0438-4b2f-a29c-2b4b6c955cae.jpg',
-  '/exampleled/b063d9b5-bbb5-4a42-bc6d-4bc2b11cd683.jpg',
-  '/exampleled/tair1.png',
-  '/exampleled/tair2.png',
-  '/exampleled/GCP3.png',
-  '/exampleled/GCP4.png', 
-  '/exampleled/tair3.png',
-  '/exampleled/yuzhnyj5.png',
-  '/exampleled/yuzhnyj4.png',
-  '/exampleled/GCP5.png',
-  '/exampleled/tair4.png',
-  '/exampleled/gptvokzaal1.png',
-  '/exampleled/yuzhnyj1.png',
-  '/exampleled/yuzhnyj2.png',
-  '/exampleled/yuzhnyj3.png',
-  '/exampleled/tair5.png'
-]
+import { greenCityImages, tairImages, indoorImageSources } from '~/assets/led-indoor/images'
+
+// Only photos of the locations displayed below; keep the first render stable.
+const heroImages = [...greenCityImages, ...tairImages]
 
 useSeoMeta({
   title: 'Реклама на LED экранах внутри помещений в Караганде GreenW',
   description:
-    'Видеореклама на LED экранах в супермаркетах, ТЦ и на вокзале Караганды 68 экранов по городу, быстрый запуск от 1 дня, форматы 10–30 секунд',
+    'Реклама на LED экранах внутри помещений в Караганде. Ваш ролик видят там, где люди ежедневно проходят, ждут и совершают покупки. Быстрый запуск от 1 дня.',
   ogTitle: 'Реклама на LED экранах внутри помещений в Караганде GreenW',
   ogDescription:
-    'Видеореклама на LED экранах в супермаркетах, ТЦ и на вокзале Караганды 68 экранов по городу, быстрый запуск от 1 дня, форматы 10–30 секунд'
+    'Реклама на LED экранах внутри помещений в Караганде. Ваш ролик видят там, где люди ежедневно проходят, ждут и совершают покупки. Быстрый запуск от 1 дня.'
 })
 
 type ScreenType = {
@@ -249,23 +232,6 @@ type ScreenType = {
 
 const noop = () => {}
 
-const ledSlides = ref<string[]>([...heroImages])
-
-const shuffleSlides = (arr: string[]) => {
-  const copy = [...arr]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-}
-
-onMounted(() => {
-  ledSlides.value = shuffleSlides(ledSlides.value)
-})
-
-const ledLoopSlides = computed(() => [...ledSlides.value, ...ledSlides.value])
-
 const presentationUrl = '/presend/led-ekrany-vdol-dorogi-20.pdf'
 const cityMallPresentation = '/presend/prise-CITY-Mall.pdf'
 const cityMallTech = '/presend/teh-CITY-Mall.pdf'
@@ -276,9 +242,6 @@ const selectedOrder = ref<{ name: string; id?: string; source: string } | null>(
   id: 'led-indoor',
   source: 'led-indoor'
 })
-
-const getLoopImages = (images?: string[]) =>
-  images && images.length ? [...images, ...images] : ledLoopSlides.value
 
 const showLedNav = ref(false)
 const hiddenScreenTypeIds = new Set(['indoor-vostok-ayan'])
@@ -354,8 +317,11 @@ const screenTypes: ScreenType[] = [
     specs: [
       'Проходимость: 7 500 человек в день',
       'Охват: 4 500 человек в день',
-      'Расположение: 2 этаж — бизнес-столовая',
-      '1 основной LED-экран — перед кассой',
+      'Расположение:',
+      '2 этаж — бизнес-столовая',
+      '4 экрана по всей столовой + 1 экран в детской зоне',
+      '1 этаж — вход в столовую и бизнес центр',
+      '1 LED-экран напольный + 1 экран 70 дюймов',
       '+ 3 дополнительных экрана по периметру',
       'Время работы: 15 часов в день',
       'Длительность ролика: от 10 до 25 секунд',
@@ -364,36 +330,8 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость от 20 000 ₸ до 60 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [
-      '/exampleled/17ef9906-9cdd-4b48-9bf8-88f83451272d.jpg',
-      '/exampleled/42790fe6-3191-4be3-85bb-18854ffab0e2.jpg',
-      '/exampleled/77180d35-0438-4b2f-a29c-2b4b6c955cae.jpg',
-      '/exampleled/b063d9b5-bbb5-4a42-bc6d-4bc2b11cd683.jpg'
-    ],
+    images: greenCityImages,
     presentationUrl: '/presend/greensiti.pdf'
-  },
-  {
-    id: 'indoor-railway-station',
-    title: 'Мониторы Ж/Д вокзал',
-    description: 'Привокзальная площадь, 1',
-    specs: [
-      'Проходимость: 22 000 человек в день',
-      'Охват: 14 000 человек в день',
-      'Расположение: экран №1 — напротив рамок металлодетектора и выхода на перрон, экран №2 — напротив мест ожидания в зале ожидания',
-      'Время работы: 24 часа в сутки',
-      'Длительность ролика: от 10 до 25 секунд',
-      'Показы: от 200 до 400 в сутки',
-      'Размещение: 7 или 30 дней',
-      'Количество мониторов: 2, работают в связке и продаются только в паре'
-    ],
-    price: 'Стоимость от 20 000 ₸ до 100 000 ₸ в месяц',
-    actions: ['Скачать презентацию', 'Заказать'],
-    images: [
-      '/exampleled/GCP4.png', 
-      '/exampleled/gptvokzaal1.png',
-      '/exampleled/GCP3.png'
-      ],
-    presentationUrl: '/presend/vokzal.pdf'
   },
   {
     id: 'indoor-tair',
@@ -411,13 +349,7 @@ const screenTypes: ScreenType[] = [
     ],
     price: 'Стоимость 40 000 ₸ в месяц',
     actions: ['Скачать презентацию', 'Заказать'],
-    images: [
-      '/exampleled/tair2.png', 
-      '/exampleled/tair1.png', 
-      '/exampleled/tair4.png', 
-      '/exampleled/tair5.png', 
-      '/exampleled/tair3.png'
-    ],
+    images: tairImages,
     presentationUrl: '/presend/tair.pdf'
   },
   {
@@ -439,33 +371,6 @@ const screenTypes: ScreenType[] = [
     '/exampleled/GCP5.png' 
     ],
     presentationUrl: '/presend/vostok.pdf'
-  },
-  {
-    id: 'indoor-southern-chain',
-    title: 'Мониторы в сетях супермаркетов «Южный»',
-    description:
-      '7 локаций: ТД «Таир», ТД «Абзал», ТД «Город», ТД «Галерея», ТД «Айман», ул Зелинского 28А, 17 мкр-н, д 41',
-    specs: [
-      'В каждом супермаркете от 5 до 10 мониторов',
-      'Экраны в самых проходимых местах: возле касс и оживлённых прилавков',
-      'Звуковое сопровождение рекламы по всему супермаркету',
-      'Время работы: 13 часов в день',
-      'Длительность ролика: до 30 секунд',
-      'Показы: от 4 до 6 показов в час',
-      'Размещение: от 30 дней'
-    ],
-    price:
-      'Стоимость от 50 000 ₸ в месяц за одну локацию или от 100 000 ₸ в месяц за все локации',
-    actions: ['Скачать презентацию', 'Заказать'],
-    images: [
-      '/exampleled/yuzhnyj1.png',
-      '/exampleled/yuzhnyj2.png',
-      '/exampleled/yuzhnyj3.png',
-      '/exampleled/yuzhnyj4.png',
-      '/exampleled/yuzhnyj5.png',
-      '/exampleled/tair1.png'
-    ],
-    presentationUrl: '/presend/yuzhnyj.pdf'
   }
 ]
 </script>

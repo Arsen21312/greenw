@@ -1,0 +1,1149 @@
+[
+  {
+    "group": "outdoor",
+    "source": "led-screens1.png",
+    "originalBytes": 551175,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 37348
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 111320
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 212910
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens2.png",
+    "originalBytes": 580927,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 37376
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 111360
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 201538
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens3.png",
+    "originalBytes": 597204,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 31198
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 123786
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 307306
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens4.png",
+    "originalBytes": 343537,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 18432
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 55940
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 111444
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens5.png",
+    "originalBytes": 248709,
+    "variants": [
+      {
+        "width": 360,
+        "height": 536,
+        "bytes": 18530
+      },
+      {
+        "width": 680,
+        "height": 1012,
+        "bytes": 77762
+      },
+      {
+        "width": 688,
+        "height": 1024,
+        "bytes": 85678
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens6.png",
+    "originalBytes": 248911,
+    "variants": [
+      {
+        "width": 360,
+        "height": 536,
+        "bytes": 32080
+      },
+      {
+        "width": 680,
+        "height": 1012,
+        "bytes": 108338
+      },
+      {
+        "width": 688,
+        "height": 1024,
+        "bytes": 115254
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens7.png",
+    "originalBytes": 592679,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 25812
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 83886
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 210920
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens8.png",
+    "originalBytes": 546880,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 29368
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 70042
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 137264
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens9.png",
+    "originalBytes": 500903,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 30462
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 73412
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 136856
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens10.png",
+    "originalBytes": 426647,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 35342
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 85500
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 161884
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens11.png",
+    "originalBytes": 439750,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 29612
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 69844
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 130998
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens12.png",
+    "originalBytes": 580091,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 52010
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 152820
+      },
+      {
+        "width": 768,
+        "height": 1152,
+        "bytes": 212418
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-screens13.png",
+    "originalBytes": 712698,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "bytes": 43512
+      },
+      {
+        "width": 680,
+        "height": 1020,
+        "bytes": 146050
+      },
+      {
+        "width": 1024,
+        "height": 1536,
+        "bytes": 383022
+      }
+    ]
+  },
+  {
+    "group": "outdoor",
+    "source": "led-yubileyny.webp",
+    "originalBytes": 165594,
+    "variants": [
+      {
+        "width": 640,
+        "height": 452,
+        "bytes": 59322
+      },
+      {
+        "width": 1200,
+        "height": 848,
+        "bytes": 124418
+      },
+      {
+        "width": 1600,
+        "height": 1131,
+        "bytes": 165594
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "1b.webp",
+    "originalBytes": 394542,
+    "variants": [
+      {
+        "width": 360,
+        "height": 238,
+        "bytes": 36360
+      },
+      {
+        "width": 720,
+        "height": 477,
+        "bytes": 137174
+      },
+      {
+        "width": 1280,
+        "height": 848,
+        "bytes": 394542
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "2b.webp",
+    "originalBytes": 380622,
+    "variants": [
+      {
+        "width": 360,
+        "height": 240,
+        "bytes": 15846
+      },
+      {
+        "width": 720,
+        "height": 480,
+        "bytes": 45698
+      },
+      {
+        "width": 1280,
+        "height": 854,
+        "bytes": 104674
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "3b.webp",
+    "originalBytes": 740870,
+    "variants": [
+      {
+        "width": 360,
+        "height": 241,
+        "bytes": 24530
+      },
+      {
+        "width": 720,
+        "height": 482,
+        "bytes": 72118
+      },
+      {
+        "width": 1280,
+        "height": 857,
+        "bytes": 170108
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "4b.webp",
+    "originalBytes": 144112,
+    "variants": [
+      {
+        "width": 360,
+        "height": 323,
+        "bytes": 22902
+      },
+      {
+        "width": 720,
+        "height": 647,
+        "bytes": 67506
+      },
+      {
+        "width": 1280,
+        "height": 1150,
+        "bytes": 136834
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "5b.webp",
+    "originalBytes": 393324,
+    "variants": [
+      {
+        "width": 360,
+        "height": 228,
+        "bytes": 13214
+      },
+      {
+        "width": 720,
+        "height": 457,
+        "bytes": 40480
+      },
+      {
+        "width": 1280,
+        "height": 812,
+        "bytes": 95986
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "formats-mock.png",
+    "originalBytes": 783307,
+    "variants": [
+      {
+        "width": 320,
+        "height": 468,
+        "bytes": 58952
+      },
+      {
+        "width": 461,
+        "height": 674,
+        "bytes": 105874
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "otz1.jpeg",
+    "originalBytes": 102084,
+    "variants": [
+      {
+        "width": 360,
+        "height": 480,
+        "bytes": 18604
+      },
+      {
+        "width": 720,
+        "height": 959,
+        "bytes": 48824
+      },
+      {
+        "width": 1125,
+        "height": 1498,
+        "bytes": 82168
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "otz2.jpeg",
+    "originalBytes": 76866,
+    "variants": [
+      {
+        "width": 360,
+        "height": 519,
+        "bytes": 20646
+      },
+      {
+        "width": 720,
+        "height": 1038,
+        "bytes": 56620
+      },
+      {
+        "width": 888,
+        "height": 1280,
+        "bytes": 75068
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "1.webp",
+    "originalBytes": 34740,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 21908
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 34740
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "2.webp",
+    "originalBytes": 42082,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 26550
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 42082
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "3.webp",
+    "originalBytes": 47728,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 28368
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 47728
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "4.webp",
+    "originalBytes": 41934,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 25448
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 41934
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "5.webp",
+    "originalBytes": 54380,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 31954
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 54380
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "6.webp",
+    "originalBytes": 49704,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 29976
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 49704
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "7.webp",
+    "originalBytes": 35884,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 22312
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 35884
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "8.webp",
+    "originalBytes": 45070,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 27340
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 45070
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "9.webp",
+    "originalBytes": 44060,
+    "variants": [
+      {
+        "width": 280,
+        "height": 373,
+        "bytes": 26502
+      },
+      {
+        "width": 398,
+        "height": 530,
+        "bytes": 44060
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "button.png",
+    "originalBytes": 13171,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 2936
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 4690
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "hand.png",
+    "originalBytes": 26699,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 3568
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 7034
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "medal.png",
+    "originalBytes": 17710,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 2900
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 5282
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "money.png",
+    "originalBytes": 22318,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 5866
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 9412
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "people.png",
+    "originalBytes": 23442,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 5080
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 8314
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "sale.png",
+    "originalBytes": 15104,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 3564
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 5954
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "staff.png",
+    "originalBytes": 15139,
+    "variants": [
+      {
+        "width": 160,
+        "height": 160,
+        "bytes": 2916
+      },
+      {
+        "width": 250,
+        "height": 250,
+        "bytes": 4908
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "svg/loggo.svg",
+    "originalBytes": 125519,
+    "variants": [
+      {
+        "width": 240,
+        "height": 53,
+        "bytes": 8708
+      },
+      {
+        "width": 480,
+        "height": 106,
+        "bytes": 23826
+      },
+      {
+        "width": 960,
+        "height": 211,
+        "bytes": 67984
+      }
+    ]
+  },
+  {
+    "group": "content",
+    "source": "svg/howled.webp",
+    "originalBytes": 13038,
+    "variants": [
+      {
+        "width": 640,
+        "height": 905,
+        "bytes": 11878
+      },
+      {
+        "width": 899,
+        "height": 1271,
+        "bytes": 13038
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/1.svg",
+    "originalBytes": 16807,
+    "variants": [
+      {
+        "width": 192,
+        "height": 73,
+        "bytes": 5340
+      },
+      {
+        "width": 384,
+        "height": 146,
+        "bytes": 10254
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/10.svg",
+    "originalBytes": 202229,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 7434
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 18196
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/11.png",
+    "originalBytes": 4866,
+    "variants": [
+      {
+        "width": 192,
+        "height": 33,
+        "bytes": 4078
+      },
+      {
+        "width": 231,
+        "height": 40,
+        "bytes": 2420
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/12.svg",
+    "originalBytes": 15504,
+    "variants": [
+      {
+        "width": 192,
+        "height": 61,
+        "bytes": 3632
+      },
+      {
+        "width": 384,
+        "height": 123,
+        "bytes": 7294
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/13.svg",
+    "originalBytes": 306023,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 8740
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 28150
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/14.svg",
+    "originalBytes": 927557,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 17244
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 61132
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/15.svg",
+    "originalBytes": 7505,
+    "variants": [
+      {
+        "width": 192,
+        "height": 36,
+        "bytes": 2376
+      },
+      {
+        "width": 384,
+        "height": 71,
+        "bytes": 5100
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/16.svg",
+    "originalBytes": 26361,
+    "variants": [
+      {
+        "width": 192,
+        "height": 59,
+        "bytes": 3338
+      },
+      {
+        "width": 384,
+        "height": 118,
+        "bytes": 6546
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/17.svg",
+    "originalBytes": 19911,
+    "variants": [
+      {
+        "width": 192,
+        "height": 59,
+        "bytes": 1948
+      },
+      {
+        "width": 384,
+        "height": 118,
+        "bytes": 3418
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/18.svg",
+    "originalBytes": 8427,
+    "variants": [
+      {
+        "width": 192,
+        "height": 59,
+        "bytes": 3190
+      },
+      {
+        "width": 384,
+        "height": 118,
+        "bytes": 6002
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/19.png",
+    "originalBytes": 50990,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 37558
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "bytes": 35954
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/2.png",
+    "originalBytes": 5610,
+    "variants": [
+      {
+        "width": 192,
+        "height": 37,
+        "bytes": 3836
+      },
+      {
+        "width": 384,
+        "height": 75,
+        "bytes": 6594
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/20.png",
+    "originalBytes": 24036,
+    "variants": [
+      {
+        "width": 192,
+        "height": 111,
+        "bytes": 10200
+      },
+      {
+        "width": 240,
+        "height": 139,
+        "bytes": 10484
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/21.png",
+    "originalBytes": 2657,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 3204
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 6370
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/3.svg",
+    "originalBytes": 4565,
+    "variants": [
+      {
+        "width": 192,
+        "height": 61,
+        "bytes": 2240
+      },
+      {
+        "width": 384,
+        "height": 122,
+        "bytes": 4288
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/4.svg",
+    "originalBytes": 37982,
+    "variants": [
+      {
+        "width": 192,
+        "height": 85,
+        "bytes": 4424
+      },
+      {
+        "width": 280,
+        "height": 124,
+        "bytes": 6618
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/5.svg",
+    "originalBytes": 35757,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 7070
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 17034
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/6.png",
+    "originalBytes": 3845,
+    "variants": [
+      {
+        "width": 192,
+        "height": 54,
+        "bytes": 4356
+      },
+      {
+        "width": 384,
+        "height": 108,
+        "bytes": 8734
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/7.svg",
+    "originalBytes": 88647,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 10798
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 32220
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/8.svg",
+    "originalBytes": 79419,
+    "variants": [
+      {
+        "width": 192,
+        "height": 192,
+        "bytes": 8764
+      },
+      {
+        "width": 384,
+        "height": 384,
+        "bytes": 25382
+      }
+    ]
+  },
+  {
+    "group": "partners",
+    "source": "partners/9.svg",
+    "originalBytes": 13468,
+    "variants": [
+      {
+        "width": 192,
+        "height": 40,
+        "bytes": 2804
+      },
+      {
+        "width": 346,
+        "height": 72,
+        "bytes": 4744
+      }
+    ]
+  }
+]

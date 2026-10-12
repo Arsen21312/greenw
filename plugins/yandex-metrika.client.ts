@@ -21,7 +21,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     sendHit()
   })
 
-  nuxtApp.hook('page:finish', ({ route }) => {
-    sendHit(route.fullPath)
+  // page:finish receives the page component, not a route object.
+  nuxtApp.hook('page:finish', () => {
+    sendHit()
   })
 })

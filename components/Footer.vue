@@ -28,7 +28,7 @@
 
           <div class="brand-card">
             <p class="text-xs uppercase text-gray-500 tracking-[0.3em] text-center">Рекламное агентство</p>
-            <img :src="logo" alt="Логотип рекламного агентства GreenW в Караганде" class="mx-auto h-12 mt-2" />
+            <ResponsiveImage :image="logo" sizes="200px" alt="Логотип рекламного агентства GreenW в Караганде" class="mx-auto h-12 w-auto mt-2" />
             <div class="mt-3 flex items-center justify-center gap-3">
               <a href="https://www.instagram.com/greenw.kz" target="_blank" class="social-btn" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
@@ -55,10 +55,14 @@
           <div class="info-card">
             <p class="card-title">Реквизиты</p>
             <ul class="space-y-2 text-sm text-gray-600">
-              <li>ИП «GreenWay»</li>
-              <li>Индекс 100000, Республика Казахстан, г. Караганда</li>
-              <li>14 микрорайон, дом 42, кв. 20</li>
-              <li>БИН/ИИН 710 128 450 661</li>
+              <li>ИП Plan B</li>
+              <li>Надырбекова Людмила Семеновна</li>
+              <li>Юридический адрес: Карагандинская область, г. Караганда, 13 микрорайон, дом 19</li>
+              <li>Талон № KZ25TUZ00196651</li>
+              <li>ИИН 500928400135</li>
+              <li>Банк: АО «Фридом Банк Казахстан»</li>
+              <li>БИК KSNVKZKA</li>
+              <li>Номер счета KZT: KZ07551M600002873362</li>
             </ul>
           </div>
         </div>
@@ -72,7 +76,9 @@
 </template>
 
 <script setup>
-import logo from '@/assets/svg/loggo.svg'
+import { contentImages } from '~/assets/optimized/content/images'
+const logo = contentImages["svg/loggo.svg"]
+
 </script>
 
 <style scoped>

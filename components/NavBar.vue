@@ -7,7 +7,7 @@
   >
     <div class="container mx-auto flex items-center justify-between p-4">
       <NuxtLink to="/" class="flex items-center space-x-2">
-        <img :src="logo" alt="GreenW" class="h-16" />
+        <ResponsiveImage :image="logo" loading="eager" fetchpriority="high" sizes="260px" alt="GreenW" class="h-16 w-auto" />
       </NuxtLink>
       <!-- Mobile actions -->
       <div class="flex items-center gap-3 md:hidden mt-2">
@@ -131,8 +131,9 @@
 </template>
 
 <script setup lang="ts">
+import { contentImages } from '~/assets/optimized/content/images'
+const logo = contentImages["svg/loggo.svg"]
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import logo from '@/assets/svg/loggo.svg'
 
 const isMenuOpen = ref(false)
 const isCollapsed = ref(false)

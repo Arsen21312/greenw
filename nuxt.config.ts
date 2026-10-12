@@ -4,6 +4,24 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
 
+  // Keep small images out of JS/CSS bundles so they can be cached independently.
+  vite: { build: { assetsInlineLimit: 0 } },
+  nitro: { compressPublicAssets: true },
+  routeRules: {
+    '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/images/**': { headers: { 'cache-control': 'public, max-age=86400' } },
+  },
+
+  hooks: {
+    'build:manifest': (manifest) => {
+      // Let img loading/fetchpriority control downloads. Automatic image
+      // prefetching competes with hero photos and bypasses loading="lazy".
+      for (const resource of Object.values(manifest)) {
+        if (resource.resourceType === 'image') resource.prefetch = false
+      }
+    },
+  },
+
   runtimeConfig: {
     amoDomain: process.env.NUXT_AMO_DOMAIN,
     amoAccessToken: process.env.NUXT_AMO_ACCESS_TOKEN,
@@ -13,6 +31,8 @@ export default defineNuxtConfig({
   },
 
   app: {
+    // Navigation previews should not download every other page during initial load.
+    defaults: { nuxtLink: { prefetchOn: { interaction: true, visibility: false } } },
     head: {
       htmlAttrs: {
         lang: 'ru',
@@ -184,7 +204,7 @@ export default defineNuxtConfig({
 
   // Настройки для модуля @nuxt/image
   image: {
-    dir: 'static',
+    dir: 'public',
     format: ['webp', 'png'],
     providers: {
       // Опциональные провайдеры изображений, например Cloudinary или imgix

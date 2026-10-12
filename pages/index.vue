@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="flex flex-col min-h-screen">
     <NavBar class="shadow-md bg-white z-10" />
 
@@ -9,7 +9,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-emerald-600/80 to-amber-400"></div>
         <!-- Паттерн лифтов -->
         <div
-          class="absolute inset-0 bg-[url('/pattern-elevator.svg')] opacity-10 pointer-events-none"
+          class="absolute inset-0 opacity-10 pointer-events-none"
         ></div>
 
         <div class="relative container mx-auto px-4 pt-32 pb-24 text-center text-white">
@@ -60,7 +60,7 @@
               class="group relative flex flex-col items-start p-12 bg-lime-300/40 backdrop-blur-md rounded-2xl border border-white/50 shadow-xl min-h-[450px] hover:backdrop-blur-sm hover:border-white/50 hover:shadow-2xl transition"
             >
               <div class="mb-6 w-full text-center">
-                <img src="/assets/svg/lift.svg" alt="Реклама Караганда" class="w-20 h-20 mx-auto" />
+                <img :src="liftIcon" alt="Реклама Караганда" class="w-20 h-20 mx-auto" />
               </div>
               <h3 class="text-2xl font-semibold text-white mb-3">
                 Реклама в лифтах
@@ -79,7 +79,7 @@
               class="group relative flex flex-col items-start p-12 bg-lime-300/40 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl min-h-[450px] hover:backdrop-blur-sm hover:border-white/50 hover:shadow-2xl transition"
             >
               <div class="mb-6 w-full text-center">
-                <img src="/assets/svg/led.svg" alt="Реклама на уличных LED-экранах" class="w-20 h-20 mx-auto" />
+                <img :src="ledIcon" alt="Реклама на уличных LED-экранах" class="w-20 h-20 mx-auto" />
               </div>
               <h3 class="text-2xl font-semibold text-white mb-3">
                 LED наружные большие
@@ -98,7 +98,7 @@
               class="group relative flex flex-col items-start p-12 bg-lime-300/40 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl min-h-[450px] hover:backdrop-blur-sm hover:border-white/50 hover:shadow-2xl transition"
             >
               <div class="mb-6 w-full text-center">
-                <img src="/assets/svg/led.svg" alt="LED реклама в помещениях" class="w-20 h-20 mx-auto" />
+                <img :src="ledIcon" alt="LED реклама в помещениях" class="w-20 h-20 mx-auto" />
               </div>
               <h3 class="text-2xl font-semibold text-white mb-3">
                 LED в помещениях
@@ -180,6 +180,8 @@
 </template>
 
 <script setup lang="ts">
+import liftIcon from '~/assets/svg/lift.svg'
+import ledIcon from '~/assets/svg/led.svg'
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import PartnersMarquee from '@/components/PartnersMarquee.vue'

@@ -42,7 +42,7 @@
         <div class="relative reveal-on-scroll lg:justify-self-end">
           <div class="absolute -inset-4 bg-white/60 blur-2xl"></div>
           <div class="relative rounded-3xl bg-white shadow-xl ring-1 ring-emerald-100 overflow-hidden">
-            <img :src="img" loading="lazy" alt="Рекламный стенд в лифте" class="w-full h-full object-cover" />
+            <ResponsiveImage :image="img" sizes="(min-width: 768px) 398px, calc(100vw - 48px)" loading="eager" fetchpriority="high" alt="Рекламный стенд в лифте" class="w-full h-full object-cover" />
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 text-white">
               <p class="text-sm font-semibold">Монтаж без следов и шума</p>
               <p class="text-xs text-white/80">Износостойкие конструкции, быстрая замена макетов</p>
@@ -222,7 +222,7 @@
         <div class="relative reveal-on-scroll">
           <div class="absolute -inset-6 bg-gradient-to-tr from-emerald-50 via-white to-lime-50 blur-3xl"></div>
           <div class="relative rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-100">
-            <img :src="img" loading="lazy" alt="Конструкция рекламного стенда" class="w-full h-full object-cover" />
+            <ResponsiveImage :image="img" sizes="(min-width: 768px) 398px, calc(100vw - 48px)" loading="lazy" alt="Конструкция рекламного стенда" class="w-full h-full object-cover" />
             <div class="absolute inset-0 pointer-events-none">
               <div class="label" style="top:12%;left:18%;">Гибкий PVC</div>
               <div class="label" style="top:35%;right:12%;">610×990 мм</div>
@@ -262,11 +262,12 @@
 </template>
 
 <script setup>
+import { contentImages } from '~/assets/optimized/content/images'
+const img = contentImages["3.webp"]
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import WaveDivider from '@/components/WaveDivider.vue'
 import QuizForm from '@/components/QuizForm.vue'
 import OrderModal from '@/components/OrderModal.vue'
-import img from '@/assets/3.webp'
 
 const isOrderModalOpen = ref(false)
 

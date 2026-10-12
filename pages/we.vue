@@ -74,10 +74,9 @@
       <div
         class="relative container mx-auto grid gap-12 px-6 lg:grid-cols-12 lg:px-12 items-center"
       >
-        <Img
-          src="/images/loggo.svg"
-          width="640px"
-          height="440px"
+        <ResponsiveImage
+          :image="contentImages['svg/loggo.svg']"
+          sizes="auto, (min-width: 1024px) 640px, calc(100vw - 48px)"
           alt="Наша история"
           class="lg:col-span-6 aspect-video rounded-[2.5rem] object-cover shadow-xl transition-transform duration-500 transform-gpu hover:rotate-2 hover:scale-105"
         />
@@ -165,8 +164,9 @@
         </div>
 
        <div class="lg:col-span-6 flex justify-center">
-        <img
-          src="/assets/svg/howled.webp"
+        <ResponsiveImage
+          :image="contentImages['svg/howled.webp']"
+          sizes="auto, (min-width: 1024px) 640px, calc(100vw - 48px)"
           alt="Как у нас появились экраны"
           class="w-full h-auto rounded-3xl shadow-lg"
         />
@@ -239,7 +239,7 @@
     <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
   <!-- 1. Заявка -->
   <div class="flex flex-col items-center text-center text-white w-full">
-    <img src="/assets/svg/order.svg" alt="Заявка" class="w-32 h-16 mb-4" />
+    <img :src="orderIcon" loading="lazy" decoding="async" alt="Заявка" class="w-32 h-16 mb-4" />
     <h4 class="text-xl font-semibold">Заявка</h4>
     <p class="mt-2 text-base text-white/90">
       Выбираете расположение экрана, длину видео, количество показов
@@ -248,7 +248,7 @@
 
   <!-- 2. Оплата -->
   <div class="flex flex-col items-center text-center text-white w-full">
-    <img src="/assets/svg/pay.svg" alt="Оплата" class="w-32 h-16 mb-4" />
+    <img :src="payIcon" loading="lazy" decoding="async" alt="Оплата" class="w-32 h-16 mb-4" />
     <h4 class="text-xl font-semibold">Оплата</h4>
     <p class="mt-2 text-base text-white/90">
       Заключаете договор и производите оплату
@@ -257,7 +257,7 @@
 
   <!-- 3. Согласование -->
   <div class="flex flex-col items-center text-center text-white w-full">
-    <img src="/assets/svg/com.svg" alt="Согласование" class="w-32 h-16 mb-4" />
+    <img :src="comIcon" loading="lazy" decoding="async" alt="Согласование" class="w-32 h-16 mb-4" />
     <h4 class="text-xl font-semibold">Согласование</h4>
     <p class="mt-2 text-base text-white/90">
       Утверждаете дизайн видеорекламы
@@ -266,7 +266,7 @@
 
   <!-- 4. Размещение -->
   <div class="flex flex-col items-center text-center text-white w-full">
-    <img src="/assets/svg/place.svg" alt="Размещение" class="w-32 h-16 mb-4" />
+    <img :src="placeIcon" loading="lazy" decoding="async" alt="Размещение" class="w-32 h-16 mb-4" />
     <h4 class="text-xl font-semibold">Размещение</h4>
     <p class="mt-2 text-base text-white/90">
       Запускаем в любой день по желанию
@@ -305,7 +305,11 @@ import Footer from '@/components/Footer.vue'
 import PartnersMarquee from '@/components/PartnersMarquee.vue'
 import OrderModal from '@/components/OrderModal.vue'
 import ReviewsPreview from '@/components/ReviewsPreview.vue'
-import logo from '@/assets/logo.svg'
+import { contentImages } from '~/assets/optimized/content/images'
+import orderIcon from '~/assets/svg/order.svg'
+import payIcon from '~/assets/svg/pay.svg'
+import comIcon from '~/assets/svg/com.svg'
+import placeIcon from '~/assets/svg/place.svg'
 import CountUp from '@/components/CountUp.vue'
 import Orb from '@/components/Orb.vue'
 

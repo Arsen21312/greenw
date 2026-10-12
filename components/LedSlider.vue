@@ -1,8 +1,19 @@
 ﻿<template>
-  <div class="led-slider-viewport" :style="viewportStyle" @click="handleClick">
+  <div ref="viewport" class="led-slider-viewport" :style="viewportStyle" @click="handleClick">
     <div :class="['led-slider-track', isAnimated ? 'animated' : 'manual']" :style="trackStyle">
       <div v-for="(image, index) in slides" :key="`led-slide-${index}`" class="led-slider-card">
-        <img :src="image" alt="Фото LED экрана" class="w-full h-full object-contain" />
+        <img
+          :src="ready ? image : undefined"
+          :srcset="ready ? imageSources?.[image]?.srcset : undefined"
+          :sizes="imageSources?.[image] ? imageSizes : undefined"
+          :width="imageSources?.[image]?.width"
+          :height="imageSources?.[image]?.height"
+          :loading="priority && index < 3 ? 'eager' : 'lazy'"
+          decoding="async"
+          :fetchpriority="priority && index < 3 ? 'high' : 'low'"
+          alt="Фото LED экрана"
+          class="w-full h-full object-contain"
+        />
       </div>
     </div>
   </div>
@@ -15,7 +26,25 @@ const props = defineProps<{
   images: string[]
   maxWidth?: number
   height?: number
+  imageSources?: Record<string, { srcset: string; width: number; height: number }>
+  priority?: boolean
 }>()
+
+const imageSizes = '(min-width: 768px) 320px, (min-width: 388px) 340px, calc(100vw - 48px)'
+const viewport = ref<HTMLElement | null>(null)
+const ready = ref(Boolean(props.priority))
+let observer: IntersectionObserver | undefined
+
+// Preload only the first visible row, using the same responsive candidate as img.
+useHead(() => ({
+  link: props.priority ? props.images.slice(0, 3).map((src, index) => ({
+    key: `led-hero-${index}`,
+    rel: 'preload', as: 'image', href: src, type: 'image/webp',
+    imagesrcset: props.imageSources?.[src]?.srcset,
+    imagesizes: props.imageSources?.[src] ? imageSizes : undefined,
+    fetchpriority: 'high' as const,
+  })) : [],
+}))
 
 const loopSlides = computed(() => [...props.images, ...props.images])
 const isAnimated = ref(true)
@@ -83,6 +112,17 @@ const handleClick = () => {
 }
 
 onMounted(() => {
+  if (!ready.value && viewport.value) {
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver((entries) => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          ready.value = true
+          observer?.disconnect()
+        }
+      }, { rootMargin: '600px' })
+      observer.observe(viewport.value)
+    } else ready.value = true
+  }
   updateMode()
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateMode)
@@ -90,6 +130,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  observer?.disconnect()
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', updateMode)
   }

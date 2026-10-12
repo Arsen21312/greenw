@@ -19,4 +19,10 @@ logs
 .idea
 
 # Local env files
- 
+.env
+.env.*
+!.env.example
+
+# Local browser audits and screenshots
+output/
+.playwright-cli/
